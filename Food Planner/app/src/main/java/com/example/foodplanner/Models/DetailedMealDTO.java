@@ -4,20 +4,20 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class DetailedMealDTO {
     @SerializedName("idMeal")
     private String id;
     @SerializedName("strMeal")
     private String name;
-    @SerializedName("strCategory")
-    private String category;
     @SerializedName("strArea")
     private String area;
+    private String areaImageUrl;
+    @SerializedName("strCategory")
+    private String category;
     @SerializedName("strTags")
     private String tags;
-    @SerializedName("strDrinkAlternate")
-    private String drinkAlternate;
     @SerializedName("strInstructions")
     private String instructions;
     @SerializedName("strMealThumb")
@@ -26,17 +26,19 @@ public class DetailedMealDTO {
     private String videoUrl;
     private List<IngredientDTO> ingredients;
 
-    public DetailedMealDTO(String id, String name, String category, String area, String tags, String drinkAlternate, String instructions, String imgUrl, String videoUrl, List<IngredientDTO> ingredients) {
+    public DetailedMealDTO(String id, String name, String category, String area, String tags, String instructions, String imgUrl, String videoUrl, List<IngredientDTO> ingredients) {
         this.id = id;
         this.name = name;
         this.category = category;
         this.area = area;
         this.tags = tags;
-        this.drinkAlternate = drinkAlternate;
         this.instructions = instructions;
         this.imgUrl = imgUrl;
         this.videoUrl = videoUrl;
         this.ingredients = ingredients;
+        String subName = area.toLowerCase(Locale.ROOT);
+        subName = ""+subName.charAt(0)+subName.charAt(1);
+        areaImageUrl = "https://www.themealdb.com/images/icons/flags/big/64/"+subName+".png";
     }
 
     public String getId() {
@@ -55,12 +57,15 @@ public class DetailedMealDTO {
         return area;
     }
 
-    public String getTags() {
-        return tags;
+    public String getAreaImageUrl() {
+        String subName = area.toLowerCase(Locale.ROOT);
+        subName = ""+subName.charAt(0)+subName.charAt(1);
+        areaImageUrl = "https://www.themealdb.com/images/icons/flags/big/64/"+subName+".png";
+        return areaImageUrl;
     }
 
-    public String getDrinkAlternate() {
-        return drinkAlternate;
+    public String getTags() {
+        return tags;
     }
 
     public String getInstructions() {
