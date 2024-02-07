@@ -5,8 +5,11 @@
 
     <string name="skip">Skip</string>
     <string name="login">LogIn</string>
-    <string name="noLogin">Not have an account?  Sign Up</string>
-    <string name="signup">Sign Up</string>
+    <string name="orSignup">Create an account?</string>
+    <string name="signup">Create</string>
+    <string name="signupTitle1">Create</string>
+    <string name="signupTitle2">Account</string>
+    <string name="orLogin">Already have an account?</string>
     <string name="noSignup">SignUp With</string>
 
     <string name="name">Name</string>
