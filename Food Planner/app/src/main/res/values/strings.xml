@@ -28,5 +28,7 @@
     <string name="menu_item3">Favourite</string>
     <string name="menu_item4">Calendar</string>
     <string name="menu_item5">Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
