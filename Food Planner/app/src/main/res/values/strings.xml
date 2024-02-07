@@ -1,20 +1,32 @@
 <resources>
     <string name="app_name">Food Planner</string>
+
+    //login page
     <string name="app_name1">Food</string>
     <string name="app_name2">Planner</string>
-
     <string name="skip">Skip</string>
     <string name="login">LogIn</string>
     <string name="orSignup">Create an account?</string>
+    <string name="noSignup">SignUp With</string>
+
+
+    //Sign up page
     <string name="signup">Create</string>
     <string name="signupTitle1">Create</string>
     <string name="signupTitle2">Account</string>
     <string name="orLogin">Already have an account?</string>
-    <string name="noSignup">SignUp With</string>
 
+    //data field
     <string name="name">Name</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="confirmPassword">Confirm Password</string>
+
+    //Menu
+    <string name="menu_item1">Home</string>
+    <string name="menu_item2">Search</string>
+    <string name="menu_item3">Favourite</string>
+    <string name="menu_item4">Calendar</string>
+    <string name="menu_item5">Profile</string>
 
 </resources>
