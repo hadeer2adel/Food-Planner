@@ -12,6 +12,7 @@
     app:strokeWidth="2dp"
     app:strokeColor="@color/blue"
     app:cardElevation="3dp"
+    app:cardCornerRadius="20dp"
     tools:context=".View.MealCardFragment">
 
     <LinearLayout
