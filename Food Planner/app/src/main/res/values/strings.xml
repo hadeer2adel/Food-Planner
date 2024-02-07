@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Food Planner</string>
+    <string name="app_name1">Food</string>
+    <string name="app_name2">Planner</string>
+
+    <string name="skip">Skip</string>
+    <string name="login">LogIn</string>
+    <string name="noLogin">Not have an account?  Sign Up</string>
+    <string name="signup">Sign Up</string>
+    <string name="noSignup">SignUp With</string>
+
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirmPassword">Confirm Password</string>
+
 </resources>
