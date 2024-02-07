@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mealCardFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -16,6 +16,37 @@
         android:name="com.example.foodplanner.View.MealCardFragment"
         android:label="fragment_meal_card"
         tools:layout="@layout/fragment_meal_card" />
+
+    <fragment
+        android:id="@+id/categoryCardFragment"
+        android:name="com.example.foodplanner.View.CategoryCardFragment"
+        android:label="fragment_category_card"
+        tools:layout="@layout/fragment_category_card" />
+
+    <fragment
+        android:id="@+id/AreaCardFragment"
+        android:name="com.example.foodplanner.View.AreaCardFragment"
+        android:label="fragment_area_card"
+        tools:layout="@layout/fragment_area_card" />
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.example.foodplanner.View.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
+    <activity
+        android:id="@+id/signupActivity"
+        android:name="com.example.foodplanner.View.SignupActivity"
+        android:label="activity_signup"
+        tools:layout="@layout/activity_signup" />
+    <fragment
+        android:id="@+id/mealListFragment"
+        android:name="com.example.foodplanner.View.MealListFragment"
+        android:label="fragment_meal_list"
+        tools:layout="@layout/fragment_meal_list" />
+    <fragment
+        android:id="@+id/favFragment"
+        android:name="com.example.foodplanner.View.FavFragment"
+        android:label="FavFragment" />
 
 
 </navigation>

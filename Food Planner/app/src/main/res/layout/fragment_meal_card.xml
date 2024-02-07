@@ -5,10 +5,9 @@
     android:id="@+id/mealCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginEnd="8dp"
-    android:layout_marginBottom="8dp"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginBottom="10dp"
     app:strokeWidth="2dp"
     app:strokeColor="@color/blue"
     app:cardElevation="3dp"
@@ -28,6 +27,7 @@
             <ImageView
                 android:id="@+id/mealCardImage"
                 android:layout_width="match_parent"
+                android:src="@drawable/food_bg"
                 android:layout_height="194dp"
                 android:scaleType="centerCrop" />
 
@@ -37,7 +37,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="top|end"
                 android:backgroundTint="@color/noColor"
-                android:clickable="true"
                 android:drawableLeft="@drawable/ic_favorite_large"
                 android:drawableTintMode="multiply"
                 android:drawableTint="@color/white"/>
@@ -50,6 +49,7 @@
             android:layout_margin="10dp"
             android:gravity="start|center_vertical"
             android:textColor="@color/darkBlue"
+            android:text="tttttttttttttt"
             android:textSize="30sp"
             android:textStyle="bold" />
 

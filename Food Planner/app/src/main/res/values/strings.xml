@@ -28,7 +28,10 @@
     <string name="menu_item3">Favourite</string>
     <string name="menu_item4">Calendar</string>
     <string name="menu_item5">Profile</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    // page Titles
+    <string name="random">Daily Inspiration</string>
+    <string name="category">Popular Categories</string>
+    <string name="area">Country Recipes</string>
 
 </resources>

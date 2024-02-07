@@ -5,10 +5,9 @@
     android:id="@+id/cateCard"
     android:layout_width="match_parent"
     android:layout_height="120dp"
-    android:layout_margin="8dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginEnd="8dp"
-    android:layout_marginBottom="8dp"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginBottom="10dp"
     app:strokeWidth="2dp"
     app:strokeColor="@color/Orange"
     app:cardElevation="3dp"
@@ -19,6 +18,7 @@
             android:id="@+id/cateCardImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:src="@drawable/food_bg"
             android:scaleType="centerCrop" />
 
         <View
@@ -33,6 +33,7 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:gravity="center"
+            android:text="iiiiiiiiiiiii"
             android:shadowColor="@color/Orange"
             android:shadowRadius="10"
             android:textColor="@color/white"
