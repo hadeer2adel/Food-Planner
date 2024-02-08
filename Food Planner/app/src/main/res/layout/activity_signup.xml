@@ -27,7 +27,7 @@
         android:shadowRadius="5"
         android:text="@string/signupTitle1"
         android:textColor="@color/darkBlue"
-        android:textSize="60sp"
+        android:textSize="50sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textDesign1"
         app:layout_constraintStart_toStartOf="parent" />
@@ -37,12 +37,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="96dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="50dp"
         android:shadowColor="@color/blue"
         android:shadowRadius="5"
         android:text="@string/signupTitle2"
         android:textColor="@color/darkBlue"
-        android:textSize="40sp"
+        android:textSize="35sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textDesign1"
         app:layout_constraintStart_toStartOf="@id/title1" />

@@ -50,7 +50,7 @@
             android:gravity="start|center_vertical"
             android:textColor="@color/darkBlue"
             android:text="tttttttttttttt"
-            android:textSize="30sp"
+            android:textSize="28sp"
             android:textStyle="bold" />
 
     </LinearLayout>

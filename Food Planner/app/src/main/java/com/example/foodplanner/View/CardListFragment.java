@@ -12,10 +12,10 @@ import com.example.foodplanner.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link MealListFragment#newInstance} factory method to
+ * Use the {@link CardListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MealListFragment extends Fragment {
+public class CardListFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class MealListFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public MealListFragment() {
+    public CardListFragment() {
         // Required empty public constructor
     }
 
@@ -39,8 +39,8 @@ public class MealListFragment extends Fragment {
      * @return A new instance of fragment CardListFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MealListFragment newInstance(String param1, String param2) {
-        MealListFragment fragment = new MealListFragment();
+    public static CardListFragment newInstance(String param1, String param2) {
+        CardListFragment fragment = new CardListFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,6 +61,6 @@ public class MealListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_meal_list, container, false);
+        return inflater.inflate(R.layout.fragment_card_list, container, false);
     }
 }

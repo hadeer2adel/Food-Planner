@@ -37,7 +37,7 @@
             android:shadowColor="@color/Orange"
             android:shadowRadius="10"
             android:textColor="@color/white"
-            android:textSize="30sp"
+            android:textSize="28sp"
             android:textStyle="bold" />
 
 </com.google.android.material.card.MaterialCardView>

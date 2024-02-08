@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.MealListFragment">
+    tools:context=".View.CardListFragment">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -36,7 +36,7 @@
         android:shadowRadius="7"
         android:text="Favourite"
         android:textColor="@color/darkBlue"
-        android:textSize="40sp"
+        android:textSize="35sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +52,7 @@
         android:shadowRadius="3"
         android:text="Recipes"
         android:textColor="@color/Orange"
-        android:textSize="40sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

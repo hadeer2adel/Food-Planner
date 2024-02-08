@@ -40,9 +40,9 @@
         tools:layout="@layout/activity_signup" />
     <fragment
         android:id="@+id/mealListFragment"
-        android:name="com.example.foodplanner.View.MealListFragment"
+        android:name="com.example.foodplanner.View.CardListFragment"
         android:label="fragment_meal_list"
-        tools:layout="@layout/fragment_meal_list" />
+        tools:layout="@layout/fragment_card_list" />
     <fragment
         android:id="@+id/favFragment"
         android:name="com.example.foodplanner.View.FavFragment"
