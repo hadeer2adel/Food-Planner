@@ -9,34 +9,33 @@
     android:layout_marginEnd="20dp"
     android:layout_marginBottom="10dp"
     app:strokeWidth="2dp"
-    app:strokeColor="@color/darkBlue"
-    app:cardCornerRadius="30dp"
-    android:backgroundTint="@color/lightBlue"
+    app:strokeColor="@color/gray"
+    app:cardCornerRadius="10dp"
     tools:context=".View.AreaCardFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="20dp"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/areaCardImage"
-            android:layout_width="80dp"
-            android:src="@drawable/google"
+            android:layout_width="100dp"
+            android:src="@color/Orange"
             android:layout_height="match_parent" />
 
         <TextView
             android:id="@+id/areaCardName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp"
             android:gravity="start|center_vertical"
             android:shadowColor="@color/black"
             android:shadowRadius="10"
-            android:text="ssssssssss"
+            android:text="Portuguese"
             android:textColor="@color/white"
-            android:textSize="28sp"
+            android:textSize="25sp"
             android:textStyle="bold" />
     </LinearLayout>
 

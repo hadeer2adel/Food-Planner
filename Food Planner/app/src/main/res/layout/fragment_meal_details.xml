@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.MealDetailsFragment">
+
+    <ScrollView
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/mealImage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_image1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/mealTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="180dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:padding="15dp"
+                android:background="@drawable/style_text"
+                android:text="PIZZA"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="@id/mealImage"
+                app:layout_constraintStart_toStartOf="@id/mealImage"
+                app:layout_constraintTop_toTopOf="@+id/mealImage" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/mealCategories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="@id/mealTitle"
+                app:layout_constraintStart_toStartOf="@id/mealTitle"
+                app:layout_constraintTop_toBottomOf="@id/mealTitle"/>
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="@id/mealCategories"
+                app:layout_constraintStart_toStartOf="@id/mealCategories"
+                app:layout_constraintTop_toBottomOf="@id/mealCategories">
+
+                <ImageView
+                    android:id="@+id/mealAreaImage"
+                    android:layout_width="80dp"
+                    android:src="@drawable/log_google"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/mealAreaName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="start|center_vertical"
+                    android:text="ssssssssss"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <VideoView
+                android:id="@+id/videoView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                app:layout_constraintEnd_toEndOf="@id/linearLayout"
+                app:layout_constraintStart_toStartOf="@id/linearLayout"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout"/>
+
+            <View
+                android:id="@+id/line1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray"
+                app:layout_constraintEnd_toEndOf="videoView"
+                app:layout_constraintStart_toStartOf="videoView"
+                app:layout_constraintTop_toBottomOf="@+id/videoView"/>
+
+            <TextView
+                android:id="@+id/ingr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ingr"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="15dp"
+                app:layout_constraintEnd_toEndOf="line1"
+                app:layout_constraintStart_toStartOf="line1"
+                app:layout_constraintTop_toBottomOf="@+id/line1"/>
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/mealIngrContainer"
+                android:name="com.example.foodplanner.View.ListFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="ingr"
+                app:layout_constraintStart_toStartOf="ingr"
+                app:layout_constraintTop_toBottomOf="@+id/ingr"/>
+
+            <View
+                android:id="@+id/line2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/gray"
+                app:layout_constraintEnd_toEndOf="mealIngrContainer"
+                app:layout_constraintStart_toStartOf="mealIngrContainer"
+                app:layout_constraintTop_toBottomOf="@+id/mealIngrContainer"/>
+
+            <TextView
+                android:id="@+id/steps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/step"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintEnd_toEndOf="line2"
+                app:layout_constraintStart_toStartOf="line2"
+                app:layout_constraintTop_toBottomOf="@+id/line2"/>
+
+            <TextView
+                android:id="@+id/mealstepsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="steps"
+                app:layout_constraintStart_toStartOf="steps"
+                app:layout_constraintTop_toBottomOf="@+id/steps"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

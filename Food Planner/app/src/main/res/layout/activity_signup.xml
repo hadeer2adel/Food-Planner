@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/color_bg1" />
+        app:srcCompat="@drawable/bg_color1" />
 
     <TextView
         android:id="@+id/title1"
@@ -55,7 +55,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/button_radius"
+        android:background="@drawable/style_radius"
         android:backgroundTint="@color/lightBlue"
         app:startIconDrawable="@drawable/ic_person"
         android:hint="@string/name"
@@ -67,7 +67,7 @@
             android:id="@+id/nameTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_radius"
+            android:background="@drawable/style_radius"
             android:textColor="@color/black"
             android:textSize="18sp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -80,7 +80,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/button_radius"
+        android:background="@drawable/style_radius"
         android:backgroundTint="@color/lightBlue"
         app:startIconDrawable="@drawable/ic_email"
         android:hint="@string/email"
@@ -92,7 +92,7 @@
             android:id="@+id/emailTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_radius"
+            android:background="@drawable/style_radius"
             android:textColor="@color/black"
             android:textSize="18sp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -106,7 +106,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/button_radius"
+        android:background="@drawable/style_radius"
         android:backgroundTint="@color/lightBlue"
         app:startIconDrawable="@drawable/ic_privacy"
         android:hint="@string/password"
@@ -118,7 +118,7 @@
             android:id="@+id/passwordTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_radius"
+            android:background="@drawable/style_radius"
             android:textColor="@color/black"
             android:textSize="18sp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -131,7 +131,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/button_radius"
+        android:background="@drawable/style_radius"
         android:backgroundTint="@color/lightBlue"
         app:startIconDrawable="@drawable/ic_privacy"
         android:hint="@string/confirmPassword"
@@ -143,7 +143,7 @@
             android:id="@+id/confirmPasswordTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_radius"
+            android:background="@drawable/style_radius"
             android:textColor="@color/black"
             android:textSize="18sp" />
     </com.google.android.material.textfield.TextInputLayout>

@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/color_bg4" />
+        app:srcCompat="@drawable/bg_color2" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -24,7 +24,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/color_bg3" />
+        app:srcCompat="@drawable/bg_color3" />
 
     <TextView
         android:id="@+id/cardListTitle1"
