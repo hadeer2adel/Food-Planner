@@ -15,10 +15,10 @@ import com.example.foodplanner.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link FavFragment#newInstance} factory method to
+ * Use the {@link WeekFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FavFragment extends Fragment {
+public class WeekFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,7 +29,7 @@ public class FavFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public FavFragment() {
+    public WeekFragment() {
         // Required empty public constructor
     }
 
@@ -39,11 +39,11 @@ public class FavFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment FavFragment.
+     * @return A new instance of fragment WeekFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static FavFragment newInstance(String param1, String param2) {
-        FavFragment fragment = new FavFragment();
+    public static WeekFragment newInstance(String param1, String param2) {
+        WeekFragment fragment = new WeekFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -72,7 +72,7 @@ public class FavFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         TextView title1 = view.findViewById(R.id.cardListTitle1);
         TextView title2 = view.findViewById(R.id.cardListTitle2);
-        title1.setText("Favourite");
+        title1.setText("Week");
         title2.setText("Recipes");
     }
 }

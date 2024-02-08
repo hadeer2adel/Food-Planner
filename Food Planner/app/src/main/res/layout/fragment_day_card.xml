@@ -39,14 +39,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/dayCardName" />
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/dayCardContainer"
-        android:name="com.example.foodplanner.View.ListFragment"
-        android:layout_width="wrap_content"
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/dayCardChipGroup"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dayCardName" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dayCardName"/>
+
 
     <View
         android:layout_width="match_parent"
@@ -55,6 +55,6 @@
         android:background="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dayCardContainer"/>
+        app:layout_constraintTop_toBottomOf="@+id/dayCardChipGroup"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

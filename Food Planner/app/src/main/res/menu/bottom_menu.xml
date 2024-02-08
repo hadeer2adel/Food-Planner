@@ -19,7 +19,7 @@
         android:title="@string/menu_item3"
         android:enabled="true"        />
     <item
-        android:id="@+id/calendar"
+        android:id="@+id/weekFragment"
         android:icon="@drawable/ic_calendar"
         android:title="@string/menu_item4"
         android:enabled="true"        />

@@ -39,14 +39,23 @@
         android:label="activity_signup"
         tools:layout="@layout/activity_signup" />
     <fragment
-        android:id="@+id/mealListFragment"
-        android:name="com.example.foodplanner.View.CardListFragment"
-        android:label="fragment_meal_list"
-        tools:layout="@layout/fragment_card_list" />
-    <fragment
         android:id="@+id/favFragment"
         android:name="com.example.foodplanner.View.FavFragment"
         android:label="FavFragment" />
+    <fragment
+        android:id="@+id/weekFragment"
+        android:name="com.example.foodplanner.View.WeekFragment"
+        android:label="WeekFragment" />
+    <fragment
+        android:id="@+id/cardListFragment"
+        android:name="com.example.foodplanner.View.CardListFragment"
+        android:label="fragment_card_list"
+        tools:layout="@layout/fragment_card_list" />
+    <fragment
+        android:id="@+id/dayCardFragment"
+        android:name="com.example.foodplanner.View.DayCardFragment"
+        android:label="fragment_day_card"
+        tools:layout="@layout/fragment_day_card" />
 
 
 </navigation>

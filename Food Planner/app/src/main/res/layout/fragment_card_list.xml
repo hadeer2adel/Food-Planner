@@ -27,7 +27,7 @@
         app:srcCompat="@drawable/color_bg3" />
 
     <TextView
-        android:id="@+id/mealListTitle1"
+        android:id="@+id/cardListTitle1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -43,7 +43,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/mealListTitle2"
+        android:id="@+id/cardListTitle2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
@@ -59,13 +59,13 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/mealListContainer"
+        android:id="@+id/cardListContainer"
         android:name="com.example.foodplanner.View.ListFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mealListTitle2" />
+        app:layout_constraintTop_toBottomOf="@+id/cardListTitle2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
