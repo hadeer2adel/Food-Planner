@@ -27,7 +27,6 @@
             android:layout_height="match_parent"
             android:layout_marginStart="5dp"
             android:gravity="start|center_vertical"
-            android:text="Portuguese"
             android:textColor="@color/black"
             android:textSize="20sp" />
     </LinearLayout>

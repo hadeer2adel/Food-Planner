@@ -1,18 +1,17 @@
 package com.example.foodplanner.RecycleView;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.foodplanner.Controller.HomePageFragmentDirections;
+import com.example.foodplanner.Controller.MealListFragmentDirections;
 import com.example.foodplanner.Models.MealDTO;
 import com.example.foodplanner.R;
 
@@ -64,7 +63,16 @@ public class MealRecycleViewAdapter extends RecyclerView.Adapter<MealRecycleView
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, meals.get(position).getName(), Toast.LENGTH_SHORT).show();
+                if(cardSize.equals("small")){
+                    com.example.foodplanner.Controller.MealListFragmentDirections.ActionMealListFragmentToMealDetailsFragment action;
+                    action = com.example.foodplanner.Controller.MealListFragmentDirections.actionMealListFragmentToMealDetailsFragment(meal.getId(), holder.favBtnClicked);
+                    Navigation.findNavController(v).navigate(action);
+                }
+                else{
+                    com.example.foodplanner.Controller.HomePageFragmentDirections.ActionHomeFragmentToMealDetailsFragment action;
+                    action = com.example.foodplanner.Controller.HomePageFragmentDirections.actionHomeFragmentToMealDetailsFragment(meal.getId(), holder.favBtnClicked);
+                    Navigation.findNavController(v).navigate(action);
+                }
             }
         });
     }

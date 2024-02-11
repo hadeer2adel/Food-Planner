@@ -12,7 +12,10 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_cardListFragment"
-            app:destination="@id/cardListFragment" />
+            app:destination="@id/mealListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_mealDetailsFragment"
+            app:destination="@id/mealDetailsFragment" />
     </fragment>
 
     <fragment
@@ -51,9 +54,9 @@
         android:name="com.example.foodplanner.View.WeekFragment"
         android:label="WeekFragment" />
     <fragment
-        android:id="@+id/cardListFragment"
+        android:id="@+id/mealListFragment"
         android:name="com.example.foodplanner.Controller.MealListFragment"
-        android:label="fragment_card_list"
+        android:label="fragment_meal_list"
         tools:layout="@layout/fragment_meal_list" >
         <argument
             android:name="type"
@@ -61,12 +64,27 @@
         <argument
             android:name="value"
             app:argType="string" />
+        <action
+            android:id="@+id/action_mealListFragment_to_mealDetailsFragment"
+            app:destination="@id/mealDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/dayCardFragment"
         android:name="com.example.foodplanner.View.DayCardFragment"
         android:label="fragment_day_card"
         tools:layout="@layout/fragment_day_card" />
+    <fragment
+        android:id="@+id/mealDetailsFragment"
+        android:name="com.example.foodplanner.Controller.MealDetailsFragment"
+        android:label="fragment_meal_details"
+        tools:layout="@layout/fragment_meal_details" >
+        <argument
+            android:name="mealID"
+            app:argType="string" />
+        <argument
+            android:name="favourite"
+            app:argType="boolean" />
+    </fragment>
 
 
 </navigation>

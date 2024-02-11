@@ -36,9 +36,9 @@
 
     //button
     <string name="add">Add</string>
+    <string name="country">Country : </string>
+    <string name="vid">Video</string>
     <string name="ingr">Ingredients</string>
     <string name="step">Instructions</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

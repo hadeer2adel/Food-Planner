@@ -16,7 +16,6 @@
             android:id="@+id/cateCardImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/bg_image1"
             android:scaleType="centerCrop" />
 
         <View
@@ -31,7 +30,6 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:gravity="center"
-            android:text="Miscellaneous"
             android:shadowColor="@color/Orange"
             android:shadowRadius="50"
             android:textColor="@color/white"

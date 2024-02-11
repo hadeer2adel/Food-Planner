@@ -26,7 +26,6 @@
             <ImageView
                 android:id="@+id/mealCardImage"
                 android:layout_width="match_parent"
-                android:src="@drawable/bg_image1"
                 android:layout_height="194dp"
                 android:scaleType="centerCrop" />
 
@@ -46,7 +45,6 @@
             android:layout_margin="10dp"
             android:gravity="start|center_vertical"
             android:textColor="@color/black"
-            android:text="tttttttttttttt"
             android:textSize="22sp"/>
 
     </LinearLayout>

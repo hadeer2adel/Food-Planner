@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
@@ -13,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.Controller.HomePageFragmentDirections;
 import com.example.foodplanner.Models.AreaDTO;
-import com.example.foodplanner.Models.CategoryDTO;
 import com.example.foodplanner.R;
+import com.example.foodplanner.Controller.HomePageFragmentDirections.ActionHomeFragmentToCardListFragment;
 
 import java.util.List;
 
@@ -45,7 +44,7 @@ public class AreaRecycleViewAdapter extends RecyclerView.Adapter<AreaRecycleView
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                com.example.foodplanner.Controller.HomePageFragmentDirections.ActionHomeFragmentToCardListFragment action;
+                ActionHomeFragmentToCardListFragment action;
                 action = HomePageFragmentDirections.actionHomeFragmentToCardListFragment("area",area.getName());
                 Navigation.findNavController(v).navigate(action);
             }

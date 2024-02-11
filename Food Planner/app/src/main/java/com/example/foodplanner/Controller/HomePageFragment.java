@@ -72,7 +72,6 @@ public class HomePageFragment extends Fragment implements HomePageView{
 
         mealAdapter = new MealRecycleViewAdapter(getContext(), new ArrayList<>(), "large");
         mealRecycleView.setAdapter(mealAdapter);
-
         presenter.getRandomMeals();
     }
     private void setCategoryRecycleView(){
@@ -81,7 +80,6 @@ public class HomePageFragment extends Fragment implements HomePageView{
 
         categoryAdapter = new CategoryRecycleViewAdapter(getContext(), new ArrayList<>());
         categoryRecycleView.setAdapter(categoryAdapter);
-
         presenter.getCategories();
     }
     private void setAreaRecycleView(){
@@ -90,7 +88,6 @@ public class HomePageFragment extends Fragment implements HomePageView{
 
         areaAdapter = new AreaRecycleViewAdapter(getContext(), new ArrayList<>());
         areaRecycleView.setAdapter(areaAdapter);
-
         presenter.getAreas();
     }
 

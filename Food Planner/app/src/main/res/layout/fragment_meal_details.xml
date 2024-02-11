@@ -8,12 +8,8 @@
     tools:context=".Controller.MealDetailsFragment">
 
     <ScrollView
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,28 +18,35 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/mealImage"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="300dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/bg_image1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/mealFav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_favorite_false"
+                android:backgroundTint="@color/noColor"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/mealTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="180dp"
+                android:layout_marginTop="250dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
                 android:padding="15dp"
                 android:background="@drawable/style_text"
-                android:text="PIZZA"
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -56,7 +59,7 @@
                 android:id="@+id/mealCategories"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_margin="20dp"
                 app:layout_constraintEnd_toEndOf="@id/mealTitle"
                 app:layout_constraintStart_toStartOf="@id/mealTitle"
                 app:layout_constraintTop_toBottomOf="@id/mealTitle"/>
@@ -72,39 +75,74 @@
                 app:layout_constraintStart_toStartOf="@id/mealCategories"
                 app:layout_constraintTop_toBottomOf="@id/mealCategories">
 
-                <ImageView
-                    android:id="@+id/mealAreaImage"
-                    android:layout_width="80dp"
-                    android:src="@drawable/log_google"
-                    android:layout_height="80dp" />
+                <TextView
+                    android:id="@+id/conTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/country"
+                    android:textColor="@color/black"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    android:shadowColor="@color/Orange"
+                    android:shadowRadius="3"/>
 
                 <TextView
                     android:id="@+id/mealAreaName"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="start|center_vertical"
-                    android:text="ssssssssss"
+                    android:paddingStart="10dp"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="22sp" />
             </LinearLayout>
 
-            <VideoView
-                android:id="@+id/videoView"
+            <View
+                android:id="@+id/line0"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_height="1dp"
+                android:background="@color/gray"
+                android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="@id/mealTitle"
                 app:layout_constraintStart_toStartOf="@id/mealTitle"
                 app:layout_constraintTop_toBottomOf="@id/linearLayout"/>
+
+            <TextView
+                android:id="@+id/vidTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/vid"
+                android:textColor="@color/black"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:shadowColor="@color/Orange"
+                android:shadowRadius="3"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintEnd_toEndOf="@id/mealTitle"
+                app:layout_constraintStart_toStartOf="@id/mealTitle"
+                app:layout_constraintTop_toBottomOf="@id/line0"/>
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                android:id="@+id/video"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="15dp"
+                app:autoPlay="false"
+                app:layout_constraintEnd_toEndOf="@id/mealTitle"
+                app:layout_constraintStart_toStartOf="@id/mealTitle"
+                app:layout_constraintTop_toBottomOf="@id/vidTxt"/>
 
             <View
                 android:id="@+id/line1"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/gray"
-                app:layout_constraintEnd_toEndOf="@id/videoView"
-                app:layout_constraintStart_toStartOf="@id/videoView"
-                app:layout_constraintTop_toBottomOf="@+id/videoView"/>
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="@id/video"
+                app:layout_constraintStart_toStartOf="@id/video"
+                app:layout_constraintTop_toBottomOf="@+id/video"/>
 
             <TextView
                 android:id="@+id/ingr"
@@ -112,20 +150,22 @@
                 android:layout_height="wrap_content"
                 android:text="@string/ingr"
                 android:textColor="@color/black"
-                android:textSize="22sp"
+                android:textSize="28sp"
                 android:textStyle="bold"
-                android:layout_marginStart="30dp"
+                android:shadowColor="@color/Orange"
+                android:shadowRadius="3"
+                android:layout_marginStart="40dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginBottom="15dp"
                 app:layout_constraintEnd_toEndOf="@id/mealTitle"
                 app:layout_constraintStart_toStartOf="@id/mealTitle"
                 app:layout_constraintTop_toBottomOf="@+id/line1"/>
 
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/mealIngrContainer"
-                android:name="com.example.foodplanner.View.ListFragment"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mealIngrRecycleView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin ="1dp"
+                android:layout_marginTop="15dp"
                 app:layout_constraintEnd_toEndOf="@id/mealTitle"
                 app:layout_constraintStart_toStartOf="@id/mealTitle"
                 app:layout_constraintTop_toBottomOf="@+id/ingr"/>
@@ -138,7 +178,7 @@
                 android:background="@color/gray"
                 app:layout_constraintEnd_toEndOf="@id/mealTitle"
                 app:layout_constraintStart_toStartOf="@id/mealTitle"
-                app:layout_constraintTop_toBottomOf="@+id/mealIngrContainer"/>
+                app:layout_constraintTop_toBottomOf="@+id/mealIngrRecycleView"/>
 
             <TextView
                 android:id="@+id/steps"
@@ -146,24 +186,35 @@
                 android:layout_height="wrap_content"
                 android:text="@string/step"
                 android:textColor="@color/black"
-                android:textSize="22sp"
+                android:textSize="28sp"
                 android:textStyle="bold"
-                android:layout_marginStart="30dp"
+                android:shadowColor="@color/Orange"
+                android:shadowRadius="3"
+                android:layout_marginStart="40dp"
                 android:layout_marginTop="30dp"
                 app:layout_constraintEnd_toEndOf="@id/mealTitle"
                 app:layout_constraintStart_toStartOf="@id/mealTitle"
                 app:layout_constraintTop_toBottomOf="@+id/line2"/>
 
-            <TextView
-                android:id="@+id/mealstepsText"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mealStepRecycleView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:textColor="@color/black"
-                android:textSize="20sp"
+                android:layout_margin ="1dp"
+                android:layout_marginTop="15dp"
                 app:layout_constraintEnd_toEndOf="@id/mealTitle"
                 app:layout_constraintStart_toStartOf="@id/mealTitle"
                 app:layout_constraintTop_toBottomOf="@+id/steps"/>
+
+            <View
+                android:id="@+id/line3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/gray"
+                app:layout_constraintEnd_toEndOf="@id/mealTitle"
+                app:layout_constraintStart_toStartOf="@id/mealTitle"
+                app:layout_constraintTop_toBottomOf="@+id/mealStepRecycleView"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
