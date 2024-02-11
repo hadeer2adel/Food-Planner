@@ -32,7 +32,7 @@
     // page Titles
     <string name="random">Daily Inspiration</string>
     <string name="category">Popular Categories</string>
-    <string name="area">Country Recipes</string>
+    <string name="area">Countries</string>
 
     //button
     <string name="add">Add</string>

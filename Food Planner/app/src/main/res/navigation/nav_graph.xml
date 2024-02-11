@@ -7,9 +7,13 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.foodplanner.View.HomeFragment"
+        android:name="com.example.foodplanner.Controller.HomePageFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_cardListFragment"
+            app:destination="@id/cardListFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/mealCardFragment"
@@ -48,9 +52,16 @@
         android:label="WeekFragment" />
     <fragment
         android:id="@+id/cardListFragment"
-        android:name="com.example.foodplanner.View.CardListFragment"
+        android:name="com.example.foodplanner.Controller.MealListFragment"
         android:label="fragment_card_list"
-        tools:layout="@layout/fragment_card_list" />
+        tools:layout="@layout/fragment_meal_list" >
+        <argument
+            android:name="type"
+            app:argType="string" />
+        <argument
+            android:name="value"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/dayCardFragment"
         android:name="com.example.foodplanner.View.DayCardFragment"

@@ -4,15 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.HomeFragment">
+    tools:context=".Controller.HomePageFragment">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
+        android:layout_margin="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,27 +17,27 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical" >
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/random"
-                android:shadowColor="@color/blue"
-                android:shadowRadius="7"
-                android:textColor="@color/darkBlue"
+                android:textColor="@color/black"
+                android:shadowColor="@color/Orange"
+                android:shadowRadius="4"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="15dp"/>
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="10dp"/>
 
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/randomContainer"
-                android:name="com.example.foodplanner.View.ListFragment"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mealRecycleView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_margin ="1dp"/>
 
             <View
                 android:layout_width="match_parent"
@@ -52,20 +49,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/category"
-                android:shadowColor="@color/yellow"
-                android:shadowRadius="7"
-                android:textColor="@color/Orange"
+                android:textColor="@color/black"
+                android:shadowColor="@color/Orange"
+                android:shadowRadius="4"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="15dp"/>
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="10dp"/>
 
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/categoryContainer"
-                android:name="com.example.foodplanner.View.ListFragment"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/categoryRecycleView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_margin ="1dp"/>
 
             <View
                 android:layout_width="match_parent"
@@ -77,20 +74,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/area"
-                android:shadowColor="@color/darkBlue"
-                android:shadowRadius="7"
-                android:textColor="@color/blue"
+                android:textColor="@color/black"
+                android:shadowColor="@color/Orange"
+                android:shadowRadius="4"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginBottom="15dp"/>
 
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/areaContainer"
-                android:name="com.example.foodplanner.View.ListFragment"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/areaRecycleView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_margin ="1dp"/>
 
             <View
                 android:layout_width="match_parent"

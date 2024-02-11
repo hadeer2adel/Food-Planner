@@ -64,15 +64,13 @@ public class FavFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_card_list, container, false);
+        return inflater.inflate(R.layout.fragment_meal_list, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        TextView title1 = view.findViewById(R.id.cardListTitle1);
-        TextView title2 = view.findViewById(R.id.cardListTitle2);
-        title1.setText("Favourite");
-        title2.setText("Recipes");
+        TextView title = view.findViewById(R.id.cardListTitle);
+        title.setText("Favourite");
     }
 }

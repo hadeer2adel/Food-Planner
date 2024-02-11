@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.MealDetailsFragment">
+    tools:context=".Controller.MealDetailsFragment">
 
     <ScrollView
         android:layout_width="409dp"
@@ -64,7 +64,7 @@
             <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal"
@@ -76,7 +76,7 @@
                     android:id="@+id/mealAreaImage"
                     android:layout_width="80dp"
                     android:src="@drawable/log_google"
-                    android:layout_height="match_parent" />
+                    android:layout_height="80dp" />
 
                 <TextView
                     android:id="@+id/mealAreaName"
@@ -93,8 +93,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                app:layout_constraintEnd_toEndOf="@id/linearLayout"
-                app:layout_constraintStart_toStartOf="@id/linearLayout"
+                app:layout_constraintEnd_toEndOf="@id/mealTitle"
+                app:layout_constraintStart_toStartOf="@id/mealTitle"
                 app:layout_constraintTop_toBottomOf="@id/linearLayout"/>
 
             <View
@@ -102,8 +102,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/gray"
-                app:layout_constraintEnd_toEndOf="videoView"
-                app:layout_constraintStart_toStartOf="videoView"
+                app:layout_constraintEnd_toEndOf="@id/videoView"
+                app:layout_constraintStart_toStartOf="@id/videoView"
                 app:layout_constraintTop_toBottomOf="@+id/videoView"/>
 
             <TextView
@@ -117,8 +117,8 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="15dp"
-                app:layout_constraintEnd_toEndOf="line1"
-                app:layout_constraintStart_toStartOf="line1"
+                app:layout_constraintEnd_toEndOf="@id/mealTitle"
+                app:layout_constraintStart_toStartOf="@id/mealTitle"
                 app:layout_constraintTop_toBottomOf="@+id/line1"/>
 
             <androidx.fragment.app.FragmentContainerView
@@ -126,8 +126,8 @@
                 android:name="com.example.foodplanner.View.ListFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="ingr"
-                app:layout_constraintStart_toStartOf="ingr"
+                app:layout_constraintEnd_toEndOf="@id/mealTitle"
+                app:layout_constraintStart_toStartOf="@id/mealTitle"
                 app:layout_constraintTop_toBottomOf="@+id/ingr"/>
 
             <View
@@ -136,8 +136,8 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="20dp"
                 android:background="@color/gray"
-                app:layout_constraintEnd_toEndOf="mealIngrContainer"
-                app:layout_constraintStart_toStartOf="mealIngrContainer"
+                app:layout_constraintEnd_toEndOf="@id/mealTitle"
+                app:layout_constraintStart_toStartOf="@id/mealTitle"
                 app:layout_constraintTop_toBottomOf="@+id/mealIngrContainer"/>
 
             <TextView
@@ -150,8 +150,8 @@
                 android:textStyle="bold"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="30dp"
-                app:layout_constraintEnd_toEndOf="line2"
-                app:layout_constraintStart_toStartOf="line2"
+                app:layout_constraintEnd_toEndOf="@id/mealTitle"
+                app:layout_constraintStart_toStartOf="@id/mealTitle"
                 app:layout_constraintTop_toBottomOf="@+id/line2"/>
 
             <TextView
@@ -161,8 +161,8 @@
                 android:layout_margin="20dp"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="steps"
-                app:layout_constraintStart_toStartOf="steps"
+                app:layout_constraintEnd_toEndOf="@id/mealTitle"
+                app:layout_constraintStart_toStartOf="@id/mealTitle"
                 app:layout_constraintTop_toBottomOf="@+id/steps"/>
 
 

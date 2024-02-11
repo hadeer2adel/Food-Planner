@@ -3,14 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/areaCard"
-    android:layout_width="match_parent"
+    android:layout_width="200dp"
     android:layout_height="50dp"
-    android:layout_marginStart="20dp"
-    android:layout_marginEnd="20dp"
-    android:layout_marginBottom="10dp"
-    app:strokeWidth="2dp"
-    app:strokeColor="@color/gray"
-    app:cardCornerRadius="10dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginBottom="5dp"
+    app:strokeColor="@color/noColor"
     tools:context=".View.AreaCardFragment">
 
     <LinearLayout
@@ -20,7 +17,7 @@
 
         <ImageView
             android:id="@+id/areaCardImage"
-            android:layout_width="100dp"
+            android:layout_width="50dp"
             android:src="@color/Orange"
             android:layout_height="match_parent" />
 
@@ -28,15 +25,11 @@
             android:id="@+id/areaCardName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="5dp"
             android:gravity="start|center_vertical"
-            android:shadowColor="@color/black"
-            android:shadowRadius="10"
             android:text="Portuguese"
-            android:textColor="@color/white"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+            android:textColor="@color/black"
+            android:textSize="20sp" />
     </LinearLayout>
 
 
