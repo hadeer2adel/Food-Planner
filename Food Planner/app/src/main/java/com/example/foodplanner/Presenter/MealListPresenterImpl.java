@@ -2,18 +2,16 @@ package com.example.foodplanner.Presenter;
 
 import android.content.Context;
 
-import com.example.foodplanner.Controller.HomePageView;
 import com.example.foodplanner.Controller.MealListView;
-import com.example.foodplanner.Models.MealDTO;
-import com.example.foodplanner.NetworkCallBack.MealNetworkCallBack;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.Repository.Repository;
 import com.example.foodplanner.Repository.RepositoryImpl;
 
-import java.util.List;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public class MealListPresenterImpl implements MealListPresenter, MealNetworkCallBack {
+public class MealListPresenterImpl implements MealListPresenter {
 
     private Repository repository;
     private MealListView view;
@@ -25,21 +23,26 @@ public class MealListPresenterImpl implements MealListPresenter, MealNetworkCall
     }
 
     @Override
-    public void onSuccess_Meal(List<MealDTO> meals) {
-        view.showMeals(meals);
-    }
-    @Override
-    public void onFailure_Meal(String errorMsg) {
-        view.showErrorMsg(errorMsg);
-    }
-
-    @Override
     public void getMealsByCategory(String category) {
-        repository.getMealsByCategory(this, category);
+        repository.getMealsByCategory(category)
+                .subscribeOn(Schedulers.newThread())
+                .map(item -> item.getAllMeals())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        item -> view.showMeals(item),
+                        error -> view.showErrorMsg(error.getMessage())
+                );
     }
 
     @Override
     public void getMealsByArea(String area) {
-        repository.getMealsByArea(this, area);
+        repository.getMealsByArea(area)
+                .subscribeOn(Schedulers.newThread())
+                .map(item -> item.getAllMeals())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        item -> view.showMeals(item),
+                        error -> view.showErrorMsg(error.getMessage())
+                );
     }
 }

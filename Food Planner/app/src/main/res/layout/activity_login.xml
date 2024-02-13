@@ -130,7 +130,7 @@
         android:id="@+id/loginBtn"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:backgroundTint="@color/blue"
+        android:backgroundTint="@color/Orange"
         android:text="@string/login"
         android:textSize="24sp"
         android:textStyle="bold"

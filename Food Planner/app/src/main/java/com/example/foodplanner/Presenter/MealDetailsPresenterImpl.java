@@ -1,20 +1,18 @@
 package com.example.foodplanner.Presenter;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.foodplanner.Controller.MealDetailsView;
-import com.example.foodplanner.Controller.MealListView;
-import com.example.foodplanner.Models.DetailedMealDTO;
-import com.example.foodplanner.Models.MealDTO;
-import com.example.foodplanner.NetworkCallBack.DetailedMealNetworkCallBack;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.Repository.Repository;
 import com.example.foodplanner.Repository.RepositoryImpl;
 
-import java.util.List;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public class MealDetailsPresenterImpl implements MealDetailsPresenter, DetailedMealNetworkCallBack {
+public class MealDetailsPresenterImpl implements MealDetailsPresenter{
     private Repository repository;
     private MealDetailsView view;
 
@@ -25,16 +23,15 @@ public class MealDetailsPresenterImpl implements MealDetailsPresenter, DetailedM
     }
 
     @Override
-    public void onSuccess(DetailedMealDTO meal) {
-        view.showMeal(meal);
-    }
-    @Override
-    public void onFailure(String errorMsg) {
-        view.showErrorMsg(errorMsg);
-    }
-
-    @Override
     public void getMeal(String id) {
-        repository.getMealDetails(this, id);
+        repository.getMealDetails(id)
+                .subscribeOn(Schedulers.newThread())
+                .map(item -> item.getMeal())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        item -> view.showMeal(item),
+                        error -> {view.showErrorMsg(error.getMessage());
+                            Log.i("test", "getMeal: ----- "+error.getMessage());}
+                );
     }
 }

@@ -1,10 +1,12 @@
 package com.example.foodplanner.Repository;
 
-import com.example.foodplanner.NetworkCallBack.AreaNetworkCallBack;
-import com.example.foodplanner.NetworkCallBack.CategoryNetworkCallBack;
-import com.example.foodplanner.NetworkCallBack.DetailedMealNetworkCallBack;
-import com.example.foodplanner.NetworkCallBack.MealNetworkCallBack;
+import com.example.foodplanner.Models.AreasDTO;
+import com.example.foodplanner.Models.CategoriesDTO;
+import com.example.foodplanner.Models.DetailedMealsDTO;
+import com.example.foodplanner.Models.MealsDTO;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
+
+import io.reactivex.rxjava3.core.Observable;
 
 public class RepositoryImpl implements Repository {
     private RemoteDataSource remoteDataSource;
@@ -21,32 +23,32 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public void getRandomMeals(MealNetworkCallBack networkCallBack) {
-        remoteDataSource.makeNetworkCall_RandomMeals(networkCallBack);
+    public Observable<MealsDTO> getRandomMeals() {
+        return remoteDataSource.makeNetworkCall_RandomMeals();
     }
 
     @Override
-    public void getCategories(CategoryNetworkCallBack networkCallBack) {
-        remoteDataSource.makeNetworkCall_Categories(networkCallBack);
+    public Observable<CategoriesDTO> getCategories() {
+        return remoteDataSource.makeNetworkCall_Categories();
     }
 
     @Override
-    public void getAreas(AreaNetworkCallBack networkCallBack) {
-        remoteDataSource.makeNetworkCall_Areas(networkCallBack);
+    public Observable<AreasDTO> getAreas() {
+        return remoteDataSource.makeNetworkCall_Areas();
     }
 
     @Override
-    public void getMealsByCategory(MealNetworkCallBack networkCallBack, String category) {
-        remoteDataSource.makeNetworkCall_MealsByCategory(networkCallBack, category);
+    public Observable<MealsDTO> getMealsByCategory(String category) {
+        return remoteDataSource.makeNetworkCall_MealsByCategory(category);
     }
 
     @Override
-    public void getMealsByArea(MealNetworkCallBack networkCallBack, String area) {
-        remoteDataSource.makeNetworkCall_MealsByArea(networkCallBack, area);
+    public Observable<MealsDTO> getMealsByArea(String area) {
+        return remoteDataSource.makeNetworkCall_MealsByArea(area);
     }
 
     @Override
-    public void getMealDetails(DetailedMealNetworkCallBack networkCallBack, String id) {
-        remoteDataSource.makeNetworkCall_MealDetails(networkCallBack, id);
+    public Observable<DetailedMealsDTO> getMealDetails(String id) {
+        return remoteDataSource.makeNetworkCall_MealDetails(id);
     }
 }

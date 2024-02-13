@@ -150,17 +150,21 @@ public class MealDetailsFragment extends Fragment implements MealDetailsView{
     }
 
     private void showCategoriesAndTags(String _categories, String _tags){
-        String []categories = _categories.split(",");
-        for (String category : categories) {
-            Chip chip = new Chip(getContext());
-            chip.setText(category);
-            mealCategories.addView(chip);
+        if (_categories != null && !_categories.equals("")) {
+            String[] categories = _categories.split(",");
+            for (String category : categories) {
+                Chip chip = new Chip(getContext());
+                chip.setText(category);
+                mealCategories.addView(chip);
+            }
         }
-        String []tags = _tags.split(",");
-        for (String tag : tags) {
-            Chip chip = new Chip(getContext());
-            chip.setText(tag);
-            mealCategories.addView(chip);
+        if (_tags != null && !_tags.equals("")) {
+            String[] tags = _tags.split(",");
+            for (String tag : tags) {
+                Chip chip = new Chip(getContext());
+                chip.setText(tag);
+                mealCategories.addView(chip);
+            }
         }
     }
 }

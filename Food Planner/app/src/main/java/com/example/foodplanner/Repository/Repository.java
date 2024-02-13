@@ -1,15 +1,17 @@
 package com.example.foodplanner.Repository;
 
-import com.example.foodplanner.NetworkCallBack.AreaNetworkCallBack;
-import com.example.foodplanner.NetworkCallBack.CategoryNetworkCallBack;
-import com.example.foodplanner.NetworkCallBack.DetailedMealNetworkCallBack;
-import com.example.foodplanner.NetworkCallBack.MealNetworkCallBack;
+import com.example.foodplanner.Models.AreasDTO;
+import com.example.foodplanner.Models.CategoriesDTO;
+import com.example.foodplanner.Models.DetailedMealsDTO;
+import com.example.foodplanner.Models.MealsDTO;
+
+import io.reactivex.rxjava3.core.Observable;
 
 public interface Repository {
-    public void getRandomMeals(MealNetworkCallBack networkCallBack);
-    public void getCategories(CategoryNetworkCallBack networkCallBack);
-    public void getAreas(AreaNetworkCallBack networkCallBack);
-    public void getMealsByCategory(MealNetworkCallBack networkCallBack, String category);
-    public void getMealsByArea(MealNetworkCallBack networkCallBack, String area);
-    public void getMealDetails(DetailedMealNetworkCallBack networkCallBack, String id);
+    public Observable<MealsDTO> getRandomMeals();
+    public Observable<CategoriesDTO> getCategories();
+    public Observable<AreasDTO> getAreas();
+    public Observable<MealsDTO> getMealsByCategory(String category);
+    public Observable<MealsDTO> getMealsByArea(String area);
+    public Observable<DetailedMealsDTO> getMealDetails(String id);
 }

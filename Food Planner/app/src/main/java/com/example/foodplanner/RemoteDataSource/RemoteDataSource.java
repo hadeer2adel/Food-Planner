@@ -1,15 +1,17 @@
 package com.example.foodplanner.RemoteDataSource;
 
-import com.example.foodplanner.NetworkCallBack.AreaNetworkCallBack;
-import com.example.foodplanner.NetworkCallBack.CategoryNetworkCallBack;
-import com.example.foodplanner.NetworkCallBack.DetailedMealNetworkCallBack;
-import com.example.foodplanner.NetworkCallBack.MealNetworkCallBack;
+import com.example.foodplanner.Models.AreasDTO;
+import com.example.foodplanner.Models.CategoriesDTO;
+import com.example.foodplanner.Models.DetailedMealsDTO;
+import com.example.foodplanner.Models.MealsDTO;
+
+import io.reactivex.rxjava3.core.Observable;
 
 public interface RemoteDataSource {
-    public void makeNetworkCall_RandomMeals(MealNetworkCallBack networkCallBack);
-    public void makeNetworkCall_Categories(CategoryNetworkCallBack networkCallBack);
-    public void makeNetworkCall_Areas(AreaNetworkCallBack networkCallBack);
-    public void makeNetworkCall_MealsByCategory(MealNetworkCallBack networkCallBack, String category);
-    public void makeNetworkCall_MealsByArea(MealNetworkCallBack networkCallBack, String area);
-    public void makeNetworkCall_MealDetails(DetailedMealNetworkCallBack networkCallBack, String id);
+    public Observable<MealsDTO> makeNetworkCall_RandomMeals();
+    public Observable<CategoriesDTO> makeNetworkCall_Categories();
+    public Observable<AreasDTO> makeNetworkCall_Areas();
+    public Observable<MealsDTO> makeNetworkCall_MealsByCategory(String category);
+    public Observable<MealsDTO> makeNetworkCall_MealsByArea(String area);
+    public Observable<DetailedMealsDTO> makeNetworkCall_MealDetails(String id);
 }
