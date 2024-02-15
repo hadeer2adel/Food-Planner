@@ -10,8 +10,6 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.foodplanner.Controller.HomePageFragmentDirections;
-import com.example.foodplanner.Controller.MealListFragmentDirections;
 import com.example.foodplanner.Models.MealDTO;
 import com.example.foodplanner.R;
 
@@ -32,9 +30,9 @@ public class MealRecycleViewAdapter extends RecyclerView.Adapter<MealRecycleView
     @Override
     public MealRecycleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.fragment_meal_card, parent, false);
+        View view = inflater.inflate(R.layout.fragment_card_meal, parent, false);
         if(cardSize.equals("small"))
-            view = inflater.inflate(R.layout.fragment_meal_card_small, parent, false);
+            view = inflater.inflate(R.layout.fragment_card_meal_small, parent, false);
         MealRecycleViewHolder viewHolder = new MealRecycleViewHolder(view);
         return viewHolder;
     }
@@ -43,7 +41,10 @@ public class MealRecycleViewAdapter extends RecyclerView.Adapter<MealRecycleView
     @Override
     public void onBindViewHolder(@NonNull MealRecycleViewHolder holder, int position) {
         MealDTO meal = meals.get(position);
-        Glide.with(context).load(meal.getImgUrl()).into(holder.imageView);
+
+        if(meal.getImgUrl() != null && !meal.getImgUrl().equals(""))
+            Glide.with(context).load(meal.getImgUrl()).into(holder.imageView);
+
         holder.titleText.setText(""+meal.getName());
 
         holder.favBtn.setOnClickListener(new View.OnClickListener() {

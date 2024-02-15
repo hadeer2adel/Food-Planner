@@ -18,23 +18,6 @@
             app:destination="@id/mealDetailsFragment" />
     </fragment>
 
-    <fragment
-        android:id="@+id/mealCardFragment"
-        android:name="com.example.foodplanner.View.MealCardFragment"
-        android:label="fragment_meal_card"
-        tools:layout="@layout/fragment_meal_card" />
-
-    <fragment
-        android:id="@+id/categoryCardFragment"
-        android:name="com.example.foodplanner.View.CategoryCardFragment"
-        android:label="fragment_category_card"
-        tools:layout="@layout/fragment_category_card" />
-
-    <fragment
-        android:id="@+id/AreaCardFragment"
-        android:name="com.example.foodplanner.View.AreaCardFragment"
-        android:label="fragment_area_card"
-        tools:layout="@layout/fragment_area_card" />
     <activity
         android:id="@+id/loginActivity"
         android:name="com.example.foodplanner.View.LoginActivity"
@@ -68,11 +51,6 @@
             android:id="@+id/action_mealListFragment_to_mealDetailsFragment"
             app:destination="@id/mealDetailsFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/dayCardFragment"
-        android:name="com.example.foodplanner.View.DayCardFragment"
-        android:label="fragment_day_card"
-        tools:layout="@layout/fragment_day_card" />
     <fragment
         android:id="@+id/mealDetailsFragment"
         android:name="com.example.foodplanner.Controller.MealDetailsFragment"

@@ -99,9 +99,13 @@ public class DetailedMealDTO {
     }
 
     public String getAreaImageUrl() {
-        String subName = area.toLowerCase(Locale.ROOT);
-        subName = "" + subName.charAt(0) + subName.charAt(1);
-        areaImageUrl = "https://www.themealdb.com/images/icons/flags/big/64/" + subName + ".png";
+        String code;
+        if(! name.toLowerCase().contains("unknown")) {
+            code = CountryCode.getCountryCode(area);
+            areaImageUrl = "https://flagsapi.com/"+code+"/shiny/64.png";
+        }
+        else
+            areaImageUrl = "https://th.bing.com/th/id/OIP.EbhipA3qMGKX9kdRv8kfGQHaHa?rs=1&pid=ImgDetMain";
         return areaImageUrl;
     }
 

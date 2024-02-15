@@ -7,8 +7,7 @@
     android:layout_height="50dp"
     android:layout_marginStart="10dp"
     android:layout_marginBottom="5dp"
-    app:strokeColor="@color/noColor"
-    tools:context=".View.AreaCardFragment">
+    app:strokeColor="@color/noColor">
 
     <LinearLayout
         android:layout_width="match_parent"

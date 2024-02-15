@@ -30,7 +30,7 @@ public class AreaRecycleViewAdapter extends RecyclerView.Adapter<AreaRecycleView
     @Override
     public AreaRecycleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.fragment_area_card, parent, false);
+        View view = inflater.inflate(R.layout.fragment_card_area, parent, false);
         AreaRecycleViewHolder viewHolder = new AreaRecycleViewHolder(view);
         return viewHolder;
     }
@@ -38,7 +38,10 @@ public class AreaRecycleViewAdapter extends RecyclerView.Adapter<AreaRecycleView
     @Override
     public void onBindViewHolder(@NonNull AreaRecycleViewHolder holder, int position) {
         AreaDTO area = areas.get(position);
-        Glide.with(context).load(area.getImgUrl()).into(holder.imageView);
+
+        if(area.getImgUrl() != null && !area.getImgUrl().equals(""))
+            Glide.with(context).load(area.getImgUrl()).into(holder.imageView);
+
         holder.titleText.setText(""+area.getName());
 
         holder.card.setOnClickListener(new View.OnClickListener() {

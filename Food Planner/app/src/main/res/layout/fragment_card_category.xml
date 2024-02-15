@@ -9,8 +9,7 @@
     app:strokeWidth="2dp"
     app:strokeColor="@color/Orange"
     app:cardElevation="5dp"
-    app:cardCornerRadius="20dp"
-    tools:context=".View.CategoryCardFragment">
+    app:cardCornerRadius="20dp">
 
         <ImageView
             android:id="@+id/cateCardImage"

@@ -4,30 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_image1"
+    android:scaleType="centerCrop"
     tools:context=".View.LoginActivity">
 
-    <ImageView
+    <View
         android:id="@+id/background"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:src="@drawable/bg_image1"
-        android:scaleType="centerCrop"
-        android:adjustViewBounds="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:alpha="0.5"
         android:background="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/background"
-        app:layout_constraintEnd_toEndOf="@+id/background"
-        app:layout_constraintStart_toStartOf="@+id/background"
-        app:layout_constraintTop_toTopOf="@+id/background" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/skipBtn"
@@ -35,7 +25,7 @@
         android:layout_width="105dp"
         android:layout_height="50dp"
         android:layout_marginTop="5dp"
-        android:alpha="0.6"
+        android:alpha="0.7"
         android:text="@string/skip"
         android:textColor="@color/white"
         android:textSize="16sp"
@@ -54,7 +44,7 @@
         android:textStyle="bold"
         android:shadowRadius="50"
         android:shadowColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/textDesign1"
+        app:layout_constraintBottom_toTopOf="@+id/emailTxt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.206"
         app:layout_constraintStart_toStartOf="parent" />
@@ -73,58 +63,47 @@
         app:layout_constraintTop_toTopOf="@+id/title1"
         app:layout_constraintVertical_bias="1.0" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textDesign1"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="10dp"
-        android:alpha="0.9"
-        android:background="@drawable/style_radius"
-        android:backgroundTint="@color/white"
-        app:startIconDrawable="@drawable/ic_email"
-        android:hint="@string/email"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/textDesign2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/emailTxt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/style_radius"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textDesign2"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <EditText
+        android:id="@+id/emailTxt"
+        android:inputType="textEmailAddress"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
+        android:textColor="@color/white"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:alpha="0.9"
+        android:paddingStart="10dp"
         android:background="@drawable/style_radius"
-        android:backgroundTint="@color/white"
-        app:startIconDrawable="@drawable/ic_privacy"
-        android:hint="@string/password"
-        app:layout_constraintBottom_toTopOf="@+id/loginBtn"
-        app:layout_constraintEnd_toEndOf="@+id/textDesign1"
-        app:layout_constraintStart_toStartOf="@+id/textDesign1">
+        android:drawableStart="@drawable/ic_email"
+        android:drawableTint="@color/white"
+        android:drawablePadding="10dp"
+        android:textColorHint="@color/white"
+        android:textSize="18sp"
+        android:hint="@string/email"
+        app:layout_constraintBottom_toTopOf="@+id/passwordTxt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
             android:id="@+id/passwordTxt"
+            android:inputType="textPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
+            android:textColor="@color/white"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:paddingStart="10dp"
             android:background="@drawable/style_radius"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:drawableStart="@drawable/ic_privacy"
+            android:drawableTint="@color/white"
+            android:drawablePadding="10dp"
+            android:hint="@string/password"
+            android:textColorHint="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/loginBtn"
+            app:layout_constraintEnd_toEndOf="@+id/emailTxt"
+            app:layout_constraintStart_toStartOf="@+id/emailTxt"/>
 
     <Button
         android:id="@+id/loginBtn"
@@ -135,8 +114,8 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/signupBtn"
-        app:layout_constraintEnd_toEndOf="@+id/textDesign2"
-        app:layout_constraintStart_toStartOf="@+id/textDesign2" />
+        app:layout_constraintEnd_toEndOf="@+id/passwordTxt"
+        app:layout_constraintStart_toStartOf="@+id/passwordTxt" />
 
     <Button
         android:id="@+id/signupBtn"

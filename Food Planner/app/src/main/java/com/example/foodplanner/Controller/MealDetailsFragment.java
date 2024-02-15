@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 import java.util.ArrayList;
 
 public class MealDetailsFragment extends Fragment implements MealDetailsView{
-    private ImageView image;
+    private ImageView image, areaImage;
     private TextView name, areaName;
     private ImageButton mealFav;
     private boolean favBtnClicked;
@@ -73,6 +74,7 @@ public class MealDetailsFragment extends Fragment implements MealDetailsView{
         super.onViewCreated(view, savedInstanceState);
 
         image = view.findViewById(R.id.mealImage);
+        areaImage = view.findViewById(R.id.areaImage);
         name = view.findViewById(R.id.mealTitle);
         areaName = view.findViewById(R.id.mealAreaName);
         video = view.findViewById(R.id.video);
@@ -122,15 +124,22 @@ public class MealDetailsFragment extends Fragment implements MealDetailsView{
     public void showMeal(DetailedMealDTO meal) {
         showCategoriesAndTags(meal.getCategory(), meal.getTags());
 
-        Glide.with(this).load(meal.getImgUrl()).into(image);
+        if(meal.getImgUrl() != null && !meal.getImgUrl().equals(""))
+            Glide.with(this).load(meal.getImgUrl()).into(image);
 
-        video.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
-            @Override
-            public void onReady(@NonNull YouTubePlayer youTubePlayer) {
-                String[] videoId = meal.getVideoUrl().split("=");
-                youTubePlayer.cueVideo(videoId[1],0);
-            }
-        });
+        if(meal.getAreaImageUrl() != null && !meal.getAreaImageUrl().equals(""))
+            Glide.with(this).load(meal.getAreaImageUrl()).into(areaImage);
+
+        if(meal.getVideoUrl() != null && !meal.getVideoUrl().equals("")) {
+            video.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+                @Override
+                public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+                    String[] videoId = meal.getVideoUrl().split("=");
+                    if(videoId.length > 1)
+                        youTubePlayer.cueVideo(videoId[1], 0);
+                }
+            });
+        }
 
         ingreAdapter = new IngreRecycleViewAdapter(getContext(), meal.getIngredients());
         ingrRecyclerView.setAdapter(ingreAdapter);
@@ -138,10 +147,11 @@ public class MealDetailsFragment extends Fragment implements MealDetailsView{
         name.setText(meal.getName());
         areaName.setText(meal.getArea());
 
-
-        String[] instructions = meal.getInstructions().split("\r\n");
-        stepsAdapter = new StepsRecycleViewAdapter(getContext(), instructions);
-        stepRecyclerView.setAdapter(stepsAdapter);
+        if(meal.getInstructions() != null && !meal.getInstructions().equals("")) {
+            String[] instructions = meal.getInstructions().split("\r\n");
+            stepsAdapter = new StepsRecycleViewAdapter(getContext(), instructions);
+            stepRecyclerView.setAdapter(stepsAdapter);
+        }
     }
 
     @Override

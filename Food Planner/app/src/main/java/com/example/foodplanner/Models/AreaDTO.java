@@ -2,7 +2,9 @@ package com.example.foodplanner.Models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class AreaDTO {
     @SerializedName("strArea")
@@ -11,9 +13,7 @@ public class AreaDTO {
 
     public AreaDTO(String name) {
         this.name = name;
-        String subName = name.toLowerCase(Locale.ROOT);
-        subName = ""+subName.charAt(0)+subName.charAt(1);
-        imgUrl = "https://www.themealdb.com/images/icons/flags/big/64/"+subName+".png";
+        imgUrl = "https://www.themealdb.com/images/icons/flags/big/64/" + CountryCode.getCountryCode(name) + ".png";
     }
 
     public String getName() {
@@ -21,9 +21,13 @@ public class AreaDTO {
     }
 
     public String getImgUrl() {
-        String subName = name.toLowerCase(Locale.ROOT);
-        subName = ""+subName.charAt(0)+subName.charAt(1);
-        imgUrl = "https://www.themealdb.com/images/icons/flags/big/64/"+subName+".png";
+        String code;
+        if(! name.toLowerCase().contains("unknown")) {
+            code = CountryCode.getCountryCode(name);
+            imgUrl = "https://flagsapi.com/"+code+"/shiny/64.png";
+        }
+        else
+            imgUrl = "https://th.bing.com/th/id/OIP.EbhipA3qMGKX9kdRv8kfGQHaHa?rs=1&pid=ImgDetMain";
         return imgUrl;
     }
 }

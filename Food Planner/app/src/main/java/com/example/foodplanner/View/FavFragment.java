@@ -1,5 +1,7 @@
 package com.example.foodplanner.View;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,58 +14,34 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.foodplanner.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FavFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class FavFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     public FavFragment() {
-        // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FavFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static FavFragment newInstance(String param1, String param2) {
         FavFragment fragment = new FavFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(FirebaseAuth.getInstance().getCurrentUser() == null){
+            showDialog();
+        }
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_meal_list, container, false);
     }
 
@@ -72,5 +50,26 @@ public class FavFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         TextView title = view.findViewById(R.id.cardListTitle);
         title.setText("Favourite");
+    }
+
+    private void showDialog(){
+        new MaterialAlertDialogBuilder(getContext())
+                .setTitle(R.string.signupfirst_title)
+            .setMessage(R.string.signupfirst_favDec)
+            .setNegativeButton(R.string.signupfirst_decline, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(getContext(), MainActivity.class);
+                    startActivity(intent);
+                }
+            })
+            .setPositiveButton(R.string.signupfirst_accept, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(getContext(), LoginActivity.class);
+                    startActivity(intent);
+                }
+            })
+            .show();
     }
 }

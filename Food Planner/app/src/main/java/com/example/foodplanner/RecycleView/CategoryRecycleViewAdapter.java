@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
@@ -14,7 +13,6 @@ import com.bumptech.glide.Glide;
 import com.example.foodplanner.Controller.HomePageFragmentDirections;
 import com.example.foodplanner.Controller.HomePageFragmentDirections.ActionHomeFragmentToCardListFragment;
 import com.example.foodplanner.Models.CategoryDTO;
-import com.example.foodplanner.Models.MealDTO;
 import com.example.foodplanner.R;
 
 import java.util.List;
@@ -32,7 +30,7 @@ public class CategoryRecycleViewAdapter extends RecyclerView.Adapter<CategoryRec
     @Override
     public CategoryRecycleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.fragment_category_card, parent, false);
+        View view = inflater.inflate(R.layout.fragment_card_category, parent, false);
         CategoryRecycleViewHolder viewHolder = new CategoryRecycleViewHolder(view);
         return viewHolder;
     }
@@ -41,7 +39,10 @@ public class CategoryRecycleViewAdapter extends RecyclerView.Adapter<CategoryRec
     @Override
     public void onBindViewHolder(@NonNull CategoryRecycleViewHolder holder, int position) {
         CategoryDTO category = categories.get(position);
-        Glide.with(context).load(category.getImgUrl()).into(holder.imageView);
+
+        if(category.getImgUrl() != null && !category.getImgUrl().equals(""))
+            Glide.with(context).load(category.getImgUrl()).into(holder.imageView);
+
         holder.titleText.setText(""+category.getName());
 
         holder.card.setOnClickListener(new View.OnClickListener() {

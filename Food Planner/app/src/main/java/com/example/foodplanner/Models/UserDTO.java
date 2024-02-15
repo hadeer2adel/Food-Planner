@@ -1,23 +1,33 @@
 package com.example.foodplanner.Models;
 
-public class UserDTO {
-    private int id;
-    private String name;
-    private String email;
-    private String password;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
-    public UserDTO(int id, String name, String email, String password) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
+public class UserDTO {
+    private String id, name, email, password;
+
+    private static UserDTO user = null;
+
+    private UserDTO() {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = auth.getCurrentUser();
+        this.id = firebaseUser.getUid();
+        this.name = firebaseUser.getDisplayName();
+        this.email = firebaseUser.getEmail();
+        this.password = null;
     }
 
-    public int getId() {
+    public static UserDTO getUser(){
+        if(user == null)
+            user = new UserDTO();
+        return user;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -37,11 +47,7 @@ public class UserDTO {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
+    public void updatePassword(String password) {
         this.password = password;
     }
 }

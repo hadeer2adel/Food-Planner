@@ -8,12 +8,13 @@
     <string name="login">LogIn</string>
     <string name="orSignup">Create an account?</string>
     <string name="noSignup">SignUp With</string>
+    <string name="client_id">928135764928-9d9bthuhikrl0fjedqgthhcsnqpicou8.apps.googleusercontent.com</string>
 
 
     //Sign up page
     <string name="signup">Create</string>
-    <string name="signupTitle1">Create</string>
-    <string name="signupTitle2">Account</string>
+    <string name="signupTitle1">Create Account</string>
+    <string name="signupTitle2">Let\'s Get Started!</string>
     <string name="orLogin">Already have an account?</string>
 
     //data field
@@ -41,4 +42,11 @@
     <string name="ingr">Ingredients</string>
     <string name="step">Instructions</string>
 
+    //Dialog
+    <string name="signupfirst_title">Sign Up For More Features</string>
+    <string name="signupfirst_favDec">You can add meals to your favorites or remove from it.</string>
+    <string name="signupfirst_calDec">You can show and add meals of your current week</string>
+    <string name="signupfirst_profileDec">You can get more features and options after getting an account</string>
+    <string name="signupfirst_accept">Sign Up</string>
+    <string name="signupfirst_decline">Decline</string>
 </resources>
