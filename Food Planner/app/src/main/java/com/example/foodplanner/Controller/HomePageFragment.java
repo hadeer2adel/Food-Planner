@@ -22,11 +22,12 @@ import com.example.foodplanner.R;
 import com.example.foodplanner.RecycleView.AreaRecycleViewAdapter;
 import com.example.foodplanner.RecycleView.CategoryRecycleViewAdapter;
 import com.example.foodplanner.RecycleView.MealRecycleViewAdapter;
+import com.example.foodplanner.View.OnFavListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomePageFragment extends Fragment implements HomePageView{
+public class HomePageFragment extends Fragment implements OnFavListener, HomePageView{
 
     private RecyclerView mealRecycleView, categoryRecycleView, areaRecycleView;
     private MealRecycleViewAdapter mealAdapter;
@@ -70,7 +71,7 @@ public class HomePageFragment extends Fragment implements HomePageView{
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         mealRecycleView.setLayoutManager(manager);
 
-        mealAdapter = new MealRecycleViewAdapter(getContext(), new ArrayList<>(), "large");
+        mealAdapter = new MealRecycleViewAdapter(getContext(), new ArrayList<>(),this, "large", true);
         mealRecycleView.setAdapter(mealAdapter);
         presenter.getRandomMeals();
     }
@@ -93,7 +94,7 @@ public class HomePageFragment extends Fragment implements HomePageView{
 
     @Override
     public void showRandomMeals(List<MealDTO> meals) {
-        mealAdapter = new MealRecycleViewAdapter(getContext(), meals, "large");
+        mealAdapter = new MealRecycleViewAdapter(getContext(), meals,this, "large", true);
         mealRecycleView.setAdapter(mealAdapter);
     }
 
@@ -110,7 +111,17 @@ public class HomePageFragment extends Fragment implements HomePageView{
     }
 
     @Override
-    public void showErrorMsg(String errorMsg) {
-        Toast.makeText(getContext(), errorMsg, Toast.LENGTH_LONG).show();
+    public void showMsg(String msg) {
+        Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void clickOnFavListener(MealDTO meal) {
+        addToFav(meal);
+    }
+
+    @Override
+    public void addToFav(MealDTO meal) {
+        presenter.addToFav(meal);
     }
 }

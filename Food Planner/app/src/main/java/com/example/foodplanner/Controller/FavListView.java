@@ -2,9 +2,10 @@ package com.example.foodplanner.Controller;
 
 import com.example.foodplanner.Models.MealDTO;
 
-public interface MealDetailsView {
-    public void showMeal(MealDTO meal);
+import java.util.List;
+
+public interface FavListView {
+    public void showMeals(List<MealDTO> meals);
     public void showMsg(String msg);
-    public void addToFav(MealDTO meal);
     public void removeFromFav(MealDTO meal);
 }

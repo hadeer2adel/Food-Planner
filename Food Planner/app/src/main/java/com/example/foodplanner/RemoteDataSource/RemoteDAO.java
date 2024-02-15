@@ -2,7 +2,7 @@ package com.example.foodplanner.RemoteDataSource;
 
 import com.example.foodplanner.Models.AreasDTO;
 import com.example.foodplanner.Models.CategoriesDTO;
-import com.example.foodplanner.Models.DetailedMealsDTO;
+import com.example.foodplanner.Models.MealOneDTO;
 import com.example.foodplanner.Models.MealsDTO;
 
 import io.reactivex.rxjava3.core.Observable;
@@ -26,5 +26,5 @@ public interface RemoteDAO {
     Observable<MealsDTO> getMealsByArea(@Query("a") String area);
 
     @GET("lookup.php")
-    Observable<DetailedMealsDTO> getMealDetails(@Query("i") String id);
+    Observable<MealOneDTO> getMealDetails(@Query("i") String id);
 }

@@ -1,24 +1,34 @@
 package com.example.foodplanner.Repository;
 
+import android.util.Log;
+
+import com.example.foodplanner.LocalDataSource.LocalDataSourse;
 import com.example.foodplanner.Models.AreasDTO;
 import com.example.foodplanner.Models.CategoriesDTO;
-import com.example.foodplanner.Models.DetailedMealsDTO;
+import com.example.foodplanner.Models.MealOneDTO;
+import com.example.foodplanner.Models.MealDTO;
 import com.example.foodplanner.Models.MealsDTO;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 
+import java.util.List;
+
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Observable;
 
 public class RepositoryImpl implements Repository {
     private RemoteDataSource remoteDataSource;
+    private LocalDataSourse localDataSourse;
     private static RepositoryImpl instance = null;
 
-    private RepositoryImpl(RemoteDataSource _RemoteDataSource){
+    private RepositoryImpl(RemoteDataSource _RemoteDataSource, LocalDataSourse _localDataSourse){
         remoteDataSource = _RemoteDataSource;
+        localDataSourse = _localDataSourse;
     }
 
-    public static RepositoryImpl getInstance(RemoteDataSource _RemoteDataSource){
+    public static RepositoryImpl getInstance(RemoteDataSource _RemoteDataSource, LocalDataSourse _localDataSourse){
         if(instance == null)
-            instance = new RepositoryImpl(_RemoteDataSource);
+            instance = new RepositoryImpl(_RemoteDataSource, _localDataSourse);
         return instance;
     }
 
@@ -48,7 +58,29 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public Observable<DetailedMealsDTO> getMealDetails(String id) {
+    public Observable<MealOneDTO> getMealDetails(String id) {
+        Log.i("TAG", "getMealDetails: ");
         return remoteDataSource.makeNetworkCall_MealDetails(id);
     }
+
+    @Override
+    public Flowable<List<MealDTO>> getFavMeals() {
+        return localDataSourse.getFavMeals();
+    }
+    @Override
+    public Flowable<MealDTO> getMealById(String mealId){
+        Log.i("TAG", "getMealById: ");
+        return localDataSourse.getMealById(mealId);
+    }
+
+    @Override
+    public Completable insertMeal(MealDTO meal) {
+        return localDataSourse.insertMeal(meal);
+    }
+
+    @Override
+    public Completable deleteMeal(MealDTO meal) {
+        return localDataSourse.deleteMeal(meal);
+    }
+
 }

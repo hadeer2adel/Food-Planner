@@ -9,6 +9,7 @@ public interface HomePageView {
     public void showRandomMeals(List<MealDTO> meals);
     public void showCategories(List<CategoryDTO> categories);
     public void showAreas(List<AreaDTO> areas);
-    public void showErrorMsg(String errorMsg);
+    public void showMsg(String msg);
+    public void addToFav(MealDTO meal);
 
 }

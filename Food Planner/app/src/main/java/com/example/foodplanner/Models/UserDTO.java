@@ -11,10 +11,12 @@ public class UserDTO {
     private UserDTO() {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = auth.getCurrentUser();
-        this.id = firebaseUser.getUid();
-        this.name = firebaseUser.getDisplayName();
-        this.email = firebaseUser.getEmail();
-        this.password = null;
+        if(firebaseUser != null) {
+            this.id = firebaseUser.getUid();
+            this.name = firebaseUser.getDisplayName();
+            this.email = firebaseUser.getEmail();
+            this.password = null;
+        }
     }
 
     public static UserDTO getUser(){

@@ -17,14 +17,14 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 
-public class MealRecycleViewAdapter extends RecyclerView.Adapter<MealRecycleViewHolder> {
+public class WeekRecycleViewAdapter extends RecyclerView.Adapter<MealRecycleViewHolder> {
     private Context context;
     private List<MealDTO> meals;
     private String cardSize;
     private OnFavListener listener;
     private boolean remote;
 
-    public MealRecycleViewAdapter(Context _context, List<MealDTO> _meals, OnFavListener _listener, String _cardSize, boolean _remote){
+    public WeekRecycleViewAdapter(Context _context, List<MealDTO> _meals, OnFavListener _listener, String _cardSize, boolean _remote){
         context = _context;
         meals = _meals;
         listener =_listener;

@@ -1,4 +1,4 @@
-package com.example.foodplanner.View;
+package com.example.foodplanner.Controller;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,23 +7,42 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.foodplanner.Models.MealDTO;
+import com.example.foodplanner.Presenter.FavListPresenter;
+import com.example.foodplanner.Presenter.FavListPresenterImpl;
+import com.example.foodplanner.Presenter.MealListPresenter;
+import com.example.foodplanner.Presenter.MealListPresenterImpl;
 import com.example.foodplanner.R;
+import com.example.foodplanner.RecycleView.MealRecycleViewAdapter;
+import com.example.foodplanner.View.LoginActivity;
+import com.example.foodplanner.View.MainActivity;
+import com.example.foodplanner.View.OnFavListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-public class FavFragment extends Fragment {
+import java.util.ArrayList;
+import java.util.List;
 
-    public FavFragment() {
+public class FavListFragment extends Fragment  implements OnFavListener, FavListView{
+
+    private RecyclerView recyclerView;
+    private MealRecycleViewAdapter adapter;
+    private FavListPresenter presenter;
+
+    public FavListFragment() {
     }
 
-    public static FavFragment newInstance(String param1, String param2) {
-        FavFragment fragment = new FavFragment();
+    public static FavListFragment newInstance(String param1, String param2) {
+        FavListFragment fragment = new FavListFragment();
         return fragment;
     }
 
@@ -50,6 +69,36 @@ public class FavFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         TextView title = view.findViewById(R.id.cardListTitle);
         title.setText("Favourite");
+        recyclerView = view.findViewById(R.id.mealListRecycleView);
+
+        GridLayoutManager manager = new GridLayoutManager(getContext(),2);
+        recyclerView.setLayoutManager(manager);
+
+        adapter = new MealRecycleViewAdapter(getContext(), new ArrayList<>(), this,"small", false);
+        recyclerView.setAdapter(adapter);
+
+        presenter = new FavListPresenterImpl(getContext(), this);
+        presenter.getFavMeals();
+    }
+
+    @Override
+    public void showMeals(List<MealDTO> meals) {
+        adapter = new MealRecycleViewAdapter(getContext(), meals,this, "small", false);
+        recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void showMsg(String msg) {
+        Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void clickOnFavListener(MealDTO meal) {
+        removeFromFav(meal);
+    }
+    @Override
+    public void removeFromFav(MealDTO meal) {
+        presenter.removeFromFav(meal);
     }
 
     private void showDialog(){

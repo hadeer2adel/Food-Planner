@@ -1,8 +1,12 @@
 package com.example.foodplanner.Presenter;
 
 import android.content.Context;
+import android.util.Log;
 
+import com.example.foodplanner.LocalDataSource.LocalDataSourse;
+import com.example.foodplanner.LocalDataSource.LocalDataSourseImpl;
 import com.example.foodplanner.Models.MealDTO;
+import com.example.foodplanner.Models.UserDTO;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.Repository.Repository;
@@ -22,8 +26,9 @@ public class HomePagePresenterImpl implements HomePagePresenter{
     private HomePageView view;
 
     public HomePagePresenterImpl(Context context, HomePageView _view){
+        LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(context);
         RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
-        repository = RepositoryImpl.getInstance(remoteDataSource);
+        repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
         view = _view;
     }
 
@@ -42,7 +47,7 @@ public class HomePagePresenterImpl implements HomePagePresenter{
                             if (success == 10)
                                 view.showRandomMeals(meals);
                             },
-                        error -> view.showErrorMsg(error.getMessage())
+                        error -> view.showMsg(error.getMessage())
                     );
         }
     }
@@ -55,7 +60,7 @@ public class HomePagePresenterImpl implements HomePagePresenter{
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         item -> view.showCategories(item),
-                        error -> view.showErrorMsg(error.getMessage())
+                        error -> view.showMsg(error.getMessage())
                 );
     }
 
@@ -67,7 +72,35 @@ public class HomePagePresenterImpl implements HomePagePresenter{
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         item -> view.showAreas(item),
-                        error -> view.showErrorMsg(error.getMessage())
+                        error -> view.showMsg(error.getMessage())
+                );
+    }
+
+    @Override
+    public void addToFav(MealDTO meal) {
+        repository.getMealDetails(meal.getId())
+                .subscribeOn(Schedulers.newThread())
+                .map(item -> item.getMeal())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        item -> addToFav2(item),
+                        error -> {
+                            Log.i("TAG", error.getMessage());
+                            view.showMsg(error.getMessage());
+                        }
+                );
+    }
+    private void addToFav2(MealDTO meal) {
+        meal.setUserId(UserDTO.getUser().getId());
+        repository.insertMeal(meal)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        () -> view.showMsg("Add to favourite successfully"),
+                        error -> {
+                            Log.i("TAG", error.getMessage());
+                            view.showMsg(error.getMessage());
+                        }
                 );
     }
 }

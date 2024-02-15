@@ -30,8 +30,12 @@
         tools:layout="@layout/activity_signup" />
     <fragment
         android:id="@+id/favFragment"
-        android:name="com.example.foodplanner.View.FavFragment"
-        android:label="FavFragment" />
+        android:name="com.example.foodplanner.Controller.FavListFragment"
+        android:label="FavFragment" >
+        <action
+            android:id="@+id/action_favFragment_to_mealDetailsFragment"
+            app:destination="@id/mealDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/weekFragment"
         android:name="com.example.foodplanner.View.WeekFragment"
@@ -61,6 +65,9 @@
             app:argType="string" />
         <argument
             android:name="favourite"
+            app:argType="boolean" />
+        <argument
+            android:name="remote"
             app:argType="boolean" />
     </fragment>
 

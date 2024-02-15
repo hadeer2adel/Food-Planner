@@ -22,11 +22,12 @@ import com.example.foodplanner.Presenter.MealListPresenter;
 import com.example.foodplanner.Presenter.MealListPresenterImpl;
 import com.example.foodplanner.R;
 import com.example.foodplanner.RecycleView.MealRecycleViewAdapter;
+import com.example.foodplanner.View.OnFavListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MealListFragment extends Fragment implements MealListView{
+public class MealListFragment extends Fragment implements OnFavListener, MealListView{
     private RecyclerView recyclerView;
     private MealRecycleViewAdapter adapter;
     private MealListPresenter presenter;
@@ -57,7 +58,7 @@ public class MealListFragment extends Fragment implements MealListView{
         GridLayoutManager manager = new GridLayoutManager(getContext(),2);
         recyclerView.setLayoutManager(manager);
 
-        adapter = new MealRecycleViewAdapter(getContext(), new ArrayList<>(), "small");
+        adapter = new MealRecycleViewAdapter(getContext(), new ArrayList<>(), this,"small", true);
         recyclerView.setAdapter(adapter);
 
         presenter = new MealListPresenterImpl(getContext(), this);
@@ -77,12 +78,23 @@ public class MealListFragment extends Fragment implements MealListView{
 
     @Override
     public void showMeals(List<MealDTO> meals) {
-        adapter = new MealRecycleViewAdapter(getContext(), meals, "small");
+        adapter = new MealRecycleViewAdapter(getContext(), meals, this,"small", true);
         recyclerView.setAdapter(adapter);
     }
 
     @Override
-    public void showErrorMsg(String errorMsg) {
+    public void showMsg(String errorMsg) {
         Toast.makeText(getContext(), errorMsg, Toast.LENGTH_LONG).show();
     }
+
+    @Override
+    public void clickOnFavListener(MealDTO meal) {
+        addToFav(meal);
+    }
+
+    @Override
+    public void addToFav(MealDTO meal) {
+        presenter.addToFav(meal);
+    }
+
 }

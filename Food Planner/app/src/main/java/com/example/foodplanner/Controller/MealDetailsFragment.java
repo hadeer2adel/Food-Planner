@@ -1,7 +1,5 @@
 package com.example.foodplanner.Controller;
 
-import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,37 +8,32 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
-import com.example.foodplanner.Models.AreaDTO;
-import com.example.foodplanner.Models.DetailedMealDTO;
+import com.example.foodplanner.Models.MealDTO;
 import com.example.foodplanner.Presenter.MealDetailsPresenter;
 import com.example.foodplanner.Presenter.MealDetailsPresenterImpl;
 import com.example.foodplanner.R;
 import com.example.foodplanner.RecycleView.IngreRecycleViewAdapter;
-import com.example.foodplanner.RecycleView.MealRecycleViewAdapter;
 import com.example.foodplanner.RecycleView.StepsRecycleViewAdapter;
+import com.example.foodplanner.View.OnFavListener;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.firebase.auth.FirebaseAuth;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 import java.util.ArrayList;
 
-public class MealDetailsFragment extends Fragment implements MealDetailsView{
+public class MealDetailsFragment extends Fragment implements OnFavListener, MealDetailsView{
     private ImageView image, areaImage;
     private TextView name, areaName;
     private ImageButton mealFav;
@@ -51,6 +44,8 @@ public class MealDetailsFragment extends Fragment implements MealDetailsView{
     private IngreRecycleViewAdapter ingreAdapter;
     private StepsRecycleViewAdapter stepsAdapter;
     private MealDetailsPresenter presenter;
+
+    private MealDTO thisMeal = null;
 
     public MealDetailsFragment() {}
 
@@ -83,23 +78,29 @@ public class MealDetailsFragment extends Fragment implements MealDetailsView{
         mealFav = view.findViewById(R.id.mealFav);
         mealCategories = view.findViewById(R.id.mealCategories);
 
+        thisMeal = new MealDTO();
+
         favBtnClicked = com.example.foodplanner.Controller.MealDetailsFragmentArgs.fromBundle(getArguments()).getFavourite();
         if(favBtnClicked)
             mealFav.setImageResource(R.drawable.ic_favorite_true);
         else
             mealFav.setImageResource(R.drawable.ic_favorite_false);
 
+        if(FirebaseAuth.getInstance().getCurrentUser() == null)
+            mealFav.setEnabled(false);
+
         mealFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!favBtnClicked) {
-                    favBtnClicked = true;
-                    mealFav.setImageResource(R.drawable.ic_favorite_true);
-                }
-                else {
+                if(favBtnClicked) {
                     favBtnClicked = false;
                     mealFav.setImageResource(R.drawable.ic_favorite_false);
                 }
+                else {
+                    favBtnClicked = true;
+                    mealFav.setImageResource(R.drawable.ic_favorite_true);
+                }
+                clickOnFavListener(thisMeal);
             }
         });
 
@@ -116,12 +117,21 @@ public class MealDetailsFragment extends Fragment implements MealDetailsView{
         stepRecyclerView.setAdapter(stepsAdapter);
 
         String id = MealDetailsFragmentArgs.fromBundle(getArguments()).getMealID();
+        Boolean remote = MealDetailsFragmentArgs.fromBundle(getArguments()).getRemote();
         presenter = new MealDetailsPresenterImpl(getContext(),this);
-        presenter.getMeal(id);
+
+        if(remote) {
+            presenter.getMeal(id);
+        }
+        else {
+            presenter.getFavMeal(id);
+        }
     }
 
     @Override
-    public void showMeal(DetailedMealDTO meal) {
+    public void showMeal(MealDTO meal) {
+        thisMeal = meal;
+
         showCategoriesAndTags(meal.getCategory(), meal.getTags());
 
         if(meal.getImgUrl() != null && !meal.getImgUrl().equals(""))
@@ -155,8 +165,8 @@ public class MealDetailsFragment extends Fragment implements MealDetailsView{
     }
 
     @Override
-    public void showErrorMsg(String errorMsg) {
-        Toast.makeText(getContext(), errorMsg, Toast.LENGTH_LONG).show();
+    public void showMsg(String msg) {
+        Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
     }
 
     private void showCategoriesAndTags(String _categories, String _tags){
@@ -176,5 +186,25 @@ public class MealDetailsFragment extends Fragment implements MealDetailsView{
                 mealCategories.addView(chip);
             }
         }
+    }
+
+    @Override
+    public void clickOnFavListener(MealDTO meal) {
+        if(favBtnClicked){
+            addToFav(meal);
+        }
+        else {
+            removeFromFav(meal);
+        }
+    }
+
+    @Override
+    public void addToFav(MealDTO meal) {
+        presenter.addToFav(meal);
+    }
+
+    @Override
+    public void removeFromFav(MealDTO meal) {
+        presenter.removeFromFav(meal);
     }
 }

@@ -24,6 +24,7 @@ public class StartActivity extends AppCompatActivity {
             finish();
         }
         else{
+            FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(StartActivity.this, MainActivity.class);
             startActivity(intent);
             finish();

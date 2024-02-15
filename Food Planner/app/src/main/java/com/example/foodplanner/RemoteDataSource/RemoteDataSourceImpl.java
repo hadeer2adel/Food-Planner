@@ -2,7 +2,7 @@ package com.example.foodplanner.RemoteDataSource;
 
 import com.example.foodplanner.Models.AreasDTO;
 import com.example.foodplanner.Models.CategoriesDTO;
-import com.example.foodplanner.Models.DetailedMealsDTO;
+import com.example.foodplanner.Models.MealOneDTO;
 import com.example.foodplanner.Models.MealsDTO;
 
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
@@ -56,7 +56,7 @@ public class RemoteDataSourceImpl implements RemoteDataSource {
     }
 
     @Override
-    public Observable<DetailedMealsDTO> makeNetworkCall_MealDetails(String id) {
+    public Observable<MealOneDTO> makeNetworkCall_MealDetails(String id) {
         return service.getMealDetails(id);
     }
 }

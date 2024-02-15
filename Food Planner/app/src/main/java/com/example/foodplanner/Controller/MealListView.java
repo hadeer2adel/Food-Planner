@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface MealListView {
     public void showMeals(List<MealDTO> meals);
-    public void showErrorMsg(String errorMsg);
+    public void showMsg(String msg);
+    public void addToFav(MealDTO meal);
 }

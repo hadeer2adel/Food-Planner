@@ -16,14 +16,14 @@ public class MealRecycleViewHolder extends RecyclerView.ViewHolder {
     ImageView imageView;
     ImageButton favBtn;
     MaterialCardView card;
-    boolean favBtnClicked;
+    boolean isFav;
 
     public MealRecycleViewHolder(@NonNull View itemView) {
         super(itemView);
         titleText = itemView.findViewById(R.id.mealCardTitle);
         imageView = itemView.findViewById(R.id.mealCardImage);
         favBtn = itemView.findViewById(R.id.mealCardFav);
-        favBtnClicked = false;
         card = itemView.findViewById(R.id.mealCard);
+        isFav = false;
     }
 }
