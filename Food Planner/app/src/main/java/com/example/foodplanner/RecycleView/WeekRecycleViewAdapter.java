@@ -9,101 +9,47 @@ import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.example.foodplanner.Models.MealDTO;
+import com.example.foodplanner.Controller.DayMealsList;
 import com.example.foodplanner.R;
-import com.example.foodplanner.View.OnFavListener;
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 
-public class WeekRecycleViewAdapter extends RecyclerView.Adapter<MealRecycleViewHolder> {
+public class WeekRecycleViewAdapter extends RecyclerView.Adapter<WeekRecycleViewHolder> {
     private Context context;
-    private List<MealDTO> meals;
-    private String cardSize;
-    private OnFavListener listener;
-    private boolean remote;
+    private List<String> days;
 
-    public WeekRecycleViewAdapter(Context _context, List<MealDTO> _meals, OnFavListener _listener, String _cardSize, boolean _remote){
+    public WeekRecycleViewAdapter(Context _context, List<String> _days){
         context = _context;
-        meals = _meals;
-        listener =_listener;
-        cardSize = _cardSize;
-        remote = _remote;
+        days = _days;
     }
 
     @NonNull
     @Override
-    public MealRecycleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public WeekRecycleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.fragment_card_meal, parent, false);
-        if(cardSize.equals("small"))
-            view = inflater.inflate(R.layout.fragment_card_meal_small, parent, false);
-        MealRecycleViewHolder viewHolder = new MealRecycleViewHolder(view);
+        View view = inflater.inflate(R.layout.fragment_card_day, parent, false);
+        WeekRecycleViewHolder viewHolder = new WeekRecycleViewHolder(view);
         return viewHolder;
     }
 
-
     @Override
-    public void onBindViewHolder(@NonNull MealRecycleViewHolder holder, int position) {
-        MealDTO meal = meals.get(position);
-
-        holder.isFav = !remote;
-        if(holder.isFav) {
-            holder.favBtn.setImageResource(R.drawable.ic_favorite_true);
-        }
-        else {
-            holder.favBtn.setImageResource(R.drawable.ic_favorite_false);
-        }
-
-        if(meal.getImgUrl() != null && !meal.getImgUrl().equals(""))
-            Glide.with(context).load(meal.getImgUrl()).into(holder.imageView);
-
-        holder.titleText.setText(""+meal.getName());
-
-        if(FirebaseAuth.getInstance().getCurrentUser() == null)
-            holder.favBtn.setEnabled(false);
-
-        holder.favBtn.setOnClickListener(new View.OnClickListener() {
+    public void onBindViewHolder(@NonNull WeekRecycleViewHolder holder, int position) {
+        String day = days.get(position);
+        holder.dayText.setText(day);
+        DayMealsList dayMealsList = new DayMealsList();
+        dayMealsList.onViewCreated(context, holder.recyclerView, day);
+        holder.addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(holder.isFav) {
-                    holder.favBtn.setImageResource(R.drawable.ic_favorite_false);
-                }
-                else {
-                    holder.favBtn.setImageResource(R.drawable.ic_favorite_true);
-                }
-                holder.isFav = !holder.isFav;
-                listener.clickOnFavListener(meal);
-                holder.favBtn.setEnabled(false);
-            }
-        });
-
-        holder.card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(remote) {
-                    if (cardSize.equals("small")) {
-                        com.example.foodplanner.Controller.MealListFragmentDirections.ActionMealListFragmentToMealDetailsFragment action;
-                        action = com.example.foodplanner.Controller.MealListFragmentDirections.actionMealListFragmentToMealDetailsFragment(meal.getId(), holder.isFav, remote);
-                        Navigation.findNavController(v).navigate(action);
-                    } else {
-                        com.example.foodplanner.Controller.HomePageFragmentDirections.ActionHomeFragmentToMealDetailsFragment action;
-                        action = com.example.foodplanner.Controller.HomePageFragmentDirections.actionHomeFragmentToMealDetailsFragment(meal.getId(), holder.isFav, remote);
-                        Navigation.findNavController(v).navigate(action);
-                    }
-                }
-                else {
-                    com.example.foodplanner.Controller.FavListFragmentDirections.ActionFavFragmentToMealDetailsFragment action;
-                    action = com.example.foodplanner.Controller.FavListFragmentDirections.actionFavFragmentToMealDetailsFragment(meal.getId(), holder.isFav, remote);
-                    Navigation.findNavController(v).navigate(action);
-                }
+                com.example.foodplanner.Controller.WeekListFragmentDirections.ActionWeekFragmentToCalenderListFragment action;
+                action = com.example.foodplanner.Controller.WeekListFragmentDirections.actionWeekFragmentToCalenderListFragment(day);
+                Navigation.findNavController(v).navigate(action);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return meals.size();
+        return days.size();
     }
 }

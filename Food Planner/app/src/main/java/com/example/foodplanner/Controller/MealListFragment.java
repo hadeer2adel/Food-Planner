@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -16,8 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.foodplanner.Models.MealDTO;
-import com.example.foodplanner.Presenter.HomePagePresenter;
-import com.example.foodplanner.Presenter.HomePagePresenterImpl;
 import com.example.foodplanner.Presenter.MealListPresenter;
 import com.example.foodplanner.Presenter.MealListPresenterImpl;
 import com.example.foodplanner.R;

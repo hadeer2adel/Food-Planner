@@ -1,12 +1,10 @@
 package com.example.foodplanner.Repository;
 
-import android.util.Log;
-
 import com.example.foodplanner.LocalDataSource.LocalDataSourse;
 import com.example.foodplanner.Models.AreasDTO;
 import com.example.foodplanner.Models.CategoriesDTO;
-import com.example.foodplanner.Models.MealOneDTO;
 import com.example.foodplanner.Models.MealDTO;
+import com.example.foodplanner.Models.MealOneDTO;
 import com.example.foodplanner.Models.MealsDTO;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 
@@ -59,7 +57,6 @@ public class RepositoryImpl implements Repository {
 
     @Override
     public Observable<MealOneDTO> getMealDetails(String id) {
-        Log.i("TAG", "getMealDetails: ");
         return remoteDataSource.makeNetworkCall_MealDetails(id);
     }
 
@@ -69,7 +66,6 @@ public class RepositoryImpl implements Repository {
     }
     @Override
     public Flowable<MealDTO> getMealById(String mealId){
-        Log.i("TAG", "getMealById: ");
         return localDataSourse.getMealById(mealId);
     }
 
@@ -81,6 +77,26 @@ public class RepositoryImpl implements Repository {
     @Override
     public Completable deleteMeal(MealDTO meal) {
         return localDataSourse.deleteMeal(meal);
+    }
+
+    @Override
+    public Flowable<List<MealDTO>> getDayMeals(String day) {
+        return localDataSourse.getDayMeals(day);
+    }
+
+    @Override
+    public Completable insertDayMeal(MealDTO day) {
+        return localDataSourse.insertDayMeal(day);
+    }
+
+    @Override
+    public Completable deleteDayMeal(MealDTO day) {
+        return localDataSourse.deleteDayMeal(day);
+    }
+
+    @Override
+    public Completable deleteAllDays() {
+        return localDataSourse.deleteAllDays();
     }
 
 }

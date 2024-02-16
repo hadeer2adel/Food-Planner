@@ -2,8 +2,8 @@ package com.example.foodplanner.Repository;
 
 import com.example.foodplanner.Models.AreasDTO;
 import com.example.foodplanner.Models.CategoriesDTO;
-import com.example.foodplanner.Models.MealOneDTO;
 import com.example.foodplanner.Models.MealDTO;
+import com.example.foodplanner.Models.MealOneDTO;
 import com.example.foodplanner.Models.MealsDTO;
 
 import java.util.List;
@@ -27,6 +27,10 @@ public interface Repository {
     Flowable<MealDTO> getMealById(String mealId);
     Completable insertMeal(MealDTO meal);
     Completable deleteMeal(MealDTO meal);
+    Flowable<List<MealDTO>> getDayMeals(String day);
+    Completable insertDayMeal(MealDTO day);
+    Completable deleteDayMeal(MealDTO day);
+    Completable deleteAllDays();
 
 
 }

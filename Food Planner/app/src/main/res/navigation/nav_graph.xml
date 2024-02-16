@@ -38,8 +38,18 @@
     </fragment>
     <fragment
         android:id="@+id/weekFragment"
-        android:name="com.example.foodplanner.View.WeekFragment"
-        android:label="WeekFragment" />
+        android:name="com.example.foodplanner.Controller.WeekListFragment"
+        android:label="WeekFragment" >
+        <action
+            android:id="@+id/action_weekFragment_to_dayFragment"
+            app:destination="@id/dayFragment" />
+        <action
+            android:id="@+id/action_weekFragment_to_calenderListFragment"
+            app:destination="@id/calenderListFragment" />
+        <action
+            android:id="@+id/action_weekFragment_to_mealDetailsFragment"
+            app:destination="@id/mealDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mealListFragment"
         android:name="com.example.foodplanner.Controller.MealListFragment"
@@ -69,6 +79,22 @@
         <argument
             android:name="remote"
             app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/dayFragment"
+        android:name="com.example.foodplanner.Controller.DayMealsList"
+        android:label="DayFragment" >
+        <argument
+            android:name="day"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/calenderListFragment"
+        android:name="com.example.foodplanner.Controller.CalenderListFragment"
+        android:label="CalenderListFragment" >
+        <argument
+            android:name="day"
+            app:argType="string" />
     </fragment>
 
 

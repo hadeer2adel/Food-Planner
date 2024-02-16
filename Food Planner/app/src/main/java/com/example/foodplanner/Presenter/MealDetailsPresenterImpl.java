@@ -1,7 +1,6 @@
 package com.example.foodplanner.Presenter;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.example.foodplanner.Controller.MealDetailsView;
 import com.example.foodplanner.LocalDataSource.LocalDataSourse;

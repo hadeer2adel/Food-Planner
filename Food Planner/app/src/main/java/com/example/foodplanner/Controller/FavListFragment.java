@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +20,6 @@ import android.widget.Toast;
 import com.example.foodplanner.Models.MealDTO;
 import com.example.foodplanner.Presenter.FavListPresenter;
 import com.example.foodplanner.Presenter.FavListPresenterImpl;
-import com.example.foodplanner.Presenter.MealListPresenter;
-import com.example.foodplanner.Presenter.MealListPresenterImpl;
 import com.example.foodplanner.R;
 import com.example.foodplanner.RecycleView.MealRecycleViewAdapter;
 import com.example.foodplanner.View.LoginActivity;

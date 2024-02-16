@@ -1,6 +1,7 @@
 package com.example.foodplanner.LocalDataSource;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.foodplanner.Models.MealDTO;
 import com.example.foodplanner.Models.UserDTO;
@@ -12,13 +13,11 @@ import io.reactivex.rxjava3.core.Flowable;
 
 public class LocalDataSourseImpl implements LocalDataSourse {
     private LocalDAO dao;
-    private Flowable<List<MealDTO>> mealList;
     private static LocalDataSourseImpl repo = null;
 
     private LocalDataSourseImpl(Context _context){
         AppDB database = AppDB.getInstance(_context);
         dao = database.getLocalDAO();
-        mealList = dao.getFavMeals(UserDTO.getUser().getId());
     }
 
     public static LocalDataSourseImpl getInstance(Context _context){
@@ -29,7 +28,7 @@ public class LocalDataSourseImpl implements LocalDataSourse {
 
     @Override
     public Flowable<List<MealDTO>> getFavMeals() {
-        return mealList;
+        return dao.getFavMeals(UserDTO.getUser().getId());
     }
     @Override
     public Flowable<MealDTO> getMealById(String mealId){
@@ -42,6 +41,26 @@ public class LocalDataSourseImpl implements LocalDataSourse {
     @Override
     public Completable deleteMeal(MealDTO meal) {
         return dao.deleteMeal(meal);
+    }
+
+    @Override
+    public Flowable<List<MealDTO>> getDayMeals(String day) {
+        return dao.getDayMeals(UserDTO.getUser().getId(), day);
+    }
+
+    @Override
+    public Completable insertDayMeal(MealDTO day) {
+        return dao.insertDayMeal(day);
+    }
+
+    @Override
+    public Completable deleteDayMeal(MealDTO day) {
+        return dao.deleteDayMeal(day);
+    }
+
+    @Override
+    public Completable deleteAllDays() {
+        return dao.deleteAllDays();
     }
 
 }

@@ -14,11 +14,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:shadowColor="@color/Orange"
-        android:shadowRadius="3"
+        android:layout_marginTop="10dp"
         android:text="Monday"
-        android:textColor="@color/yellow"
-        android:textSize="28sp"
+        android:textColor="@color/Orange"
+        android:textSize="26sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/dayCardBtn"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,14 +37,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/dayCardName" />
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/dayCardChipGroup"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dayCardRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dayCardName"/>
-
 
     <View
         android:layout_width="match_parent"
@@ -54,6 +53,6 @@
         android:background="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dayCardChipGroup"/>
+        app:layout_constraintTop_toBottomOf="@+id/dayCardRecyclerView"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

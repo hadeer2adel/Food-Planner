@@ -2,7 +2,6 @@ package com.example.foodplanner.Models;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -10,9 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-@Entity(tableName = "Meal")
+@Entity(tableName = "Meals", primaryKeys = {"id","userId"})
 public class MealDTO {
-    @PrimaryKey
+
+    private String day;
+    @NonNull
+    private String userId;
     @NonNull
     @SerializedName("idMeal")
     private String id;
@@ -73,10 +75,13 @@ public class MealDTO {
     private String strMeasure18;
     private String strMeasure19;
     private String strMeasure20;
-    private String userId;
 
-    public MealDTO(){}
-    public MealDTO(String id, String name, String category, String area, String tags, String instructions, String imgUrl, String videoUrl) {
+    public MealDTO() {
+    }
+
+    public MealDTO(String day, String userId, String id, String name, String category, String area, String tags, String instructions, String imgUrl, String videoUrl) {
+        this.day = day;
+        this.userId = userId;
         this.id = id;
         this.name = name;
         this.category = category;
@@ -108,11 +113,10 @@ public class MealDTO {
 
     public String getAreaImageUrl() {
         String code;
-        if(! name.toLowerCase().contains("unknown")) {
+        if (!name.toLowerCase().contains("unknown")) {
             code = CountryCode.getCountryCode(area);
-            areaImageUrl = "https://flagsapi.com/"+code+"/shiny/64.png";
-        }
-        else
+            areaImageUrl = "https://flagsapi.com/" + code + "/shiny/64.png";
+        } else
             areaImageUrl = "https://th.bing.com/th/id/OIP.EbhipA3qMGKX9kdRv8kfGQHaHa?rs=1&pid=ImgDetMain";
         return areaImageUrl;
     }
@@ -582,5 +586,14 @@ public class MealDTO {
     public void setUserId(String userId) {
         this.userId = userId;
     }
+
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
 }
+
 
