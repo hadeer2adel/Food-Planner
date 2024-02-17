@@ -24,7 +24,7 @@
         android:title="@string/menu_item4"
         android:enabled="true"        />
     <item
-        android:id="@+id/profile"
+        android:id="@+id/profilePageFragment"
         android:icon="@drawable/ic_person"
         android:title="@string/menu_item5"
         android:enabled="true"        />

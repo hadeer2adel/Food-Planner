@@ -12,6 +12,5 @@ public interface SearchPageView {
     public void setCategories(List<CategoryDTO> categories);
     public void setAreas(List<AreaDTO> areas);
     public void setIngredients(List<IngredientDTO> ingredients);
-    public void showMsg(String msg);
     public void addToFav(MealDTO meal);
 }

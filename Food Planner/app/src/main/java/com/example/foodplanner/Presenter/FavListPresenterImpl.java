@@ -10,6 +10,7 @@ import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.Repository.Repository;
 import com.example.foodplanner.Repository.RepositoryImpl;
+import com.example.foodplanner.View.OnShowMassege;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -18,12 +19,14 @@ public class FavListPresenterImpl implements FavListPresenter {
 
     private Repository repository;
     private FavListView view;
+    private OnShowMassege massege;
 
-    public FavListPresenterImpl(Context context, FavListView _view){
+    public FavListPresenterImpl(Context context, FavListView _view, OnShowMassege _massege){
         LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(context);
         RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
         repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
         view = _view;
+        massege = _massege;
     }
 
     @Override
@@ -33,7 +36,7 @@ public class FavListPresenterImpl implements FavListPresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         item -> view.showMeals(item),
-                        error -> view.showMsg(error.getMessage())
+                        error -> massege.showMsg(error.getMessage())
                 );
     }
 
@@ -43,8 +46,8 @@ public class FavListPresenterImpl implements FavListPresenter {
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        () -> view.showMsg("delete from favourite successfully"),
-                        error -> view.showMsg(error.getMessage())
+                        () -> massege.showMsg("Delete from favourite successfully"),
+                        error -> massege.showMsg(error.getMessage())
                 );
     }
 }

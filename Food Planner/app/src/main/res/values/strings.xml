@@ -49,10 +49,19 @@
     <string name="signupfirst_profileDec">You can get more features and options after getting an account</string>
     <string name="signupfirst_accept">Sign Up</string>
     <string name="signupfirst_decline">Decline</string>
+    <string name="profile_accept">Sure</string>
+    <string name="profile_decline">Cancel</string>
 
     //search
     <string name="search1">Category</string>
     <string name="search2">Ingredient</string>
     <string name="search3">Country</string>
+
+    //profile page
+    <string name="profile_option1">  Delete All Favourites</string>
+    <string name="profile_option2">  Delete All Week Plans</string>
+    <string name="profile_option3">  Backup your data</string>
+    <string name="profile_option4">  Retrieve your old data</string>
+    <string name="profile_option5">  Log Out</string>
 
 </resources>

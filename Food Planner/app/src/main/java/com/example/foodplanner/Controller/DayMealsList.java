@@ -12,11 +12,12 @@ import com.example.foodplanner.Presenter.DayPresenter;
 import com.example.foodplanner.Presenter.DayPresenterImpl;
 import com.example.foodplanner.RecycleView.DayRecycleViewAdapter;
 import com.example.foodplanner.View.OnAddListener;
+import com.example.foodplanner.View.OnShowMassege;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DayMealsList implements OnAddListener, DayMealsListView {
+public class DayMealsList implements OnAddListener, DayMealsListView, OnShowMassege {
 
     private RecyclerView recyclerView;
     private DayRecycleViewAdapter adapter;
@@ -37,15 +38,13 @@ public class DayMealsList implements OnAddListener, DayMealsListView {
         adapter = new DayRecycleViewAdapter(context, new ArrayList<>(), this,"large");
         recyclerView.setAdapter(adapter);
 
-        presenter = new DayPresenterImpl(context, this);
-        Log.i("TAG", "onViewCreated: "+day);
+        presenter = new DayPresenterImpl(context, this, this);
         presenter.getDayMeals(day);
     }
 
 
     @Override
     public void showDayMeals(List<MealDTO> days) {
-        Log.i("TAG", "showDayMeals: "+days.size());
         adapter = new DayRecycleViewAdapter(context, days,this, "large");
         recyclerView.setAdapter(adapter);
     }

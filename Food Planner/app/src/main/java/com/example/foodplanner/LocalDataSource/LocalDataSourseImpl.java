@@ -44,6 +44,11 @@ public class LocalDataSourseImpl implements LocalDataSourse {
     }
 
     @Override
+    public Completable deleteAllFav() {
+        return dao.deleteAllFav();
+    }
+
+    @Override
     public Flowable<List<MealDTO>> getDayMeals(String day) {
         return dao.getDayMeals(UserDTO.getUser().getId(), day);
     }

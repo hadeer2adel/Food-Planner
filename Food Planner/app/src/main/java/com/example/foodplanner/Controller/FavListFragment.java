@@ -25,13 +25,14 @@ import com.example.foodplanner.RecycleView.MealRecycleViewAdapter;
 import com.example.foodplanner.View.LoginActivity;
 import com.example.foodplanner.View.MainActivity;
 import com.example.foodplanner.View.OnFavListener;
+import com.example.foodplanner.View.OnShowMassege;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FavListFragment extends Fragment  implements OnFavListener, FavListView{
+public class FavListFragment extends Fragment  implements OnFavListener, FavListView, OnShowMassege {
 
     private RecyclerView recyclerView;
     private MealRecycleViewAdapter adapter;
@@ -76,7 +77,7 @@ public class FavListFragment extends Fragment  implements OnFavListener, FavList
         adapter = new MealRecycleViewAdapter(getContext(), new ArrayList<>(), this,"small", false, false);
         recyclerView.setAdapter(adapter);
 
-        presenter = new FavListPresenterImpl(getContext(), this);
+        presenter = new FavListPresenterImpl(getContext(), this, this);
         presenter.getFavMeals();
     }
 

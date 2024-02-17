@@ -21,12 +21,13 @@ import com.example.foodplanner.R;
 import com.example.foodplanner.RecycleView.WeekRecycleViewAdapter;
 import com.example.foodplanner.View.LoginActivity;
 import com.example.foodplanner.View.MainActivity;
+import com.example.foodplanner.View.OnShowMassege;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.List;
 
-public class WeekListFragment extends Fragment  implements WeekListView{
+public class WeekListFragment extends Fragment  implements OnShowMassege {
 
     private RecyclerView recyclerView;
     private WeekRecycleViewAdapter adapter;

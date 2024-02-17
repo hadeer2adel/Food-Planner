@@ -24,6 +24,7 @@ import com.example.foodplanner.R;
 import com.example.foodplanner.RecycleView.IngreRecycleViewAdapter;
 import com.example.foodplanner.RecycleView.StepsRecycleViewAdapter;
 import com.example.foodplanner.View.OnFavListener;
+import com.example.foodplanner.View.OnShowMassege;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,7 +34,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 
 import java.util.ArrayList;
 
-public class MealDetailsFragment extends Fragment implements OnFavListener, MealDetailsView{
+public class MealDetailsFragment extends Fragment implements OnFavListener, MealDetailsView, OnShowMassege {
     private ImageView image, areaImage;
     private TextView name, areaName;
     private ImageButton mealFav;
@@ -119,7 +120,7 @@ public class MealDetailsFragment extends Fragment implements OnFavListener, Meal
 
         String id = MealDetailsFragmentArgs.fromBundle(getArguments()).getMealID();
         Boolean remote = MealDetailsFragmentArgs.fromBundle(getArguments()).getRemote();
-        presenter = new MealDetailsPresenterImpl(getContext(),this);
+        presenter = new MealDetailsPresenterImpl(getContext(),this, this);
 
         if(remote) {
             presenter.getMeal(id);

@@ -4,7 +4,6 @@ import com.example.foodplanner.Models.MealDTO;
 
 public interface MealDetailsView {
     public void showMeal(MealDTO meal);
-    public void showMsg(String msg);
     public void addToFav(MealDTO meal);
     public void removeFromFav(MealDTO meal);
 }

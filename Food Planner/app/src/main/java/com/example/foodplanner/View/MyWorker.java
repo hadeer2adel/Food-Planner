@@ -7,8 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
-import com.example.foodplanner.Controller.WeekListFragment;
-import com.example.foodplanner.Controller.WeekListView;
 import com.example.foodplanner.LocalDataSource.LocalDataSourse;
 import com.example.foodplanner.LocalDataSource.LocalDataSourseImpl;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSource;

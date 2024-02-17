@@ -36,6 +36,6 @@ public interface Repository {
     Completable insertDayMeal(MealDTO day);
     Completable deleteDayMeal(MealDTO day);
     Completable deleteAllDays();
-
+    Completable deleteAllFav();
 
 }

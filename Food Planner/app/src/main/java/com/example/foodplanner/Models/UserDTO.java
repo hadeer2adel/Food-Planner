@@ -25,6 +25,10 @@ public class UserDTO {
         return user;
     }
 
+    public static void removeUser(){
+        user = null;
+    }
+
     public String getId() {
         return id;
     }

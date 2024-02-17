@@ -20,11 +20,12 @@ import com.example.foodplanner.Presenter.CalenderListPresenterImpl;
 import com.example.foodplanner.R;
 import com.example.foodplanner.RecycleView.DayRecycleViewAdapter;
 import com.example.foodplanner.View.OnAddListener;
+import com.example.foodplanner.View.OnShowMassege;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CalenderListFragment extends Fragment  implements OnAddListener, CalenderListView{
+public class CalenderListFragment extends Fragment  implements OnAddListener, CalenderListView, OnShowMassege {
 
     private RecyclerView recyclerView;
     private DayRecycleViewAdapter adapter;
@@ -60,7 +61,7 @@ public class CalenderListFragment extends Fragment  implements OnAddListener, Ca
         adapter = new DayRecycleViewAdapter(getContext(), new ArrayList<>(), this,"small");
         recyclerView.setAdapter(adapter);
 
-        presenter = new CalenderListPresenterImpl(getContext(), this);
+        presenter = new CalenderListPresenterImpl(getContext(), this, this);
         presenter.getFavMeals();
     }
 

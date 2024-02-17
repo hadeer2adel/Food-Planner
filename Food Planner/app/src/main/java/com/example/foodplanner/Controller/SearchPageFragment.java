@@ -32,6 +32,7 @@ import com.example.foodplanner.RecycleView.AreaRecycleViewAdapter;
 import com.example.foodplanner.RecycleView.CategoryRecycleViewAdapter;
 import com.example.foodplanner.RecycleView.MealRecycleViewAdapter;
 import com.example.foodplanner.View.OnFavListener;
+import com.example.foodplanner.View.OnShowMassege;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
@@ -43,7 +44,7 @@ import java.util.stream.Collectors;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 
-public class SearchPageFragment extends Fragment implements OnFavListener, SearchPageView {
+public class SearchPageFragment extends Fragment implements OnFavListener, SearchPageView , OnShowMassege {
     private RecyclerView recycleView;
     private EditText seachBar;
     private Button areaBtn, cateBtn, ingrBtn;
@@ -83,7 +84,7 @@ public class SearchPageFragment extends Fragment implements OnFavListener, Searc
         adapter = new MealRecycleViewAdapter(getContext(), new ArrayList<>(), this,"small", true, true);
         recycleView.setAdapter(adapter);
 
-        presenter = new SearchPagePresenterImpl(getContext(), this);
+        presenter = new SearchPagePresenterImpl(getContext(), this, this);
         editSearchBar();
 
         areas = new ArrayList<>();
@@ -211,30 +212,34 @@ public class SearchPageFragment extends Fragment implements OnFavListener, Searc
 
     private void showChips(List<String> names) {
         chipGroup.removeAllViews();
-        for (String name : names) {
-            Chip chip = new Chip(getContext());
-            chip.setText(name);
-            chip.setCheckable(true);
-            chip.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                        chipGroup.clearCheck();
-                        chip.setChecked(true);
+        if(names.isEmpty())
+            showMsg("NO MATCH");
+        else {
+            for (String name : names) {
+                Chip chip = new Chip(getContext());
+                chip.setText(name);
+                chip.setCheckable(true);
+                chip.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if (isChecked) {
+                            chipGroup.clearCheck();
+                            chip.setChecked(true);
 
-                        if(isAreaBtnClicked)
-                            presenter.getMealsByArea(name);
-                        else if (isCateBtnClicked)
-                            presenter.getMealsByCategory(name);
-                        else if (isIngrBtnClicked)
-                            presenter.getMealsByIngredient(name);
+                            if (isAreaBtnClicked)
+                                presenter.getMealsByArea(name);
+                            else if (isCateBtnClicked)
+                                presenter.getMealsByCategory(name);
+                            else if (isIngrBtnClicked)
+                                presenter.getMealsByIngredient(name);
 
-                    } else {
-                        showMeals(new ArrayList<>());
+                        } else {
+                            showMeals(new ArrayList<>());
+                        }
                     }
-                }
-            });
-            chipGroup.addView(chip);
+                });
+                chipGroup.addView(chip);
+            }
         }
     }
     @Override

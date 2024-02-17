@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Controller.ProfilePageFragment" >
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:background="@drawable/style_profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="50dp"
+        android:src="@drawable/bg_image2"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintBottom_toBottomOf="@+id/view"/>
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:text="Hadeer Adel"
+        android:textSize="28sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:shadowColor="@color/black"
+        android:shadowRadius="3"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView"/>
+
+    <TextView
+        android:id="@+id/userEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="hadeer@gmail.com"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:shadowColor="@color/black"
+        android:shadowRadius="3"
+        app:layout_constraintStart_toStartOf="@+id/userName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userName"/>
+
+    <Button
+        android:id="@+id/deleteFavBtn"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:drawableLeft="@drawable/ic_favorite"
+        android:drawableTint="@color/yellow"
+        android:paddingHorizontal="10dp"
+        android:text="@string/profile_option1"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:gravity="start"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <Button
+        android:id="@+id/deletePlanBtn"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_calendar"
+        android:drawableTint="@color/yellow"
+        android:paddingHorizontal="10dp"
+        android:text="@string/profile_option2"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:gravity="start"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="@+id/deleteFavBtn"
+        app:layout_constraintStart_toStartOf="@+id/deleteFavBtn"
+        app:layout_constraintTop_toBottomOf="@+id/deleteFavBtn" />
+
+    <Button
+        android:id="@+id/backupBtn"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_upload"
+        android:drawableTint="@color/yellow"
+        android:paddingHorizontal="10dp"
+        android:text="@string/profile_option3"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:gravity="start"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="@+id/deletePlanBtn"
+        app:layout_constraintStart_toStartOf="@+id/deletePlanBtn"
+        app:layout_constraintTop_toBottomOf="@+id/deletePlanBtn" />
+
+    <Button
+        android:id="@+id/retrieveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_download"
+        android:drawableTint="@color/yellow"
+        android:drawablePadding="10dp"
+        android:paddingHorizontal="10dp"
+        android:text="@string/profile_option4"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:textAllCaps="false"
+        android:gravity="end"
+        android:backgroundTint="@color/noColor"
+        app:layout_constraintStart_toStartOf="@+id/backupBtn"
+        app:layout_constraintTop_toBottomOf="@+id/backupBtn" />
+
+    <Button
+        android:id="@+id/logOutBtn"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:drawableLeft="@drawable/ic_logout"
+        android:drawableTint="@color/Orange"
+        android:paddingHorizontal="10dp"
+        android:text="@string/profile_option5"
+        android:textSize="20sp"
+        android:textColor="@color/Orange"
+        android:gravity="start"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="@+id/retrieveBtn"
+        app:layout_constraintStart_toStartOf="@+id/retrieveBtn"
+        app:layout_constraintTop_toBottomOf="@+id/retrieveBtn" />
+</androidx.constraintlayout.widget.ConstraintLayout>

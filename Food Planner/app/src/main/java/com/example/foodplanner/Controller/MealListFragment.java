@@ -20,11 +20,12 @@ import com.example.foodplanner.Presenter.MealListPresenterImpl;
 import com.example.foodplanner.R;
 import com.example.foodplanner.RecycleView.MealRecycleViewAdapter;
 import com.example.foodplanner.View.OnFavListener;
+import com.example.foodplanner.View.OnShowMassege;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MealListFragment extends Fragment implements OnFavListener, MealListView{
+public class MealListFragment extends Fragment implements OnFavListener, MealListView, OnShowMassege {
     private RecyclerView recyclerView;
     private MealRecycleViewAdapter adapter;
     private MealListPresenter presenter;
@@ -58,7 +59,7 @@ public class MealListFragment extends Fragment implements OnFavListener, MealLis
         adapter = new MealRecycleViewAdapter(getContext(), new ArrayList<>(), this,"small", true, false);
         recyclerView.setAdapter(adapter);
 
-        presenter = new MealListPresenterImpl(getContext(), this);
+        presenter = new MealListPresenterImpl(getContext(), this, this);
         String type = MealListFragmentArgs.fromBundle(getArguments()).getType();
         String value = MealListFragmentArgs.fromBundle(getArguments()).getValue();
 

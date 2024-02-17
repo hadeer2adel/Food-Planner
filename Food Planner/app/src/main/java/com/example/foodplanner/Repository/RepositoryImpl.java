@@ -115,4 +115,9 @@ public class RepositoryImpl implements Repository {
         return localDataSourse.deleteAllDays();
     }
 
+    @Override
+    public Completable deleteAllFav() {
+        return localDataSourse.deleteAllFav();
+    }
+
 }

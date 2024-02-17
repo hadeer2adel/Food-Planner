@@ -39,4 +39,7 @@ public interface LocalDAO {
 
     @Query("UPDATE meals SET day = NULL")
     Completable deleteAllDays();
+
+    @Query("DELETE FROM Meals")
+    Completable deleteAllFav();
 }

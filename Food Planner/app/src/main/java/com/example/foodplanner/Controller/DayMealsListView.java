@@ -6,6 +6,5 @@ import java.util.List;
 
 public interface DayMealsListView {
     public void showDayMeals(List<MealDTO> days);
-    public void showMsg(String msg);
     public void removeDayMeal(MealDTO day);
 }

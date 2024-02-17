@@ -105,6 +105,11 @@
             android:id="@+id/action_searchPageFragment_to_mealDetailsFragment"
             app:destination="@id/mealDetailsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/profilePageFragment"
+        android:name="com.example.foodplanner.Controller.ProfilePageFragment"
+        android:label="fragment_profile_page"
+        tools:layout="@layout/fragment_profile_page" />
 
 
 </navigation>

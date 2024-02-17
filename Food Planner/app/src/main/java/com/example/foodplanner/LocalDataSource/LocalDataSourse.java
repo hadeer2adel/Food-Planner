@@ -14,6 +14,7 @@ public interface LocalDataSourse {
     Flowable<MealDTO> getMealById(String mealId);
     Completable insertMeal(MealDTO meal);
     Completable deleteMeal(MealDTO meal);
+    Completable deleteAllFav();
 
     //Week
     Flowable<List<MealDTO>> getDayMeals(String day);

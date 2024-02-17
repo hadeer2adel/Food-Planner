@@ -12,6 +12,7 @@ import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.Repository.Repository;
 import com.example.foodplanner.Repository.RepositoryImpl;
+import com.example.foodplanner.View.OnShowMassege;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -20,12 +21,14 @@ public class CalenderListPresenterImpl implements CalenderListPresenter {
 
     private Repository repository;
     private CalenderListView view;
+    private OnShowMassege massege;
 
-    public CalenderListPresenterImpl(Context context, CalenderListView _view){
+    public CalenderListPresenterImpl(Context context, CalenderListView _view, OnShowMassege _massege){
         LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(context);
         RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
         repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
         view = _view;
+        massege = _massege;
     }
 
     @Override
@@ -35,7 +38,7 @@ public class CalenderListPresenterImpl implements CalenderListPresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         item -> view.showMeals(item),
-                        error -> view.showMsg(error.getMessage())
+                        error -> massege.showMsg(error.getMessage())
                 );
     }
 
@@ -45,8 +48,8 @@ public class CalenderListPresenterImpl implements CalenderListPresenter {
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        () -> view.showMsg("Add to Calender successfully"),
-                        error -> view.showMsg(error.getMessage())
+                        () -> massege.showMsg("Add to Calender successfully"),
+                        error -> massege.showMsg(error.getMessage())
                 );
     }
 

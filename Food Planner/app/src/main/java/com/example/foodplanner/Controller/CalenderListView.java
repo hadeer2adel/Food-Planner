@@ -7,5 +7,4 @@ import java.util.List;
 public interface CalenderListView {
     public void showMeals(List<MealDTO> meals);
     public void addToCalender(MealDTO day);
-    public void showMsg(String msg);
 }

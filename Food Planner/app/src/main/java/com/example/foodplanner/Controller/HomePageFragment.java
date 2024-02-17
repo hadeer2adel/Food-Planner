@@ -23,11 +23,12 @@ import com.example.foodplanner.RecycleView.AreaRecycleViewAdapter;
 import com.example.foodplanner.RecycleView.CategoryRecycleViewAdapter;
 import com.example.foodplanner.RecycleView.MealRecycleViewAdapter;
 import com.example.foodplanner.View.OnFavListener;
+import com.example.foodplanner.View.OnShowMassege;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomePageFragment extends Fragment implements OnFavListener, HomePageView{
+public class HomePageFragment extends Fragment implements OnFavListener, HomePageView, OnShowMassege {
 
     private RecyclerView mealRecycleView, categoryRecycleView, areaRecycleView;
     private MealRecycleViewAdapter mealAdapter;
@@ -60,7 +61,7 @@ public class HomePageFragment extends Fragment implements OnFavListener, HomePag
         categoryRecycleView = view.findViewById(R.id.categoryRecycleView);
         areaRecycleView = view.findViewById(R.id.areaRecycleView);
 
-        presenter = new HomePagePresenterImpl(getContext(), this);
+        presenter = new HomePagePresenterImpl(getContext(), this, this);
 
         setMealRecycleView();
         setCategoryRecycleView();
