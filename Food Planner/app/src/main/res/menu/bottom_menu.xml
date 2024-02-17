@@ -8,7 +8,7 @@
         android:title="@string/menu_item1"
         android:enabled="true"        />
     <item
-        android:id="@+id/search"
+        android:id="@+id/searchPageFragment"
         android:icon="@drawable/ic_search"
         android:title="@string/menu_item2"
         android:enabled="true"

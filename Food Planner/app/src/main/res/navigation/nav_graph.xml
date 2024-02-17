@@ -96,6 +96,15 @@
             android:name="day"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/searchPageFragment"
+        android:name="com.example.foodplanner.Controller.SearchPageFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchPageFragment_to_mealDetailsFragment"
+            app:destination="@id/mealDetailsFragment" />
+    </fragment>
 
 
 </navigation>

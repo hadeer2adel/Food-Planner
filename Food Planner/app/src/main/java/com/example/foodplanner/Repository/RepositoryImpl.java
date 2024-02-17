@@ -3,6 +3,7 @@ package com.example.foodplanner.Repository;
 import com.example.foodplanner.LocalDataSource.LocalDataSourse;
 import com.example.foodplanner.Models.AreasDTO;
 import com.example.foodplanner.Models.CategoriesDTO;
+import com.example.foodplanner.Models.IngredientsDTO;
 import com.example.foodplanner.Models.MealDTO;
 import com.example.foodplanner.Models.MealOneDTO;
 import com.example.foodplanner.Models.MealsDTO;
@@ -32,32 +33,47 @@ public class RepositoryImpl implements Repository {
 
     @Override
     public Observable<MealsDTO> getRandomMeals() {
-        return remoteDataSource.makeNetworkCall_RandomMeals();
+        return remoteDataSource.getRandomMeals();
     }
 
     @Override
     public Observable<CategoriesDTO> getCategories() {
-        return remoteDataSource.makeNetworkCall_Categories();
+        return remoteDataSource.getCategories();
     }
 
     @Override
     public Observable<AreasDTO> getAreas() {
-        return remoteDataSource.makeNetworkCall_Areas();
+        return remoteDataSource.getAreas();
     }
 
     @Override
     public Observable<MealsDTO> getMealsByCategory(String category) {
-        return remoteDataSource.makeNetworkCall_MealsByCategory(category);
+        return remoteDataSource.getMealsByCategory(category);
     }
 
     @Override
     public Observable<MealsDTO> getMealsByArea(String area) {
-        return remoteDataSource.makeNetworkCall_MealsByArea(area);
+        return remoteDataSource.getMealsByArea(area);
     }
 
     @Override
     public Observable<MealOneDTO> getMealDetails(String id) {
-        return remoteDataSource.makeNetworkCall_MealDetails(id);
+        return remoteDataSource.getMealDetails(id);
+    }
+
+    @Override
+    public Observable<IngredientsDTO> getIngredients() {
+        return remoteDataSource.getIngredients();
+    }
+
+    @Override
+    public Observable<MealsDTO> getMealsByIngredient(String ingredient) {
+        return remoteDataSource.getMealsByIngredient(ingredient);
+    }
+
+    @Override
+    public Observable<MealsDTO> searchByName(String name) {
+        return remoteDataSource.searchByName(name);
     }
 
     @Override

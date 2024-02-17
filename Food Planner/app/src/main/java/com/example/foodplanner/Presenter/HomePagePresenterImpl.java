@@ -84,10 +84,7 @@ public class HomePagePresenterImpl implements HomePagePresenter{
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         item -> addToFav2(item),
-                        error -> {
-                            Log.i("TAG", error.getMessage());
-                            view.showMsg(error.getMessage());
-                        }
+                        error -> view.showMsg(error.getMessage())
                 );
     }
     private void addToFav2(MealDTO meal) {
@@ -97,10 +94,7 @@ public class HomePagePresenterImpl implements HomePagePresenter{
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         () -> view.showMsg("Add to favourite successfully"),
-                        error -> {
-                            Log.i("TAG", error.getMessage());
-                            view.showMsg(error.getMessage());
-                        }
+                        error -> view.showMsg(error.getMessage())
                 );
     }
 }

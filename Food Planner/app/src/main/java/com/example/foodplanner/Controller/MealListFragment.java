@@ -55,7 +55,7 @@ public class MealListFragment extends Fragment implements OnFavListener, MealLis
         GridLayoutManager manager = new GridLayoutManager(getContext(),2);
         recyclerView.setLayoutManager(manager);
 
-        adapter = new MealRecycleViewAdapter(getContext(), new ArrayList<>(), this,"small", true);
+        adapter = new MealRecycleViewAdapter(getContext(), new ArrayList<>(), this,"small", true, false);
         recyclerView.setAdapter(adapter);
 
         presenter = new MealListPresenterImpl(getContext(), this);
@@ -75,7 +75,7 @@ public class MealListFragment extends Fragment implements OnFavListener, MealLis
 
     @Override
     public void showMeals(List<MealDTO> meals) {
-        adapter = new MealRecycleViewAdapter(getContext(), meals, this,"small", true);
+        adapter = new MealRecycleViewAdapter(getContext(), meals, this,"small", true, false);
         recyclerView.setAdapter(adapter);
     }
 

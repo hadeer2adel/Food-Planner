@@ -49,4 +49,10 @@
     <string name="signupfirst_profileDec">You can get more features and options after getting an account</string>
     <string name="signupfirst_accept">Sign Up</string>
     <string name="signupfirst_decline">Decline</string>
+
+    //search
+    <string name="search1">Category</string>
+    <string name="search2">Ingredient</string>
+    <string name="search3">Country</string>
+
 </resources>

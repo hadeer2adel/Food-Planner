@@ -2,6 +2,7 @@ package com.example.foodplanner.RemoteDataSource;
 
 import com.example.foodplanner.Models.AreasDTO;
 import com.example.foodplanner.Models.CategoriesDTO;
+import com.example.foodplanner.Models.IngredientsDTO;
 import com.example.foodplanner.Models.MealOneDTO;
 import com.example.foodplanner.Models.MealsDTO;
 
@@ -31,32 +32,47 @@ public class RemoteDataSourceImpl implements RemoteDataSource {
     }
 
     @Override
-    public Observable<MealsDTO> makeNetworkCall_RandomMeals() {
+    public Observable<MealsDTO> getRandomMeals() {
         return service.getRandomMeals();
     }
 
     @Override
-    public Observable<CategoriesDTO> makeNetworkCall_Categories() {
+    public Observable<CategoriesDTO> getCategories() {
         return service.getCategories();
     }
 
     @Override
-    public Observable<AreasDTO> makeNetworkCall_Areas() {
+    public Observable<AreasDTO> getAreas() {
         return service.getAreas();
     }
 
     @Override
-    public Observable<MealsDTO> makeNetworkCall_MealsByCategory(String category) {
+    public Observable<MealsDTO> getMealsByCategory(String category) {
         return service.getMealsByCategory(category);
     }
 
     @Override
-    public Observable<MealsDTO> makeNetworkCall_MealsByArea(String area) {
+    public Observable<MealsDTO> getMealsByArea(String area) {
         return service.getMealsByArea(area);
     }
 
     @Override
-    public Observable<MealOneDTO> makeNetworkCall_MealDetails(String id) {
+    public Observable<MealOneDTO> getMealDetails(String id) {
         return service.getMealDetails(id);
+    }
+
+    @Override
+    public Observable<IngredientsDTO> getIngredients() {
+        return service.getIngredients();
+    }
+
+    @Override
+    public Observable<MealsDTO> getMealsByIngredient(String ingredient) {
+        return service.getMealsByIngredient(ingredient);
+    }
+
+    @Override
+    public Observable<MealsDTO> searchByName(String name) {
+        return service.searchByName(name);
     }
 }

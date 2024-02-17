@@ -10,6 +10,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.foodplanner.Controller.SearchPageFragmentDirections;
 import com.example.foodplanner.Models.MealDTO;
 import com.example.foodplanner.R;
 import com.example.foodplanner.View.OnFavListener;
@@ -22,14 +23,15 @@ public class MealRecycleViewAdapter extends RecyclerView.Adapter<MealRecycleView
     private List<MealDTO> meals;
     private String cardSize;
     private OnFavListener listener;
-    private boolean remote;
+    private boolean remote, search;
 
-    public MealRecycleViewAdapter(Context _context, List<MealDTO> _meals, OnFavListener _listener, String _cardSize, boolean _remote){
+    public MealRecycleViewAdapter(Context _context, List<MealDTO> _meals, OnFavListener _listener, String _cardSize, boolean _remote, Boolean _search){
         context = _context;
         meals = _meals;
         listener =_listener;
         cardSize = _cardSize;
         remote = _remote;
+        search = _search;
     }
 
     @NonNull
@@ -83,7 +85,12 @@ public class MealRecycleViewAdapter extends RecyclerView.Adapter<MealRecycleView
             @Override
             public void onClick(View v) {
                 if(remote) {
-                    if (cardSize.equals("small")) {
+                    if(search){
+                        SearchPageFragmentDirections.ActionSearchPageFragmentToMealDetailsFragment action;
+                        action = com.example.foodplanner.Controller.SearchPageFragmentDirections.actionSearchPageFragmentToMealDetailsFragment(meal.getId(), holder.isFav, remote);
+                        Navigation.findNavController(v).navigate(action);
+                    }
+                    else if (cardSize.equals("small")) {
                         com.example.foodplanner.Controller.MealListFragmentDirections.ActionMealListFragmentToMealDetailsFragment action;
                         action = com.example.foodplanner.Controller.MealListFragmentDirections.actionMealListFragmentToMealDetailsFragment(meal.getId(), holder.isFav, remote);
                         Navigation.findNavController(v).navigate(action);

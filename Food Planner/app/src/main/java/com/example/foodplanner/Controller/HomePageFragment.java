@@ -71,7 +71,7 @@ public class HomePageFragment extends Fragment implements OnFavListener, HomePag
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         mealRecycleView.setLayoutManager(manager);
 
-        mealAdapter = new MealRecycleViewAdapter(getContext(), new ArrayList<>(),this, "large", true);
+        mealAdapter = new MealRecycleViewAdapter(getContext(), new ArrayList<>(),this, "large", true, false);
         mealRecycleView.setAdapter(mealAdapter);
         presenter.getRandomMeals();
     }
@@ -94,7 +94,7 @@ public class HomePageFragment extends Fragment implements OnFavListener, HomePag
 
     @Override
     public void showRandomMeals(List<MealDTO> meals) {
-        mealAdapter = new MealRecycleViewAdapter(getContext(), meals,this, "large", true);
+        mealAdapter = new MealRecycleViewAdapter(getContext(), meals,this, "large", true, false);
         mealRecycleView.setAdapter(mealAdapter);
     }
 

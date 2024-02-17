@@ -101,6 +101,7 @@ public class MealDetailsFragment extends Fragment implements OnFavListener, Meal
                     mealFav.setImageResource(R.drawable.ic_favorite_true);
                 }
                 clickOnFavListener(thisMeal);
+                mealFav.setEnabled(false);
             }
         });
 

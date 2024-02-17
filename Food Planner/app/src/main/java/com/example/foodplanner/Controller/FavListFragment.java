@@ -73,7 +73,7 @@ public class FavListFragment extends Fragment  implements OnFavListener, FavList
         GridLayoutManager manager = new GridLayoutManager(getContext(),2);
         recyclerView.setLayoutManager(manager);
 
-        adapter = new MealRecycleViewAdapter(getContext(), new ArrayList<>(), this,"small", false);
+        adapter = new MealRecycleViewAdapter(getContext(), new ArrayList<>(), this,"small", false, false);
         recyclerView.setAdapter(adapter);
 
         presenter = new FavListPresenterImpl(getContext(), this);
@@ -82,7 +82,7 @@ public class FavListFragment extends Fragment  implements OnFavListener, FavList
 
     @Override
     public void showMeals(List<MealDTO> meals) {
-        adapter = new MealRecycleViewAdapter(getContext(), meals,this, "small", false);
+        adapter = new MealRecycleViewAdapter(getContext(), meals,this, "small", false, false);
         recyclerView.setAdapter(adapter);
     }
 
