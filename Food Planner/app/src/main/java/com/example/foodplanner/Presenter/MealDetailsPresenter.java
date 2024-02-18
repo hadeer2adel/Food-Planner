@@ -7,4 +7,5 @@ public interface MealDetailsPresenter {
     public void addToFav(MealDTO meal);
     public void removeFromFav(MealDTO meal);
     public void getFavMeal(String id);
+    public void getLocalFavMeal(String id);
 }

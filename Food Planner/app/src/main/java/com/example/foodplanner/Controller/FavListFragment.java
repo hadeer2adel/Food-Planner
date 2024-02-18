@@ -22,6 +22,7 @@ import com.example.foodplanner.Presenter.FavListPresenter;
 import com.example.foodplanner.Presenter.FavListPresenterImpl;
 import com.example.foodplanner.R;
 import com.example.foodplanner.RecycleView.MealRecycleViewAdapter;
+import com.example.foodplanner.SQLlite.NetworkConnection;
 import com.example.foodplanner.View.LoginActivity;
 import com.example.foodplanner.View.MainActivity;
 import com.example.foodplanner.View.OnFavListener;
@@ -78,7 +79,12 @@ public class FavListFragment extends Fragment  implements OnFavListener, FavList
         recyclerView.setAdapter(adapter);
 
         presenter = new FavListPresenterImpl(getContext(), this, this);
-        presenter.getFavMeals();
+        if (NetworkConnection.isNetworkConnected(getContext())) {
+            presenter.getFavMeals();
+        }
+        else {
+            presenter.getLocalFavMeals();
+        }
     }
 
     @Override

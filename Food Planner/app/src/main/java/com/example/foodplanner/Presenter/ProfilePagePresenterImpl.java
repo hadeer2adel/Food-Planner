@@ -14,6 +14,7 @@ import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.Repository.Repository;
 import com.example.foodplanner.Repository.RepositoryImpl;
+import com.example.foodplanner.SQLlite.SQLAdapter;
 import com.example.foodplanner.View.OnShowMassege;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,6 +32,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class ProfilePagePresenterImpl implements ProfilePagePresenter {
     private Repository repository;
+    private SQLAdapter sqlAdapter;
     private ProfilePageView view;
     private OnShowMassege massege;
     private static boolean check = false;
@@ -39,6 +41,7 @@ public class ProfilePagePresenterImpl implements ProfilePagePresenter {
         LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(context);
         RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
         repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
+        sqlAdapter = new SQLAdapter(context);
         view = _view;
         massege = _massege;
     }
@@ -132,6 +135,22 @@ public class ProfilePagePresenterImpl implements ProfilePagePresenter {
                         massege.showMsg(e.getMessage());
                     }
                 });
+    }
+
+    @Override
+    public void storeDataLocal() {
+        repository.getFavMeals()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        item -> storeDataLocal2(item),
+                        error -> massege.showMsg(error.getMessage())
+                );
+    }
+
+    private void storeDataLocal2(List<MealDTO> meals) {
+        sqlAdapter.removeAllMeals(UserDTO.getUser().getId());
+        sqlAdapter.insertAllMeals(meals);
     }
 
     private void retrieveData2(MealDTO meal) {

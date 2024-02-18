@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodplanner.Controller.DayMealsList;
 import com.example.foodplanner.R;
+import com.example.foodplanner.SQLlite.NetworkConnection;
 
 import java.util.List;
 
@@ -41,9 +42,11 @@ public class WeekRecycleViewAdapter extends RecyclerView.Adapter<WeekRecycleView
         holder.addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                com.example.foodplanner.Controller.WeekListFragmentDirections.ActionWeekFragmentToCalenderListFragment action;
-                action = com.example.foodplanner.Controller.WeekListFragmentDirections.actionWeekFragmentToCalenderListFragment(day);
-                Navigation.findNavController(v).navigate(action);
+                if (NetworkConnection.isNetworkConnected(context)) {
+                    com.example.foodplanner.Controller.WeekListFragmentDirections.ActionWeekFragmentToCalenderListFragment action;
+                    action = com.example.foodplanner.Controller.WeekListFragmentDirections.actionWeekFragmentToCalenderListFragment(day);
+                    Navigation.findNavController(v).navigate(action);
+                }
             }
         });
     }

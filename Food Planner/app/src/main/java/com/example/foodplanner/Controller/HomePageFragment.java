@@ -1,5 +1,7 @@
 package com.example.foodplanner.Controller;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,8 +25,12 @@ import com.example.foodplanner.R;
 import com.example.foodplanner.RecycleView.AreaRecycleViewAdapter;
 import com.example.foodplanner.RecycleView.CategoryRecycleViewAdapter;
 import com.example.foodplanner.RecycleView.MealRecycleViewAdapter;
+import com.example.foodplanner.SQLlite.NetworkConnection;
+import com.example.foodplanner.View.LoginActivity;
+import com.example.foodplanner.View.MainActivity;
 import com.example.foodplanner.View.OnFavListener;
 import com.example.foodplanner.View.OnShowMassege;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +48,14 @@ public class HomePageFragment extends Fragment implements OnFavListener, HomePag
     public static HomePageFragment newInstance(String param1, String param2) {
         HomePageFragment fragment = new HomePageFragment();
         return fragment;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (!NetworkConnection.isNetworkConnected(getContext())) {
+            showNetworkDialog();
+        }
     }
 
     @Override
@@ -124,5 +139,18 @@ public class HomePageFragment extends Fragment implements OnFavListener, HomePag
     @Override
     public void addToFav(MealDTO meal) {
         presenter.addToFav(meal);
+    }
+
+    private void showNetworkDialog(){
+        new MaterialAlertDialogBuilder(getContext())
+                .setTitle(R.string.network_title)
+                .setMessage(R.string.network_Dec)
+                .setNegativeButton(R.string.network_decline, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Navigation.findNavController(getView()).navigate(com.example.foodplanner.Controller.HomePageFragmentDirections.actionHomeFragmentToFavFragment());
+                    }
+                })
+                .show();
     }
 }

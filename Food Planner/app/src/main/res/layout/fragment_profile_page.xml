@@ -31,7 +31,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
-        android:text="Hadeer Adel"
         android:textSize="28sp"
         android:textColor="@color/white"
         android:textStyle="bold"
@@ -46,8 +45,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="hadeer@gmail.com"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:shadowColor="@color/black"
@@ -112,20 +110,37 @@
 
     <Button
         android:id="@+id/retrieveBtn"
-        android:layout_width="wrap_content"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_download"
         android:drawableTint="@color/yellow"
-        android:drawablePadding="10dp"
         android:paddingHorizontal="10dp"
         android:text="@string/profile_option4"
         android:textSize="22sp"
         android:textColor="@color/black"
+        android:gravity="start"
         android:textAllCaps="false"
-        android:gravity="end"
-        android:backgroundTint="@color/noColor"
         app:layout_constraintStart_toStartOf="@+id/backupBtn"
-        app:layout_constraintTop_toBottomOf="@+id/backupBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/backupBtn"
+        app:layout_constraintEnd_toEndOf="@+id/backupBtn"/>
+
+    <Button
+        android:id="@+id/offlineBtn"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_offline"
+        android:drawableTint="@color/yellow"
+        android:paddingHorizontal="10dp"
+        android:text="@string/profile_option5"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:gravity="start"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toStartOf="@+id/retrieveBtn"
+        app:layout_constraintTop_toBottomOf="@+id/retrieveBtn"
+        app:layout_constraintEnd_toEndOf="@+id/retrieveBtn"/>
 
     <Button
         android:id="@+id/logOutBtn"
@@ -136,12 +151,12 @@
         android:drawableLeft="@drawable/ic_logout"
         android:drawableTint="@color/Orange"
         android:paddingHorizontal="10dp"
-        android:text="@string/profile_option5"
+        android:text="@string/profile_option6"
         android:textSize="20sp"
         android:textColor="@color/Orange"
         android:gravity="start"
         android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="@+id/retrieveBtn"
-        app:layout_constraintStart_toStartOf="@+id/retrieveBtn"
-        app:layout_constraintTop_toBottomOf="@+id/retrieveBtn" />
+        app:layout_constraintEnd_toEndOf="@+id/offlineBtn"
+        app:layout_constraintStart_toStartOf="@+id/offlineBtn"
+        app:layout_constraintTop_toBottomOf="@+id/offlineBtn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

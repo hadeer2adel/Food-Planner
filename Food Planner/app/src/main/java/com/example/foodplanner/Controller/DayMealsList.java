@@ -11,6 +11,7 @@ import com.example.foodplanner.Models.MealDTO;
 import com.example.foodplanner.Presenter.DayPresenter;
 import com.example.foodplanner.Presenter.DayPresenterImpl;
 import com.example.foodplanner.RecycleView.DayRecycleViewAdapter;
+import com.example.foodplanner.SQLlite.NetworkConnection;
 import com.example.foodplanner.View.OnAddListener;
 import com.example.foodplanner.View.OnShowMassege;
 
@@ -39,7 +40,12 @@ public class DayMealsList implements OnAddListener, DayMealsListView, OnShowMass
         recyclerView.setAdapter(adapter);
 
         presenter = new DayPresenterImpl(context, this, this);
-        presenter.getDayMeals(day);
+        if (NetworkConnection.isNetworkConnected(context)) {
+            presenter.getDayMeals(day);
+        }
+        else {
+            presenter.getLocalDayMeals(day);
+        }
     }
 
 

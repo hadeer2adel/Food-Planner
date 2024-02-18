@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.example.foodplanner.Controller.SearchPageFragmentDirections;
 import com.example.foodplanner.Models.MealDTO;
 import com.example.foodplanner.R;
+import com.example.foodplanner.SQLlite.NetworkConnection;
 import com.example.foodplanner.View.OnFavListener;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -69,15 +70,16 @@ public class MealRecycleViewAdapter extends RecyclerView.Adapter<MealRecycleView
         holder.favBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(holder.isFav) {
-                    holder.favBtn.setImageResource(R.drawable.ic_favorite_false);
+                if (NetworkConnection.isNetworkConnected(context)) {
+                    if (holder.isFav) {
+                        holder.favBtn.setImageResource(R.drawable.ic_favorite_false);
+                    } else {
+                        holder.favBtn.setImageResource(R.drawable.ic_favorite_true);
+                    }
+                    holder.isFav = !holder.isFav;
+                    listener.clickOnFavListener(meal);
+                    holder.favBtn.setEnabled(false);
                 }
-                else {
-                    holder.favBtn.setImageResource(R.drawable.ic_favorite_true);
-                }
-                holder.isFav = !holder.isFav;
-                listener.clickOnFavListener(meal);
-                holder.favBtn.setEnabled(false);
             }
         });
 

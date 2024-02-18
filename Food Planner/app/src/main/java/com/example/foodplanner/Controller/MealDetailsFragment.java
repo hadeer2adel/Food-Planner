@@ -23,6 +23,7 @@ import com.example.foodplanner.Presenter.MealDetailsPresenterImpl;
 import com.example.foodplanner.R;
 import com.example.foodplanner.RecycleView.IngreRecycleViewAdapter;
 import com.example.foodplanner.RecycleView.StepsRecycleViewAdapter;
+import com.example.foodplanner.SQLlite.NetworkConnection;
 import com.example.foodplanner.View.OnFavListener;
 import com.example.foodplanner.View.OnShowMassege;
 import com.google.android.material.chip.Chip;
@@ -93,16 +94,17 @@ public class MealDetailsFragment extends Fragment implements OnFavListener, Meal
         mealFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(favBtnClicked) {
-                    favBtnClicked = false;
-                    mealFav.setImageResource(R.drawable.ic_favorite_false);
+                if (NetworkConnection.isNetworkConnected(getContext())) {
+                    if (favBtnClicked) {
+                        favBtnClicked = false;
+                        mealFav.setImageResource(R.drawable.ic_favorite_false);
+                    } else {
+                        favBtnClicked = true;
+                        mealFav.setImageResource(R.drawable.ic_favorite_true);
+                    }
+                    clickOnFavListener(thisMeal);
+                    mealFav.setEnabled(false);
                 }
-                else {
-                    favBtnClicked = true;
-                    mealFav.setImageResource(R.drawable.ic_favorite_true);
-                }
-                clickOnFavListener(thisMeal);
-                mealFav.setEnabled(false);
             }
         });
 
@@ -126,7 +128,12 @@ public class MealDetailsFragment extends Fragment implements OnFavListener, Meal
             presenter.getMeal(id);
         }
         else {
-            presenter.getFavMeal(id);
+            if (NetworkConnection.isNetworkConnected(getContext())) {
+                presenter.getFavMeal(id);
+            }
+            else {
+                presenter.getLocalFavMeal(id);
+            }
         }
     }
 

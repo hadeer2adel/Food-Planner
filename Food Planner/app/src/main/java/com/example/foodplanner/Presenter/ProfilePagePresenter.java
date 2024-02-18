@@ -7,5 +7,6 @@ public interface ProfilePagePresenter {
     public void deleteAllPlans();
     public void storeData();
     public void retrieveData();
+    public void storeDataLocal();
     public void logOut();
 }

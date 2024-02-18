@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_homeFragment_to_mealDetailsFragment"
             app:destination="@id/mealDetailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_favFragment"
+            app:destination="@id/favFragment" />
     </fragment>
 
     <activity
@@ -104,12 +107,19 @@
         <action
             android:id="@+id/action_searchPageFragment_to_mealDetailsFragment"
             app:destination="@id/mealDetailsFragment" />
+        <action
+            android:id="@+id/action_searchPageFragment_to_favFragment"
+            app:destination="@id/favFragment" />
     </fragment>
     <fragment
         android:id="@+id/profilePageFragment"
         android:name="com.example.foodplanner.Controller.ProfilePageFragment"
         android:label="fragment_profile_page"
-        tools:layout="@layout/fragment_profile_page" />
+        tools:layout="@layout/fragment_profile_page" >
+        <action
+            android:id="@+id/action_profilePageFragment_to_favFragment"
+            app:destination="@id/favFragment" />
+    </fragment>
 
 
 </navigation>

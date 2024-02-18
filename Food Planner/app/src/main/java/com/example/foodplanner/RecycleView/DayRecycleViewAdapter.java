@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.example.foodplanner.Controller.WeekListFragmentDirections;
 import com.example.foodplanner.Models.MealDTO;
 import com.example.foodplanner.R;
+import com.example.foodplanner.SQLlite.NetworkConnection;
 import com.example.foodplanner.View.OnAddListener;
 
 import java.util.List;
@@ -61,18 +62,20 @@ public class DayRecycleViewAdapter extends RecyclerView.Adapter<MealRecycleViewH
         holder.favBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(cardSize.equals("small")) {
-                    holder.favBtn.setImageResource(R.drawable.ic_add_true);
+                if (NetworkConnection.isNetworkConnected(context)) {
+                    if (cardSize.equals("small")) {
+                        holder.favBtn.setImageResource(R.drawable.ic_add_true);
+                    }
+                    listener.clickOnAddListener(day);
+                    holder.favBtn.setEnabled(false);
                 }
-                listener.clickOnAddListener(day);
-                holder.favBtn.setEnabled(false);
             }
         });
 
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cardSize.equals("small")) {
+                if (NetworkConnection.isNetworkConnected(context) && cardSize.equals("small")) {
                     holder.favBtn.setImageResource(R.drawable.ic_add_true);
                     listener.clickOnAddListener(day);
                     holder.favBtn.setEnabled(false);

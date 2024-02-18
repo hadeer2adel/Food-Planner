@@ -42,15 +42,23 @@
     <string name="ingr">Ingredients</string>
     <string name="step">Instructions</string>
 
-    //Dialog
+    //sign in Dialog
     <string name="signupfirst_title">Sign Up For More Features</string>
     <string name="signupfirst_favDec">You can add meals to your favorites or remove from it.</string>
     <string name="signupfirst_calDec">You can show and add meals of your current week</string>
     <string name="signupfirst_profileDec">You can get more features and options after getting an account</string>
     <string name="signupfirst_accept">Sign Up</string>
-    <string name="signupfirst_decline">Decline</string>
+    <string name="signupfirst_decline">Cancel</string>
+
+    //profile Dialog
+    <string name="profile_Dec1">Are you sure you want to</string>
     <string name="profile_accept">Sure</string>
     <string name="profile_decline">Cancel</string>
+
+    //network Dialog
+    <string name="network_title">No Network Connection</string>
+    <string name="network_Dec">Please make sure you are connected to a WiFi network</string>
+    <string name="network_decline">Cancel</string>
 
     //search
     <string name="search1">Category</string>
@@ -62,6 +70,7 @@
     <string name="profile_option2">  Delete All Week Plans</string>
     <string name="profile_option3">  Backup your data</string>
     <string name="profile_option4">  Retrieve your old data</string>
-    <string name="profile_option5">  Log Out</string>
+    <string name="profile_option5">  Save meals for offline</string>
+    <string name="profile_option6">  Log Out</string>
 
 </resources>
