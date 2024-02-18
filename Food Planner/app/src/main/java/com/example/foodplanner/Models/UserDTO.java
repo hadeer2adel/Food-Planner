@@ -1,10 +1,11 @@
 package com.example.foodplanner.Models;
 
+import com.example.foodplanner.SQLlite.PreferenceManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class UserDTO {
-    private String id, name, email, password;
+    private String id, name, email, password, lastSaturday;
 
     private static UserDTO user = null;
 
@@ -19,10 +20,22 @@ public class UserDTO {
         }
     }
 
+    public static void setUserFromPreference(PreferenceManager preferenceManager){
+        user = new UserDTO();
+        user.id = preferenceManager.getUserId();
+        user.name = preferenceManager.getUserName();
+        user.email = preferenceManager.getUserEmail();
+        user.lastSaturday = preferenceManager.getSaturday();
+    }
+
     public static UserDTO getUser(){
         if(user == null)
             user = new UserDTO();
         return user;
+    }
+
+    public String getLastSaturday() {
+        return lastSaturday;
     }
 
     public static void removeUser(){

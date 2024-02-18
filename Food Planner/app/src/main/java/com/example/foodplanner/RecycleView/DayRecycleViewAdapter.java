@@ -1,6 +1,7 @@
 package com.example.foodplanner.RecycleView;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +48,7 @@ public class DayRecycleViewAdapter extends RecyclerView.Adapter<MealRecycleViewH
     public void onBindViewHolder(@NonNull MealRecycleViewHolder holder, int position) {
         MealDTO day = days.get(position);
 
-        if(cardSize.equals("small")) {
+        if(!holder.isFav && cardSize.equals("small")) {
             holder.favBtn.setImageResource(R.drawable.ic_add_false);
         }
         else {

@@ -14,6 +14,7 @@ import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.Repository.Repository;
 import com.example.foodplanner.Repository.RepositoryImpl;
+import com.example.foodplanner.SQLlite.PreferenceManager;
 import com.example.foodplanner.SQLlite.SQLAdapter;
 import com.example.foodplanner.View.OnShowMassege;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -35,9 +36,11 @@ public class ProfilePagePresenterImpl implements ProfilePagePresenter {
     private SQLAdapter sqlAdapter;
     private ProfilePageView view;
     private OnShowMassege massege;
+    private Context context;
     private static boolean check = false;
 
-    public ProfilePagePresenterImpl(Context context, ProfilePageView _view, OnShowMassege _massege){
+    public ProfilePagePresenterImpl(Context _context, ProfilePageView _view, OnShowMassege _massege){
+        context = _context;
         LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(context);
         RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
         repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
@@ -167,6 +170,8 @@ public class ProfilePagePresenterImpl implements ProfilePagePresenter {
     public void logOut() {
         FirebaseAuth.getInstance().signOut();
         UserDTO.removeUser();
+        PreferenceManager preferenceManager = new PreferenceManager(context);
+        preferenceManager.logoutUser();
         view.showDialog();
     }
 }

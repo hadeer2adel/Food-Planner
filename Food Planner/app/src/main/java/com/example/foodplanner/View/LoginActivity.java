@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.foodplanner.SQLlite.PreferenceManager;
 import com.google.android.gms.auth.api.identity.BeginSignInRequest;
 import com.google.android.gms.auth.api.identity.BeginSignInResult;
 import com.google.android.gms.auth.api.identity.Identity;
@@ -26,14 +27,14 @@ import com.example.foodplanner.R;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText emailTxt, passwordTxt;
-    private Button loginBtn, signupBtn, googleBtn, facebookBtn, skipBtn;
+    private Button loginBtn, signupBtn, googleBtn, skipBtn;
     private FirebaseAuth mAuth;
     private static final int REQ_ONE_TAP = 2;
-    private boolean showOneTapUI = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,6 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.loginBtn);
         signupBtn = findViewById(R.id.signupBtn);
         googleBtn = findViewById(R.id.googleBtn);
-        facebookBtn = findViewById(R.id.facebookBtn);
         skipBtn = findViewById(R.id.skipBtn);
 
 
@@ -73,7 +73,11 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                PreferenceManager preferenceManager = new PreferenceManager(LoginActivity.this);
+                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                preferenceManager.saveUser(user.getUid(), user.getDisplayName(), user.getEmail());
+
+                                Intent intent = new Intent(LoginActivity.this, SplashScreenActivity.class);
                                 startActivity(intent);
                                 finish();
                             }
@@ -91,7 +95,11 @@ public class LoginActivity extends AppCompatActivity {
         skipBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                PreferenceManager preferenceManager = new PreferenceManager(LoginActivity.this);
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                preferenceManager.saveUser(user.getUid(), user.getDisplayName(), user.getEmail());
+
+                Intent intent = new Intent(LoginActivity.this, SplashScreenActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -136,7 +144,11 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                PreferenceManager preferenceManager = new PreferenceManager(LoginActivity.this);
+                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                preferenceManager.saveUser(user.getUid(), user.getDisplayName(), user.getEmail());
+
+                                Intent intent = new Intent(LoginActivity.this, SplashScreenActivity.class);
                                 startActivity(intent);
                                 finish();
                             } else {

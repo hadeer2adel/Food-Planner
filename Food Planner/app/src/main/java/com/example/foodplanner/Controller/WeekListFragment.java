@@ -16,15 +16,23 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.foodplanner.Models.UserDTO;
 import com.example.foodplanner.Models.WeekDTO;
+import com.example.foodplanner.Presenter.WeekListPresenter;
+import com.example.foodplanner.Presenter.WeekListPresenterImpl;
 import com.example.foodplanner.R;
 import com.example.foodplanner.RecycleView.WeekRecycleViewAdapter;
+import com.example.foodplanner.SQLlite.PreferenceManager;
 import com.example.foodplanner.View.LoginActivity;
 import com.example.foodplanner.View.MainActivity;
 import com.example.foodplanner.View.OnShowMassege;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class WeekListFragment extends Fragment  implements OnShowMassege {
@@ -32,7 +40,6 @@ public class WeekListFragment extends Fragment  implements OnShowMassege {
     private RecyclerView recyclerView;
     private WeekRecycleViewAdapter adapter;
     private List<String> days;
-    private View view;
 
     public WeekListFragment() {
     }
@@ -48,6 +55,36 @@ public class WeekListFragment extends Fragment  implements OnShowMassege {
         if(FirebaseAuth.getInstance().getCurrentUser() == null){
             showDialog();
         }
+        else if (isNewWeek()){
+            WeekListPresenter presenter = new WeekListPresenterImpl(getContext(), this);
+            presenter.deleteAllPlans();
+            PreferenceManager preferenceManager = new PreferenceManager(getContext());
+            preferenceManager.saveUser(UserDTO.getUser().getId(), UserDTO.getUser().getName(), UserDTO.getUser().getEmail());
+        }
+    }
+
+    private boolean isNewWeek() {
+        String lastSaturday = UserDTO.getUser().getLastSaturday();
+
+        if (lastSaturday != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                Date lastSaturdayDate = sdf.parse(lastSaturday);
+                Date currentDate = new Date();
+                if (currentDate.after(lastSaturdayDate)) {
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(lastSaturdayDate);
+                    cal.add(Calendar.DAY_OF_YEAR, 7);
+                    Date nextSaturday = cal.getTime();
+                    if (currentDate.compareTo(nextSaturday) >= 0) {
+                        return true;
+                    }
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
     }
 
     @Override
@@ -57,7 +94,7 @@ public class WeekListFragment extends Fragment  implements OnShowMassege {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_meal_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_meal_list, container, false);
         return view;
     }
 

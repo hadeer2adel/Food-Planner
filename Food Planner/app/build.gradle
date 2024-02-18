@@ -68,7 +68,8 @@ dependencies {
     //FireStore
     implementation(platform("com.google.firebase:firebase-bom:32.7.2"))
     implementation("com.google.firebase:firebase-firestore")
-
+    //lottie
+    implementation "com.airbnb.android:lottie:3.4.0"
     //Worker
     implementation "androidx.work:work-runtime:2.7.0"
 

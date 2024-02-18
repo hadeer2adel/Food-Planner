@@ -149,7 +149,7 @@
         android:layout_marginStart="5dp"
         android:text="@string/noSignup"
         android:textColor="@color/lightRose"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintTop_toTopOf="@+id/line1"
         app:layout_constraintBottom_toBottomOf="@+id/line1"
         app:layout_constraintEnd_toStartOf="@+id/line2"
@@ -162,40 +162,24 @@
         android:layout_height="1dp"
         android:background="@color/lightRose"
         app:layout_constraintBottom_toBottomOf="@+id/textDesign3"
-        app:layout_constraintEnd_toEndOf="@id/facebookBtn"
         app:layout_constraintStart_toEndOf="@id/textDesign3"
-        app:layout_constraintTop_toTopOf="@+id/textDesign3" />
+        app:layout_constraintTop_toTopOf="@+id/textDesign3"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
         android:id="@+id/googleBtn"
-        android:layout_width="180dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="5dp"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="20dp"
         android:backgroundTint="@color/white"
         android:drawableLeft="@drawable/log_google"
-        android:gravity="center|left"
         android:text="Google"
         android:textColor="@color/Orange"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold"
+        android:alpha="0.8"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/facebookBtn"
-        android:layout_width="180dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="5dp"
-        android:backgroundTint="@color/white"
-        android:drawableLeft="@drawable/log_facebook"
-        android:gravity="center"
-        android:text="FaceBook"
-        android:textColor="@color/darkBlue"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/googleBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/googleBtn" />
+        app:layout_constraintEnd_toEndOf="@+id/loginBtn"
+        app:layout_constraintStart_toStartOf="@+id/loginBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

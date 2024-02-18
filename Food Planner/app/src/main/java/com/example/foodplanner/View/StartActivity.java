@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
+import com.example.foodplanner.Models.UserDTO;
 import com.example.foodplanner.R;
+import com.example.foodplanner.SQLlite.PreferenceManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -15,13 +18,23 @@ public class StartActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        if(currentUser == null){
-            Intent intent = new Intent(StartActivity.this, LoginActivity.class);
+        PreferenceManager preferenceManager = new PreferenceManager(this);
+        if(currentUser != null){
+            if(preferenceManager.isLoggedIn()) {
+                UserDTO.setUserFromPreference(preferenceManager);
+            }
+            Intent intent = new Intent(StartActivity.this, SplashScreenActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        else if(preferenceManager.isLoggedIn()){
+            UserDTO.setUserFromPreference(preferenceManager);
+            Intent intent = new Intent(StartActivity.this, SplashScreenActivity.class);
             startActivity(intent);
             finish();
         }
         else{
-            Intent intent = new Intent(StartActivity.this, MainActivity.class);
+            Intent intent = new Intent(StartActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
         }

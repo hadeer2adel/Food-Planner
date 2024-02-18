@@ -140,7 +140,7 @@ public class ProfilePageFragment extends Fragment implements ProfilePageView, On
     private void showAcceptDialog(String msg, int option){
         new MaterialAlertDialogBuilder(getContext())
                 .setTitle(msg)
-                .setMessage(R.string.profile_Dec1+" "+msg.toLowerCase())
+                .setMessage(getString(R.string.profile_Dec1)+" "+msg.toLowerCase())
                 .setNegativeButton(R.string.profile_decline, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

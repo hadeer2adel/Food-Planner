@@ -94,7 +94,7 @@ public class SignupActivity extends AppCompatActivity {
         skipBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                Intent intent = new Intent(SignupActivity.this, SplashScreenActivity.class);
                 startActivity(intent);
                 finish();
             }
