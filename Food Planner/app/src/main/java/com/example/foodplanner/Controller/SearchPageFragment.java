@@ -107,6 +107,8 @@ public class SearchPageFragment extends Fragment implements OnFavListener, Searc
         areaBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isIngrBtnClicked = false;
+                isCateBtnClicked = false;
                 showMeals(new ArrayList<>());
                 chipGroup.removeAllViews();
                 if(!isAreaBtnClicked){
@@ -126,6 +128,8 @@ public class SearchPageFragment extends Fragment implements OnFavListener, Searc
         cateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isIngrBtnClicked = false;
+                isAreaBtnClicked = false;
                 showMeals(new ArrayList<>());
                 chipGroup.removeAllViews();
                 if(!isCateBtnClicked) {
@@ -145,6 +149,8 @@ public class SearchPageFragment extends Fragment implements OnFavListener, Searc
         ingrBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isAreaBtnClicked = false;
+                isCateBtnClicked = false;
                 showMeals(new ArrayList<>());
                 chipGroup.removeAllViews();
                 if(!isIngrBtnClicked) {

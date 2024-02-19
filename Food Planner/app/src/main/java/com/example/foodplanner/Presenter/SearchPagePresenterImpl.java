@@ -20,7 +20,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class SearchPagePresenterImpl implements SearchPagePresenter{
 
-    private int success = 0;
     private Repository repository;
     private SearchPageView view;
     private OnShowMassege massege;
