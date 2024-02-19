@@ -1,7 +1,6 @@
 package com.example.foodplanner.Presenter;
 
 import android.content.Context;
-import android.view.View;
 
 import com.example.foodplanner.Controller.MealDetailsView;
 import com.example.foodplanner.LocalDataSource.LocalDataSourse;
@@ -12,7 +11,6 @@ import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.Repository.Repository;
 import com.example.foodplanner.Repository.RepositoryImpl;
-import com.example.foodplanner.SQLlite.SQLAdapter;
 import com.example.foodplanner.View.OnShowMassege;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -20,7 +18,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MealDetailsPresenterImpl implements MealDetailsPresenter{
     private Repository repository;
-    private SQLAdapter sqlAdapter;
     private MealDetailsView view;
     private OnShowMassege massege;
 
@@ -28,7 +25,6 @@ public class MealDetailsPresenterImpl implements MealDetailsPresenter{
         LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(context);
         RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
         repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
-        sqlAdapter = new SQLAdapter(context);
         view = _view;
         massege = _massege;
     }
@@ -54,12 +50,6 @@ public class MealDetailsPresenterImpl implements MealDetailsPresenter{
                         item -> view.showMeal(item),
                         error -> massege.showMsg(error.getMessage())
                 );
-    }
-
-    @Override
-    public void getLocalFavMeal(String id) {
-        MealDTO meal = sqlAdapter.getMeal(id, UserDTO.getUser().getId());
-        view.showMeal(meal);
     }
 
     @Override

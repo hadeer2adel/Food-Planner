@@ -79,12 +79,7 @@ public class FavListFragment extends Fragment  implements OnFavListener, FavList
         recyclerView.setAdapter(adapter);
 
         presenter = new FavListPresenterImpl(getContext(), this, this);
-        if (NetworkConnection.isNetworkConnected(getContext())) {
-            presenter.getFavMeals();
-        }
-        else {
-            presenter.getLocalFavMeals();
-        }
+        presenter.getFavMeals();
     }
 
     @Override

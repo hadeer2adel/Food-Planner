@@ -11,7 +11,6 @@ import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.Repository.Repository;
 import com.example.foodplanner.Repository.RepositoryImpl;
-import com.example.foodplanner.SQLlite.SQLAdapter;
 import com.example.foodplanner.View.OnShowMassege;
 
 import java.util.List;
@@ -22,7 +21,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class FavListPresenterImpl implements FavListPresenter {
 
     private Repository repository;
-    private SQLAdapter sqlAdapter;
     private FavListView view;
     private OnShowMassege massege;
 
@@ -30,7 +28,6 @@ public class FavListPresenterImpl implements FavListPresenter {
         LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(context);
         RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
         repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
-        sqlAdapter = new SQLAdapter(context);
         view = _view;
         massege = _massege;
     }
@@ -44,12 +41,6 @@ public class FavListPresenterImpl implements FavListPresenter {
                         item -> view.showMeals(item),
                         error -> massege.showMsg(error.getMessage())
                 );
-    }
-
-    @Override
-    public void getLocalFavMeals() {
-        List<MealDTO> meals = sqlAdapter.getAllMeals(UserDTO.getUser().getId());
-        view.showMeals(meals);
     }
 
     @Override

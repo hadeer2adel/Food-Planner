@@ -126,23 +126,6 @@
         app:layout_constraintEnd_toEndOf="@+id/backupBtn"/>
 
     <Button
-        android:id="@+id/offlineBtn"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_offline"
-        android:drawableTint="@color/yellow"
-        android:paddingHorizontal="10dp"
-        android:text="@string/profile_option5"
-        android:textSize="22sp"
-        android:textColor="@color/black"
-        android:gravity="start"
-        android:textAllCaps="false"
-        app:layout_constraintStart_toStartOf="@+id/retrieveBtn"
-        app:layout_constraintTop_toBottomOf="@+id/retrieveBtn"
-        app:layout_constraintEnd_toEndOf="@+id/retrieveBtn"/>
-
-    <Button
         android:id="@+id/logOutBtn"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="0dp"
@@ -156,7 +139,7 @@
         android:textColor="@color/Orange"
         android:gravity="start"
         android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="@+id/offlineBtn"
-        app:layout_constraintStart_toStartOf="@+id/offlineBtn"
-        app:layout_constraintTop_toBottomOf="@+id/offlineBtn" />
+        app:layout_constraintEnd_toEndOf="@+id/retrieveBtn"
+        app:layout_constraintStart_toStartOf="@+id/retrieveBtn"
+        app:layout_constraintTop_toBottomOf="@+id/retrieveBtn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

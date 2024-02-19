@@ -29,7 +29,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class ProfilePageFragment extends Fragment implements ProfilePageView, OnShowMassege {
-    private Button deleteFavBtn, deletePlanBtn, backupBtn, retrieveBtn, offlineBtn, logOutBtn;
+    private Button deleteFavBtn, deletePlanBtn, backupBtn, retrieveBtn, logOutBtn;
     private TextView name, email;
     private ProfilePagePresenter presenter;
     public ProfilePageFragment() { }
@@ -68,7 +68,6 @@ public class ProfilePageFragment extends Fragment implements ProfilePageView, On
         deletePlanBtn = view.findViewById(R.id.deletePlanBtn);
         backupBtn = view.findViewById(R.id.backupBtn);
         retrieveBtn = view.findViewById(R.id.retrieveBtn);
-        offlineBtn = view.findViewById(R.id.offlineBtn);
         logOutBtn = view.findViewById(R.id.logOutBtn);
 
 
@@ -94,12 +93,6 @@ public class ProfilePageFragment extends Fragment implements ProfilePageView, On
             @Override
             public void onClick(View v) {
                 showAcceptDialog(getString(R.string.profile_option4), 4);
-            }
-        });
-        offlineBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                presenter.storeDataLocal();
             }
         });
         logOutBtn.setOnClickListener(new View.OnClickListener() {

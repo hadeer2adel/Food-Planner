@@ -128,12 +128,7 @@ public class MealDetailsFragment extends Fragment implements OnFavListener, Meal
             presenter.getMeal(id);
         }
         else {
-            if (NetworkConnection.isNetworkConnected(getContext())) {
-                presenter.getFavMeal(id);
-            }
-            else {
-                presenter.getLocalFavMeal(id);
-            }
+            presenter.getFavMeal(id);
         }
     }
 

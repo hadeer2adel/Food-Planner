@@ -40,12 +40,7 @@ public class DayMealsList implements OnAddListener, DayMealsListView, OnShowMass
         recyclerView.setAdapter(adapter);
 
         presenter = new DayPresenterImpl(context, this, this);
-        if (NetworkConnection.isNetworkConnected(context)) {
-            presenter.getDayMeals(day);
-        }
-        else {
-            presenter.getLocalDayMeals(day);
-        }
+        presenter.getDayMeals(day);
     }
 
 
