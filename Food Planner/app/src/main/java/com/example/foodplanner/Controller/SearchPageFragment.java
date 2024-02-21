@@ -29,8 +29,6 @@ import com.example.foodplanner.Models.MealDTO;
 import com.example.foodplanner.Presenter.SearchPagePresenter;
 import com.example.foodplanner.Presenter.SearchPagePresenterImpl;
 import com.example.foodplanner.R;
-import com.example.foodplanner.RecycleView.MealHorizontalRecycleViewAdapter;
-import com.example.foodplanner.RecycleView.MealVerticalRecycleViewAdapter;
 import com.example.foodplanner.RecycleView.SearchRecycleViewAdapter;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
@@ -43,15 +41,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Observable;
 
 public class SearchPageFragment extends Fragment implements OnFavListener, SearchPageView , OnMessageListener {
     private RecyclerView recycleView;
-    private EditText seachBar;
+    private EditText searchBar;
     private Button areaBtn, cateBtn, ingrBtn;
     private ChipGroup chipGroup;
     private SearchRecycleViewAdapter adapter;
@@ -84,7 +77,7 @@ public class SearchPageFragment extends Fragment implements OnFavListener, Searc
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        seachBar = view.findViewById(R.id.searchBar);
+        searchBar = view.findViewById(R.id.searchBar);
         areaBtn = view.findViewById(R.id.searchAreaBtn);
         cateBtn = view.findViewById(R.id.searchCateBtn);
         ingrBtn = view.findViewById(R.id.searchIngrBtn);
@@ -118,7 +111,7 @@ public class SearchPageFragment extends Fragment implements OnFavListener, Searc
                     cateBtn.setBackgroundColor(getResources().getColor(R.color.gray));
                     ingrBtn.setBackgroundColor(getResources().getColor(R.color.gray));
                     if(areas.isEmpty()){
-                        seachBar.setEnabled(false);
+                        searchBar.setEnabled(false);
                         presenter.getAreas();
                     }
                 }
@@ -139,7 +132,7 @@ public class SearchPageFragment extends Fragment implements OnFavListener, Searc
                     cateBtn.setBackgroundColor(getResources().getColor(R.color.yellow));
                     ingrBtn.setBackgroundColor(getResources().getColor(R.color.gray));
                     if(categories.isEmpty()){
-                        seachBar.setEnabled(false);
+                        searchBar.setEnabled(false);
                         presenter.getCategories();
                     }
                 }
@@ -160,7 +153,7 @@ public class SearchPageFragment extends Fragment implements OnFavListener, Searc
                     cateBtn.setBackgroundColor(getResources().getColor(R.color.gray));
                     ingrBtn.setBackgroundColor(getResources().getColor(R.color.yellow));
                     if(ingredients.isEmpty()){
-                        seachBar.setEnabled(false);
+                        searchBar.setEnabled(false);
                         presenter.getIngredients();
                     }
                 }
@@ -172,66 +165,33 @@ public class SearchPageFragment extends Fragment implements OnFavListener, Searc
     }
 
     private void editSearchBar(){
-        seachBar.addTextChangedListener(new TextWatcher() {
+        searchBar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 chipGroup.removeAllViews();
             }
-
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
             @Override
             public void afterTextChanged(Editable s) {
                 if(isAreaBtnClicked){
-                    Observable.create(emitter -> emitter.onNext(s))
-                            .map(i -> i.toString().toLowerCase())
-                            .debounce(2, TimeUnit.SECONDS)
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(item -> {
-                                List<String> filteredAreas = areas.stream()
-                                        .map(i -> i.getName())
-                                        .filter(name -> name.toLowerCase().startsWith(item)||name.toLowerCase().contains(item))
-                                        .collect(Collectors.toList());
-                                showChips(filteredAreas);
-                            });
+                    presenter.searchByArea(s, areas);
                 }
                 else if (isCateBtnClicked){
-                    Observable.create(emitter -> emitter.onNext(s))
-                            .map(i -> i.toString().toLowerCase())
-                            .debounce(2, TimeUnit.SECONDS)
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(item -> {
-                                List<String> filteredAreas = categories.stream()
-                                        .map(i -> i.getName())
-                                        .filter(name -> name.toLowerCase().startsWith(item)||name.toLowerCase().contains(item))
-                                        .collect(Collectors.toList());
-                                showChips(filteredAreas);
-                            });
+                    presenter.searchByCategory(s, categories);
                 }
                 else if(isIngrBtnClicked){
-                    Observable.create(emitter -> emitter.onNext(s))
-                            .map(i -> i.toString().toLowerCase())
-                            .debounce(2, TimeUnit.SECONDS)
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(item -> {
-                                List<String> filteredAreas = ingredients.stream()
-                                        .map(i -> i.getName())
-                                        .filter(name -> name.toLowerCase().startsWith(item)||name.toLowerCase().contains(item))
-                                        .collect(Collectors.toList());
-                                showChips(filteredAreas);
-                            });
+                    presenter.searchByIngredient(s, ingredients);
                 }
                 else {
-                    presenter.searchByName(s.toString().toLowerCase());
+                    presenter.searchByName(s);
                 }
             }
         });
     }
 
-    private void showChips(List<String> names) {
+    @Override
+    public void showChips(List<String> names) {
         chipGroup.removeAllViews();
         if(names.isEmpty())
             showMsg("NO MATCH");
@@ -271,17 +231,17 @@ public class SearchPageFragment extends Fragment implements OnFavListener, Searc
     @Override
     public void setCategories(List<CategoryDTO> categories) {
         this.categories = categories;
-        seachBar.setEnabled(true);
+        searchBar.setEnabled(true);
     }
     @Override
     public void setAreas(List<AreaDTO> areas) {
         this.areas = areas;
-        seachBar.setEnabled(true);
+        searchBar.setEnabled(true);
     }
     @Override
     public void setIngredients(List<IngredientDTO> ingredients) {
         this.ingredients = ingredients;
-        seachBar.setEnabled(true);
+        searchBar.setEnabled(true);
     }
     @Override
     public void showMsg(String msg) {
