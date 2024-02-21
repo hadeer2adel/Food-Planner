@@ -17,10 +17,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.foodplanner.LocalDataSource.LocalDataSourse;
+import com.example.foodplanner.LocalDataSource.LocalDataSourseImpl;
 import com.example.foodplanner.Models.UserDTO;
+import com.example.foodplanner.Presenter.FavListPresenterImpl;
 import com.example.foodplanner.Presenter.ProfilePagePresenter;
 import com.example.foodplanner.Presenter.ProfilePagePresenterImpl;
 import com.example.foodplanner.R;
+import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
+import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.SQLlite.NetworkConnection;
 import com.example.foodplanner.View.LoginActivity;
 import com.example.foodplanner.View.MainActivity;
@@ -56,7 +61,9 @@ public class ProfilePageFragment extends Fragment implements ProfilePageView, On
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        presenter = new ProfilePagePresenterImpl(getContext(), this, this);
+        LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(getContext());
+        RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
+        presenter = new ProfilePagePresenterImpl(localDataSourse, remoteDataSource, this, this);
 
         name = view.findViewById(R.id.userName);
         email = view.findViewById(R.id.userEmail);

@@ -2,6 +2,7 @@ package com.example.foodplanner.Presenter;
 
 import android.content.Context;
 
+import com.example.foodplanner.Controller.CalenderListView;
 import com.example.foodplanner.Controller.DayMealsListView;
 import com.example.foodplanner.LocalDataSource.LocalDataSourse;
 import com.example.foodplanner.LocalDataSource.LocalDataSourseImpl;
@@ -24,9 +25,7 @@ public class DayPresenterImpl implements DayPresenter{
     private DayMealsListView view;
     private OnShowMassege massege;
 
-    public DayPresenterImpl(Context context, DayMealsListView _view, OnShowMassege _massege){
-        LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(context);
-        RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
+    public DayPresenterImpl(LocalDataSourse localDataSourse, RemoteDataSource remoteDataSource, DayMealsListView _view, OnShowMassege _massege){
         repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
         view = _view;
         massege = _massege;

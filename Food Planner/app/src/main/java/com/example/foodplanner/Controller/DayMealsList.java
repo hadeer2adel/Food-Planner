@@ -7,10 +7,14 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodplanner.LocalDataSource.LocalDataSourse;
+import com.example.foodplanner.LocalDataSource.LocalDataSourseImpl;
 import com.example.foodplanner.Models.MealDTO;
 import com.example.foodplanner.Presenter.DayPresenter;
 import com.example.foodplanner.Presenter.DayPresenterImpl;
 import com.example.foodplanner.RecycleView.DayRecycleViewAdapter;
+import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
+import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.SQLlite.NetworkConnection;
 import com.example.foodplanner.View.OnAddListener;
 import com.example.foodplanner.View.OnShowMassege;
@@ -39,7 +43,9 @@ public class DayMealsList implements OnAddListener, DayMealsListView, OnShowMass
         adapter = new DayRecycleViewAdapter(context, new ArrayList<>(), this,"large");
         recyclerView.setAdapter(adapter);
 
-        presenter = new DayPresenterImpl(context, this, this);
+        LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(context);
+        RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
+        presenter = new DayPresenterImpl(localDataSourse, remoteDataSource, this, this);
         presenter.getDayMeals(day);
     }
 

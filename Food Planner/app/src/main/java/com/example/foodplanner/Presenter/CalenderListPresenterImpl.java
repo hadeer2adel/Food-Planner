@@ -23,9 +23,7 @@ public class CalenderListPresenterImpl implements CalenderListPresenter {
     private CalenderListView view;
     private OnShowMassege massege;
 
-    public CalenderListPresenterImpl(Context context, CalenderListView _view, OnShowMassege _massege){
-        LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(context);
-        RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
+    public CalenderListPresenterImpl(LocalDataSourse localDataSourse, RemoteDataSource remoteDataSource, CalenderListView _view, OnShowMassege _massege){
         repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
         view = _view;
         massege = _massege;

@@ -2,6 +2,7 @@ package com.example.foodplanner.Presenter;
 
 import android.content.Context;
 
+import com.example.foodplanner.Controller.MealListView;
 import com.example.foodplanner.Controller.SearchPageView;
 import com.example.foodplanner.LocalDataSource.LocalDataSourse;
 import com.example.foodplanner.LocalDataSource.LocalDataSourseImpl;
@@ -24,9 +25,7 @@ public class SearchPagePresenterImpl implements SearchPagePresenter{
     private SearchPageView view;
     private OnShowMassege massege;
 
-    public SearchPagePresenterImpl(Context context, SearchPageView _view, OnShowMassege _massege){
-        LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(context);
-        RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
+    public SearchPagePresenterImpl(LocalDataSourse localDataSourse, RemoteDataSource remoteDataSource, SearchPageView _view, OnShowMassege _massege){
         repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
         view = _view;
         massege = _massege;

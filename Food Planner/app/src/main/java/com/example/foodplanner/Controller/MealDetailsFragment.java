@@ -17,12 +17,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.foodplanner.LocalDataSource.LocalDataSourse;
+import com.example.foodplanner.LocalDataSource.LocalDataSourseImpl;
 import com.example.foodplanner.Models.MealDTO;
+import com.example.foodplanner.Presenter.HomePagePresenterImpl;
 import com.example.foodplanner.Presenter.MealDetailsPresenter;
 import com.example.foodplanner.Presenter.MealDetailsPresenterImpl;
 import com.example.foodplanner.R;
 import com.example.foodplanner.RecycleView.IngreRecycleViewAdapter;
 import com.example.foodplanner.RecycleView.StepsRecycleViewAdapter;
+import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
+import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.SQLlite.NetworkConnection;
 import com.example.foodplanner.View.OnFavListener;
 import com.example.foodplanner.View.OnShowMassege;
@@ -122,7 +127,10 @@ public class MealDetailsFragment extends Fragment implements OnFavListener, Meal
 
         String id = MealDetailsFragmentArgs.fromBundle(getArguments()).getMealID();
         Boolean remote = MealDetailsFragmentArgs.fromBundle(getArguments()).getRemote();
-        presenter = new MealDetailsPresenterImpl(getContext(),this, this);
+
+        LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(getContext());
+        RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
+        presenter = new MealDetailsPresenterImpl(localDataSourse, remoteDataSource, this, this);
 
         if(remote) {
             presenter.getMeal(id);

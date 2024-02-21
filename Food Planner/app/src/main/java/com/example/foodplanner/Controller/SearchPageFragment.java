@@ -23,18 +23,23 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.foodplanner.Controller.SearchPageFragmentDirections;
+import com.example.foodplanner.LocalDataSource.LocalDataSourse;
+import com.example.foodplanner.LocalDataSource.LocalDataSourseImpl;
 import com.example.foodplanner.Models.AreaDTO;
 import com.example.foodplanner.Models.CategoryDTO;
 import com.example.foodplanner.Models.IngredientDTO;
 import com.example.foodplanner.Models.MealDTO;
 import com.example.foodplanner.Presenter.HomePagePresenter;
 import com.example.foodplanner.Presenter.MealListPresenterImpl;
+import com.example.foodplanner.Presenter.ProfilePagePresenterImpl;
 import com.example.foodplanner.Presenter.SearchPagePresenter;
 import com.example.foodplanner.Presenter.SearchPagePresenterImpl;
 import com.example.foodplanner.R;
 import com.example.foodplanner.RecycleView.AreaRecycleViewAdapter;
 import com.example.foodplanner.RecycleView.CategoryRecycleViewAdapter;
 import com.example.foodplanner.RecycleView.MealRecycleViewAdapter;
+import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
+import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.SQLlite.NetworkConnection;
 import com.example.foodplanner.View.OnFavListener;
 import com.example.foodplanner.View.OnShowMassege;
@@ -97,7 +102,10 @@ public class SearchPageFragment extends Fragment implements OnFavListener, Searc
         adapter = new MealRecycleViewAdapter(getContext(), new ArrayList<>(), this,"small", true, true);
         recycleView.setAdapter(adapter);
 
-        presenter = new SearchPagePresenterImpl(getContext(), this, this);
+        LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(getContext());
+        RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
+        presenter = new SearchPagePresenterImpl(localDataSourse, remoteDataSource, this, this);
+
         editSearchBar();
 
         areas = new ArrayList<>();

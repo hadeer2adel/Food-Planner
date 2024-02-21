@@ -16,12 +16,17 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.foodplanner.LocalDataSource.LocalDataSourse;
+import com.example.foodplanner.LocalDataSource.LocalDataSourseImpl;
 import com.example.foodplanner.Models.UserDTO;
 import com.example.foodplanner.Models.WeekDTO;
+import com.example.foodplanner.Presenter.ProfilePagePresenterImpl;
 import com.example.foodplanner.Presenter.WeekListPresenter;
 import com.example.foodplanner.Presenter.WeekListPresenterImpl;
 import com.example.foodplanner.R;
 import com.example.foodplanner.RecycleView.WeekRecycleViewAdapter;
+import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
+import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.SQLlite.PreferenceManager;
 import com.example.foodplanner.View.LoginActivity;
 import com.example.foodplanner.View.MainActivity;
@@ -56,7 +61,10 @@ public class WeekListFragment extends Fragment  implements OnShowMassege {
             showDialog();
         }
         else if (isNewWeek()){
-            WeekListPresenter presenter = new WeekListPresenterImpl(getContext(), this);
+            LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(getContext());
+            RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
+            WeekListPresenter presenter = new WeekListPresenterImpl(localDataSourse, remoteDataSource, this);
+
             presenter.deleteAllPlans();
             PreferenceManager preferenceManager = new PreferenceManager(getContext());
             preferenceManager.saveUser(UserDTO.getUser().getId(), UserDTO.getUser().getName(), UserDTO.getUser().getEmail());

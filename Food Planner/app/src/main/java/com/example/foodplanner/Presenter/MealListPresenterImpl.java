@@ -2,6 +2,7 @@ package com.example.foodplanner.Presenter;
 
 import android.content.Context;
 
+import com.example.foodplanner.Controller.HomePageView;
 import com.example.foodplanner.Controller.MealListView;
 import com.example.foodplanner.LocalDataSource.LocalDataSourse;
 import com.example.foodplanner.LocalDataSource.LocalDataSourseImpl;
@@ -22,14 +23,11 @@ public class MealListPresenterImpl implements MealListPresenter {
     private MealListView view;
     private OnShowMassege massege;
 
-    public MealListPresenterImpl(Context context, MealListView _view, OnShowMassege _massege){
-        LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(context);
-        RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
+    public MealListPresenterImpl(LocalDataSourse localDataSourse, RemoteDataSource remoteDataSource, MealListView _view, OnShowMassege _massege){
         repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
         view = _view;
         massege = _massege;
     }
-
     @Override
     public void getMealsByCategory(String category) {
         repository.getMealsByCategory(category)

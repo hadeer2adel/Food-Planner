@@ -2,6 +2,7 @@ package com.example.foodplanner.Presenter;
 
 import android.content.Context;
 
+import com.example.foodplanner.Controller.MealListView;
 import com.example.foodplanner.LocalDataSource.LocalDataSourse;
 import com.example.foodplanner.LocalDataSource.LocalDataSourseImpl;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
@@ -17,13 +18,10 @@ public class WeekListPresenterImpl implements WeekListPresenter {
     private Repository repository;
     private OnShowMassege massege;
 
-    public WeekListPresenterImpl(Context context, OnShowMassege _massege){
-        LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(context);
-        RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
+    public WeekListPresenterImpl(LocalDataSourse localDataSourse, RemoteDataSource remoteDataSource, OnShowMassege _massege){
         repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
         massege = _massege;
     }
-
     @Override
     public void deleteAllPlans() {
         repository.deleteAllDays()

@@ -17,11 +17,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.foodplanner.LocalDataSource.LocalDataSourse;
+import com.example.foodplanner.LocalDataSource.LocalDataSourseImpl;
 import com.example.foodplanner.Models.MealDTO;
 import com.example.foodplanner.Presenter.FavListPresenter;
 import com.example.foodplanner.Presenter.FavListPresenterImpl;
 import com.example.foodplanner.R;
 import com.example.foodplanner.RecycleView.MealRecycleViewAdapter;
+import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
+import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.SQLlite.NetworkConnection;
 import com.example.foodplanner.View.LoginActivity;
 import com.example.foodplanner.View.MainActivity;
@@ -78,7 +82,9 @@ public class FavListFragment extends Fragment  implements OnFavListener, FavList
         adapter = new MealRecycleViewAdapter(getContext(), new ArrayList<>(), this,"small", false, false);
         recyclerView.setAdapter(adapter);
 
-        presenter = new FavListPresenterImpl(getContext(), this, this);
+        LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(getContext());
+        RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
+        presenter = new FavListPresenterImpl(localDataSourse, remoteDataSource, this, this);
         presenter.getFavMeals();
     }
 

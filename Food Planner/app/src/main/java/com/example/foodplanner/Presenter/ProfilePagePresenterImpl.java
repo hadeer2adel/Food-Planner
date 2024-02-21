@@ -4,6 +4,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import com.example.foodplanner.Controller.MealListView;
 import com.example.foodplanner.Controller.ProfilePageView;
 import com.example.foodplanner.LocalDataSource.LocalDataSourse;
 import com.example.foodplanner.LocalDataSource.LocalDataSourseImpl;
@@ -36,10 +37,7 @@ public class ProfilePagePresenterImpl implements ProfilePagePresenter {
     private Context context;
     private static boolean check = false;
 
-    public ProfilePagePresenterImpl(Context _context, ProfilePageView _view, OnShowMassege _massege){
-        context = _context;
-        LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(context);
-        RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
+    public ProfilePagePresenterImpl(LocalDataSourse localDataSourse, RemoteDataSource remoteDataSource, ProfilePageView _view, OnShowMassege _massege){
         repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
         view = _view;
         massege = _massege;

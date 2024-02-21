@@ -14,11 +14,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodplanner.LocalDataSource.LocalDataSourse;
+import com.example.foodplanner.LocalDataSource.LocalDataSourseImpl;
 import com.example.foodplanner.Models.MealDTO;
 import com.example.foodplanner.Presenter.CalenderListPresenter;
 import com.example.foodplanner.Presenter.CalenderListPresenterImpl;
 import com.example.foodplanner.R;
 import com.example.foodplanner.RecycleView.DayRecycleViewAdapter;
+import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
+import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.View.OnAddListener;
 import com.example.foodplanner.View.OnShowMassege;
 
@@ -61,7 +65,9 @@ public class CalenderListFragment extends Fragment  implements OnAddListener, Ca
         adapter = new DayRecycleViewAdapter(getContext(), new ArrayList<>(), this,"small");
         recyclerView.setAdapter(adapter);
 
-        presenter = new CalenderListPresenterImpl(getContext(), this, this);
+        LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(getContext());
+        RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
+        presenter = new CalenderListPresenterImpl(localDataSourse, remoteDataSource, this, this);
         presenter.getFavMeals();
     }
 

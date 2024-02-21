@@ -16,15 +16,20 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodplanner.LocalDataSource.LocalDataSourse;
+import com.example.foodplanner.LocalDataSource.LocalDataSourseImpl;
 import com.example.foodplanner.Models.AreaDTO;
 import com.example.foodplanner.Models.CategoryDTO;
 import com.example.foodplanner.Models.MealDTO;
+import com.example.foodplanner.Presenter.FavListPresenterImpl;
 import com.example.foodplanner.Presenter.HomePagePresenter;
 import com.example.foodplanner.Presenter.HomePagePresenterImpl;
 import com.example.foodplanner.R;
 import com.example.foodplanner.RecycleView.AreaRecycleViewAdapter;
 import com.example.foodplanner.RecycleView.CategoryRecycleViewAdapter;
 import com.example.foodplanner.RecycleView.MealRecycleViewAdapter;
+import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
+import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.SQLlite.NetworkConnection;
 import com.example.foodplanner.View.LoginActivity;
 import com.example.foodplanner.View.MainActivity;
@@ -76,7 +81,9 @@ public class HomePageFragment extends Fragment implements OnFavListener, HomePag
         categoryRecycleView = view.findViewById(R.id.categoryRecycleView);
         areaRecycleView = view.findViewById(R.id.areaRecycleView);
 
-        presenter = new HomePagePresenterImpl(getContext(), this, this);
+        LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(getContext());
+        RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
+        presenter = new HomePagePresenterImpl(localDataSourse, remoteDataSource, this, this);
 
         setMealRecycleView();
         setCategoryRecycleView();

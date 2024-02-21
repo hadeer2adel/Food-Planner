@@ -2,6 +2,7 @@ package com.example.foodplanner.Presenter;
 
 import android.content.Context;
 
+import com.example.foodplanner.Controller.DayMealsListView;
 import com.example.foodplanner.Controller.FavListView;
 import com.example.foodplanner.LocalDataSource.LocalDataSourse;
 import com.example.foodplanner.LocalDataSource.LocalDataSourseImpl;
@@ -24,9 +25,7 @@ public class FavListPresenterImpl implements FavListPresenter {
     private FavListView view;
     private OnShowMassege massege;
 
-    public FavListPresenterImpl(Context context, FavListView _view, OnShowMassege _massege){
-        LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(context);
-        RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
+    public FavListPresenterImpl(LocalDataSourse localDataSourse, RemoteDataSource remoteDataSource, FavListView _view, OnShowMassege _massege){
         repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
         view = _view;
         massege = _massege;

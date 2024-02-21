@@ -14,11 +14,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.foodplanner.LocalDataSource.LocalDataSourse;
+import com.example.foodplanner.LocalDataSource.LocalDataSourseImpl;
 import com.example.foodplanner.Models.MealDTO;
+import com.example.foodplanner.Presenter.FavListPresenterImpl;
 import com.example.foodplanner.Presenter.MealListPresenter;
 import com.example.foodplanner.Presenter.MealListPresenterImpl;
 import com.example.foodplanner.R;
 import com.example.foodplanner.RecycleView.MealRecycleViewAdapter;
+import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
+import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.View.OnFavListener;
 import com.example.foodplanner.View.OnShowMassege;
 
@@ -59,7 +64,10 @@ public class MealListFragment extends Fragment implements OnFavListener, MealLis
         adapter = new MealRecycleViewAdapter(getContext(), new ArrayList<>(), this,"small", true, false);
         recyclerView.setAdapter(adapter);
 
-        presenter = new MealListPresenterImpl(getContext(), this, this);
+        LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(getContext());
+        RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
+        presenter = new MealListPresenterImpl(localDataSourse, remoteDataSource, this, this);
+
         String type = MealListFragmentArgs.fromBundle(getArguments()).getType();
         String value = MealListFragmentArgs.fromBundle(getArguments()).getValue();
 
