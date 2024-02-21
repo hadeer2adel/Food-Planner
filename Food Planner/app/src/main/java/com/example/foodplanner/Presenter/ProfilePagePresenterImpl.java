@@ -4,18 +4,15 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import com.example.foodplanner.Controller.MealListView;
 import com.example.foodplanner.Controller.ProfilePageView;
 import com.example.foodplanner.LocalDataSource.LocalDataSourse;
-import com.example.foodplanner.LocalDataSource.LocalDataSourseImpl;
 import com.example.foodplanner.Models.MealDTO;
 import com.example.foodplanner.Models.UserDTO;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
-import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.Repository.Repository;
 import com.example.foodplanner.Repository.RepositoryImpl;
-import com.example.foodplanner.SQLlite.PreferenceManager;
-import com.example.foodplanner.View.OnShowMassege;
+import com.example.foodplanner.HelperClasses.PreferenceManager;
+import com.example.foodplanner.Listeners.OnMessageListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,11 +30,11 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class ProfilePagePresenterImpl implements ProfilePagePresenter {
     private Repository repository;
     private ProfilePageView view;
-    private OnShowMassege massege;
+    private OnMessageListener massege;
     private Context context;
     private static boolean check = false;
 
-    public ProfilePagePresenterImpl(LocalDataSourse localDataSourse, RemoteDataSource remoteDataSource, ProfilePageView _view, OnShowMassege _massege){
+    public ProfilePagePresenterImpl(LocalDataSourse localDataSourse, RemoteDataSource remoteDataSource, ProfilePageView _view, OnMessageListener _massege){
         repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
         view = _view;
         massege = _massege;

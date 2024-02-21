@@ -1,17 +1,11 @@
-package com.example.foodplanner.Models;
+package com.example.foodplanner.HelperClasses;
 
-import static android.content.Context.ALARM_SERVICE;
-import static androidx.core.content.ContextCompat.getSystemService;
-
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
-import android.os.AsyncTask;
 
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 
+import com.example.foodplanner.Models.UserDTO;
 import com.example.foodplanner.View.MyWorker;
 
 import java.util.ArrayList;
@@ -19,7 +13,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class WeekDTO {
+public class WeekManagement {
     public static List<String> getInitDays() {
         List<String> days = new ArrayList<>();
         String id = UserDTO.getUser().getId();

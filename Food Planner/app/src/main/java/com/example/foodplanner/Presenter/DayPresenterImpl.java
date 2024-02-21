@@ -1,20 +1,12 @@
 package com.example.foodplanner.Presenter;
 
-import android.content.Context;
-
-import com.example.foodplanner.Controller.CalenderListView;
 import com.example.foodplanner.Controller.DayMealsListView;
 import com.example.foodplanner.LocalDataSource.LocalDataSourse;
-import com.example.foodplanner.LocalDataSource.LocalDataSourseImpl;
 import com.example.foodplanner.Models.MealDTO;
-import com.example.foodplanner.Models.UserDTO;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
-import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.Repository.Repository;
 import com.example.foodplanner.Repository.RepositoryImpl;
-import com.example.foodplanner.View.OnShowMassege;
-
-import java.util.List;
+import com.example.foodplanner.Listeners.OnMessageListener;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -23,9 +15,9 @@ public class DayPresenterImpl implements DayPresenter{
 
     private Repository repository;
     private DayMealsListView view;
-    private OnShowMassege massege;
+    private OnMessageListener massege;
 
-    public DayPresenterImpl(LocalDataSourse localDataSourse, RemoteDataSource remoteDataSource, DayMealsListView _view, OnShowMassege _massege){
+    public DayPresenterImpl(LocalDataSourse localDataSourse, RemoteDataSource remoteDataSource, DayMealsListView _view, OnMessageListener _massege){
         repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
         view = _view;
         massege = _massege;

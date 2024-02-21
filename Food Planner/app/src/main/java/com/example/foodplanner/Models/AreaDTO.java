@@ -1,10 +1,7 @@
 package com.example.foodplanner.Models;
 
+import com.example.foodplanner.HelperClasses.CountryCode;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
 
 public class AreaDTO {
     @SerializedName("strArea")

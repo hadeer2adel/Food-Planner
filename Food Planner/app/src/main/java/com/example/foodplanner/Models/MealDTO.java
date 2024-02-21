@@ -3,6 +3,7 @@ package com.example.foodplanner.Models;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 
+import com.example.foodplanner.HelperClasses.CountryCode;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;

@@ -1,10 +1,7 @@
-package com.example.foodplanner.SQLlite;
+package com.example.foodplanner.HelperClasses;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
-
-import com.example.foodplanner.Models.UserDTO;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

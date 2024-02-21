@@ -17,22 +17,22 @@ import android.widget.Toast;
 import com.example.foodplanner.LocalDataSource.LocalDataSourse;
 import com.example.foodplanner.LocalDataSource.LocalDataSourseImpl;
 import com.example.foodplanner.Models.MealDTO;
-import com.example.foodplanner.Presenter.FavListPresenterImpl;
 import com.example.foodplanner.Presenter.MealListPresenter;
 import com.example.foodplanner.Presenter.MealListPresenterImpl;
 import com.example.foodplanner.R;
-import com.example.foodplanner.RecycleView.MealRecycleViewAdapter;
+import com.example.foodplanner.RecycleView.MealHorizontalRecycleViewAdapter;
+import com.example.foodplanner.RecycleView.MealVerticalRecycleViewAdapter;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
-import com.example.foodplanner.View.OnFavListener;
-import com.example.foodplanner.View.OnShowMassege;
+import com.example.foodplanner.Listeners.OnFavListener;
+import com.example.foodplanner.Listeners.OnMessageListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MealListFragment extends Fragment implements OnFavListener, MealListView, OnShowMassege {
+public class MealListFragment extends Fragment implements OnFavListener, MealListView, OnMessageListener {
     private RecyclerView recyclerView;
-    private MealRecycleViewAdapter adapter;
+    private MealVerticalRecycleViewAdapter adapter;
     private MealListPresenter presenter;
 
     public MealListFragment() {}
@@ -61,7 +61,7 @@ public class MealListFragment extends Fragment implements OnFavListener, MealLis
         GridLayoutManager manager = new GridLayoutManager(getContext(),2);
         recyclerView.setLayoutManager(manager);
 
-        adapter = new MealRecycleViewAdapter(getContext(), new ArrayList<>(), this,"small", true, false);
+        adapter = new MealVerticalRecycleViewAdapter(getContext(), new ArrayList<>(), this, true);
         recyclerView.setAdapter(adapter);
 
         LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(getContext());
@@ -84,7 +84,7 @@ public class MealListFragment extends Fragment implements OnFavListener, MealLis
 
     @Override
     public void showMeals(List<MealDTO> meals) {
-        adapter = new MealRecycleViewAdapter(getContext(), meals, this,"small", true, false);
+        adapter = new MealVerticalRecycleViewAdapter(getContext(), meals, this,true);
         recyclerView.setAdapter(adapter);
     }
 

@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,24 +22,24 @@ import com.example.foodplanner.Models.MealDTO;
 import com.example.foodplanner.Presenter.FavListPresenter;
 import com.example.foodplanner.Presenter.FavListPresenterImpl;
 import com.example.foodplanner.R;
-import com.example.foodplanner.RecycleView.MealRecycleViewAdapter;
+import com.example.foodplanner.RecycleView.MealHorizontalRecycleViewAdapter;
+import com.example.foodplanner.RecycleView.MealVerticalRecycleViewAdapter;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
-import com.example.foodplanner.SQLlite.NetworkConnection;
 import com.example.foodplanner.View.LoginActivity;
 import com.example.foodplanner.View.MainActivity;
-import com.example.foodplanner.View.OnFavListener;
-import com.example.foodplanner.View.OnShowMassege;
+import com.example.foodplanner.Listeners.OnFavListener;
+import com.example.foodplanner.Listeners.OnMessageListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FavListFragment extends Fragment  implements OnFavListener, FavListView, OnShowMassege {
+public class FavListFragment extends Fragment  implements OnFavListener, FavListView, OnMessageListener {
 
     private RecyclerView recyclerView;
-    private MealRecycleViewAdapter adapter;
+    private MealVerticalRecycleViewAdapter adapter;
     private FavListPresenter presenter;
 
     public FavListFragment() {
@@ -79,7 +78,7 @@ public class FavListFragment extends Fragment  implements OnFavListener, FavList
         GridLayoutManager manager = new GridLayoutManager(getContext(),2);
         recyclerView.setLayoutManager(manager);
 
-        adapter = new MealRecycleViewAdapter(getContext(), new ArrayList<>(), this,"small", false, false);
+        adapter = new MealVerticalRecycleViewAdapter(getContext(), new ArrayList<>(), this,false);
         recyclerView.setAdapter(adapter);
 
         LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(getContext());
@@ -90,7 +89,7 @@ public class FavListFragment extends Fragment  implements OnFavListener, FavList
 
     @Override
     public void showMeals(List<MealDTO> meals) {
-        adapter = new MealRecycleViewAdapter(getContext(), meals,this, "small", false, false);
+        adapter = new MealVerticalRecycleViewAdapter(getContext(), meals,this, false);
         recyclerView.setAdapter(adapter);
     }
 

@@ -9,7 +9,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,20 +19,19 @@ import android.widget.Toast;
 import com.example.foodplanner.LocalDataSource.LocalDataSourse;
 import com.example.foodplanner.LocalDataSource.LocalDataSourseImpl;
 import com.example.foodplanner.Models.UserDTO;
-import com.example.foodplanner.Presenter.FavListPresenterImpl;
 import com.example.foodplanner.Presenter.ProfilePagePresenter;
 import com.example.foodplanner.Presenter.ProfilePagePresenterImpl;
 import com.example.foodplanner.R;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
-import com.example.foodplanner.SQLlite.NetworkConnection;
+import com.example.foodplanner.HelperClasses.NetworkConnection;
 import com.example.foodplanner.View.LoginActivity;
 import com.example.foodplanner.View.MainActivity;
-import com.example.foodplanner.View.OnShowMassege;
+import com.example.foodplanner.Listeners.OnMessageListener;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class ProfilePageFragment extends Fragment implements ProfilePageView, OnShowMassege {
+public class ProfilePageFragment extends Fragment implements ProfilePageView, OnMessageListener {
     private Button deleteFavBtn, deletePlanBtn, backupBtn, retrieveBtn, logOutBtn;
     private TextView name, email;
     private ProfilePagePresenter presenter;

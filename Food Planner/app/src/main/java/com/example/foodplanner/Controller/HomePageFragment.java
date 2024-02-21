@@ -1,7 +1,6 @@
 package com.example.foodplanner.Controller;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,29 +20,26 @@ import com.example.foodplanner.LocalDataSource.LocalDataSourseImpl;
 import com.example.foodplanner.Models.AreaDTO;
 import com.example.foodplanner.Models.CategoryDTO;
 import com.example.foodplanner.Models.MealDTO;
-import com.example.foodplanner.Presenter.FavListPresenterImpl;
 import com.example.foodplanner.Presenter.HomePagePresenter;
 import com.example.foodplanner.Presenter.HomePagePresenterImpl;
 import com.example.foodplanner.R;
 import com.example.foodplanner.RecycleView.AreaRecycleViewAdapter;
 import com.example.foodplanner.RecycleView.CategoryRecycleViewAdapter;
-import com.example.foodplanner.RecycleView.MealRecycleViewAdapter;
+import com.example.foodplanner.RecycleView.MealHorizontalRecycleViewAdapter;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
-import com.example.foodplanner.SQLlite.NetworkConnection;
-import com.example.foodplanner.View.LoginActivity;
-import com.example.foodplanner.View.MainActivity;
-import com.example.foodplanner.View.OnFavListener;
-import com.example.foodplanner.View.OnShowMassege;
+import com.example.foodplanner.HelperClasses.NetworkConnection;
+import com.example.foodplanner.Listeners.OnFavListener;
+import com.example.foodplanner.Listeners.OnMessageListener;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomePageFragment extends Fragment implements OnFavListener, HomePageView, OnShowMassege {
+public class HomePageFragment extends Fragment implements OnFavListener, HomePageView, OnMessageListener {
 
     private RecyclerView mealRecycleView, categoryRecycleView, areaRecycleView;
-    private MealRecycleViewAdapter mealAdapter;
+    private MealHorizontalRecycleViewAdapter mealAdapter;
     private CategoryRecycleViewAdapter categoryAdapter;
     private AreaRecycleViewAdapter areaAdapter;
     private HomePagePresenter presenter;
@@ -94,7 +90,7 @@ public class HomePageFragment extends Fragment implements OnFavListener, HomePag
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         mealRecycleView.setLayoutManager(manager);
 
-        mealAdapter = new MealRecycleViewAdapter(getContext(), new ArrayList<>(),this, "large", true, false);
+        mealAdapter = new MealHorizontalRecycleViewAdapter(getContext(), new ArrayList<>(),this, true);
         mealRecycleView.setAdapter(mealAdapter);
         presenter.getRandomMeals();
     }
@@ -117,7 +113,7 @@ public class HomePageFragment extends Fragment implements OnFavListener, HomePag
 
     @Override
     public void showRandomMeals(List<MealDTO> meals) {
-        mealAdapter = new MealRecycleViewAdapter(getContext(), meals,this, "large", true, false);
+        mealAdapter = new MealHorizontalRecycleViewAdapter(getContext(), meals,this, true);
         mealRecycleView.setAdapter(mealAdapter);
     }
 

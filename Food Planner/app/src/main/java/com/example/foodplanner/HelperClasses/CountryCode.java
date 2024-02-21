@@ -1,4 +1,4 @@
-package com.example.foodplanner.Models;
+package com.example.foodplanner.HelperClasses;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,7 +1,6 @@
 package com.example.foodplanner.Controller;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,14 +14,13 @@ import com.example.foodplanner.Presenter.DayPresenterImpl;
 import com.example.foodplanner.RecycleView.DayRecycleViewAdapter;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
-import com.example.foodplanner.SQLlite.NetworkConnection;
-import com.example.foodplanner.View.OnAddListener;
-import com.example.foodplanner.View.OnShowMassege;
+import com.example.foodplanner.Listeners.OnAddListener;
+import com.example.foodplanner.Listeners.OnMessageListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DayMealsList implements OnAddListener, DayMealsListView, OnShowMassege {
+public class DayMealsList implements OnAddListener, DayMealsListView, OnMessageListener {
 
     private RecyclerView recyclerView;
     private DayRecycleViewAdapter adapter;
@@ -40,7 +38,7 @@ public class DayMealsList implements OnAddListener, DayMealsListView, OnShowMass
         LinearLayoutManager manager = new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false);
         recyclerView.setLayoutManager(manager);
 
-        adapter = new DayRecycleViewAdapter(context, new ArrayList<>(), this,"large");
+        adapter = new DayRecycleViewAdapter(context, new ArrayList<>(), this);
         recyclerView.setAdapter(adapter);
 
         LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(context);
@@ -52,7 +50,7 @@ public class DayMealsList implements OnAddListener, DayMealsListView, OnShowMass
 
     @Override
     public void showDayMeals(List<MealDTO> days) {
-        adapter = new DayRecycleViewAdapter(context, days,this, "large");
+        adapter = new DayRecycleViewAdapter(context, days,this);
         recyclerView.setAdapter(adapter);
     }
 

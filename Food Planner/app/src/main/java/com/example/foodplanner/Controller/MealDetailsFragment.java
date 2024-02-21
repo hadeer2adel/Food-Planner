@@ -20,7 +20,6 @@ import com.bumptech.glide.Glide;
 import com.example.foodplanner.LocalDataSource.LocalDataSourse;
 import com.example.foodplanner.LocalDataSource.LocalDataSourseImpl;
 import com.example.foodplanner.Models.MealDTO;
-import com.example.foodplanner.Presenter.HomePagePresenterImpl;
 import com.example.foodplanner.Presenter.MealDetailsPresenter;
 import com.example.foodplanner.Presenter.MealDetailsPresenterImpl;
 import com.example.foodplanner.R;
@@ -28,9 +27,9 @@ import com.example.foodplanner.RecycleView.IngreRecycleViewAdapter;
 import com.example.foodplanner.RecycleView.StepsRecycleViewAdapter;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
-import com.example.foodplanner.SQLlite.NetworkConnection;
-import com.example.foodplanner.View.OnFavListener;
-import com.example.foodplanner.View.OnShowMassege;
+import com.example.foodplanner.HelperClasses.NetworkConnection;
+import com.example.foodplanner.Listeners.OnFavListener;
+import com.example.foodplanner.Listeners.OnMessageListener;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,7 +39,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 
 import java.util.ArrayList;
 
-public class MealDetailsFragment extends Fragment implements OnFavListener, MealDetailsView, OnShowMassege {
+public class MealDetailsFragment extends Fragment implements OnFavListener, MealDetailsView, OnMessageListener {
     private ImageView image, areaImage;
     private TextView name, areaName;
     private ImageButton mealFav;

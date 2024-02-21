@@ -19,18 +19,17 @@ import android.widget.Toast;
 import com.example.foodplanner.LocalDataSource.LocalDataSourse;
 import com.example.foodplanner.LocalDataSource.LocalDataSourseImpl;
 import com.example.foodplanner.Models.UserDTO;
-import com.example.foodplanner.Models.WeekDTO;
-import com.example.foodplanner.Presenter.ProfilePagePresenterImpl;
+import com.example.foodplanner.HelperClasses.WeekManagement;
 import com.example.foodplanner.Presenter.WeekListPresenter;
 import com.example.foodplanner.Presenter.WeekListPresenterImpl;
 import com.example.foodplanner.R;
 import com.example.foodplanner.RecycleView.WeekRecycleViewAdapter;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
-import com.example.foodplanner.SQLlite.PreferenceManager;
+import com.example.foodplanner.HelperClasses.PreferenceManager;
 import com.example.foodplanner.View.LoginActivity;
 import com.example.foodplanner.View.MainActivity;
-import com.example.foodplanner.View.OnShowMassege;
+import com.example.foodplanner.Listeners.OnMessageListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -40,7 +39,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class WeekListFragment extends Fragment  implements OnShowMassege {
+public class WeekListFragment extends Fragment  implements OnMessageListener {
 
     private RecyclerView recyclerView;
     private WeekRecycleViewAdapter adapter;
@@ -109,7 +108,7 @@ public class WeekListFragment extends Fragment  implements OnShowMassege {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        WeekDTO.isNewWeek(getContext());
+        WeekManagement.isNewWeek(getContext());
 
         TextView title = view.findViewById(R.id.cardListTitle);
         title.setText("Week");
@@ -118,7 +117,7 @@ public class WeekListFragment extends Fragment  implements OnShowMassege {
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
 
-        days = WeekDTO.getInitDays();
+        days = WeekManagement.getInitDays();
         adapter = new WeekRecycleViewAdapter(getContext(), days);
         recyclerView.setAdapter(adapter);
 

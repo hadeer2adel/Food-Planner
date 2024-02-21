@@ -1,24 +1,19 @@
 package com.example.foodplanner.Presenter;
 
-import android.content.Context;
-
-import com.example.foodplanner.Controller.MealListView;
 import com.example.foodplanner.LocalDataSource.LocalDataSourse;
-import com.example.foodplanner.LocalDataSource.LocalDataSourseImpl;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
-import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.Repository.Repository;
 import com.example.foodplanner.Repository.RepositoryImpl;
-import com.example.foodplanner.View.OnShowMassege;
+import com.example.foodplanner.Listeners.OnMessageListener;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class WeekListPresenterImpl implements WeekListPresenter {
     private Repository repository;
-    private OnShowMassege massege;
+    private OnMessageListener massege;
 
-    public WeekListPresenterImpl(LocalDataSourse localDataSourse, RemoteDataSource remoteDataSource, OnShowMassege _massege){
+    public WeekListPresenterImpl(LocalDataSourse localDataSourse, RemoteDataSource remoteDataSource, OnMessageListener _massege){
         repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
         massege = _massege;
     }

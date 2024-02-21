@@ -1,7 +1,6 @@
 package com.example.foodplanner.Controller;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,27 +20,23 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.foodplanner.Controller.SearchPageFragmentDirections;
 import com.example.foodplanner.LocalDataSource.LocalDataSourse;
 import com.example.foodplanner.LocalDataSource.LocalDataSourseImpl;
 import com.example.foodplanner.Models.AreaDTO;
 import com.example.foodplanner.Models.CategoryDTO;
 import com.example.foodplanner.Models.IngredientDTO;
 import com.example.foodplanner.Models.MealDTO;
-import com.example.foodplanner.Presenter.HomePagePresenter;
-import com.example.foodplanner.Presenter.MealListPresenterImpl;
-import com.example.foodplanner.Presenter.ProfilePagePresenterImpl;
 import com.example.foodplanner.Presenter.SearchPagePresenter;
 import com.example.foodplanner.Presenter.SearchPagePresenterImpl;
 import com.example.foodplanner.R;
-import com.example.foodplanner.RecycleView.AreaRecycleViewAdapter;
-import com.example.foodplanner.RecycleView.CategoryRecycleViewAdapter;
-import com.example.foodplanner.RecycleView.MealRecycleViewAdapter;
+import com.example.foodplanner.RecycleView.MealHorizontalRecycleViewAdapter;
+import com.example.foodplanner.RecycleView.MealVerticalRecycleViewAdapter;
+import com.example.foodplanner.RecycleView.SearchRecycleViewAdapter;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
-import com.example.foodplanner.SQLlite.NetworkConnection;
-import com.example.foodplanner.View.OnFavListener;
-import com.example.foodplanner.View.OnShowMassege;
+import com.example.foodplanner.HelperClasses.NetworkConnection;
+import com.example.foodplanner.Listeners.OnFavListener;
+import com.example.foodplanner.Listeners.OnMessageListener;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -55,12 +49,12 @@ import java.util.stream.Collectors;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 
-public class SearchPageFragment extends Fragment implements OnFavListener, SearchPageView , OnShowMassege {
+public class SearchPageFragment extends Fragment implements OnFavListener, SearchPageView , OnMessageListener {
     private RecyclerView recycleView;
     private EditText seachBar;
     private Button areaBtn, cateBtn, ingrBtn;
     private ChipGroup chipGroup;
-    private MealRecycleViewAdapter adapter;
+    private SearchRecycleViewAdapter adapter;
     private SearchPagePresenter presenter;
     private boolean isAreaBtnClicked = false;
     private boolean isCateBtnClicked = false;
@@ -99,7 +93,7 @@ public class SearchPageFragment extends Fragment implements OnFavListener, Searc
 
         GridLayoutManager manager = new GridLayoutManager(getContext(),2);
         recycleView.setLayoutManager(manager);
-        adapter = new MealRecycleViewAdapter(getContext(), new ArrayList<>(), this,"small", true, true);
+        adapter = new SearchRecycleViewAdapter(getContext(), new ArrayList<>(), this);
         recycleView.setAdapter(adapter);
 
         LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(getContext());
@@ -271,7 +265,7 @@ public class SearchPageFragment extends Fragment implements OnFavListener, Searc
     }
     @Override
     public void showMeals(List<MealDTO> meals) {
-        adapter = new MealRecycleViewAdapter(getContext(), meals, this,"small", true, true);
+        adapter = new SearchRecycleViewAdapter(getContext(), meals, this);
         recycleView.setAdapter(adapter);
     }
     @Override

@@ -1,19 +1,13 @@
 package com.example.foodplanner.Presenter;
 
-import android.content.Context;
-import android.util.Log;
-
-import com.example.foodplanner.Controller.FavListView;
 import com.example.foodplanner.LocalDataSource.LocalDataSourse;
-import com.example.foodplanner.LocalDataSource.LocalDataSourseImpl;
 import com.example.foodplanner.Models.MealDTO;
 import com.example.foodplanner.Models.UserDTO;
-import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.Repository.Repository;
 import com.example.foodplanner.Repository.RepositoryImpl;
 import com.example.foodplanner.Controller.HomePageView;
-import com.example.foodplanner.View.OnShowMassege;
+import com.example.foodplanner.Listeners.OnMessageListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,9 +20,9 @@ public class HomePagePresenterImpl implements HomePagePresenter{
     private int success = 0;
     private Repository repository;
     private HomePageView view;
-    private OnShowMassege massege;
+    private OnMessageListener massege;
 
-    public HomePagePresenterImpl(LocalDataSourse localDataSourse, RemoteDataSource remoteDataSource, HomePageView _view, OnShowMassege _massege){
+    public HomePagePresenterImpl(LocalDataSourse localDataSourse, RemoteDataSource remoteDataSource, HomePageView _view, OnMessageListener _massege){
         repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
         view = _view;
         massege = _massege;

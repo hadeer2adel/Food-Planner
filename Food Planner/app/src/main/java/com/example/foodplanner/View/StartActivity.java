@@ -4,11 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.example.foodplanner.Models.UserDTO;
 import com.example.foodplanner.R;
-import com.example.foodplanner.SQLlite.PreferenceManager;
+import com.example.foodplanner.HelperClasses.PreferenceManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 

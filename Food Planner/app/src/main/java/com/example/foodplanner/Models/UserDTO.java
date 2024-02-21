@@ -1,6 +1,6 @@
 package com.example.foodplanner.Models;
 
-import com.example.foodplanner.SQLlite.PreferenceManager;
+import com.example.foodplanner.HelperClasses.PreferenceManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 

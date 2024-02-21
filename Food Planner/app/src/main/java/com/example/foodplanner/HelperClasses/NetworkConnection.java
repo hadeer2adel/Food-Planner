@@ -1,4 +1,4 @@
-package com.example.foodplanner.SQLlite;
+package com.example.foodplanner.HelperClasses;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

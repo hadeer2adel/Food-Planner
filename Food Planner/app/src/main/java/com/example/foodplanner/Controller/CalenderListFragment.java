@@ -1,7 +1,6 @@
 package com.example.foodplanner.Controller;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,19 +19,20 @@ import com.example.foodplanner.Models.MealDTO;
 import com.example.foodplanner.Presenter.CalenderListPresenter;
 import com.example.foodplanner.Presenter.CalenderListPresenterImpl;
 import com.example.foodplanner.R;
+import com.example.foodplanner.RecycleView.CalenderRecycleViewAdapter;
 import com.example.foodplanner.RecycleView.DayRecycleViewAdapter;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
-import com.example.foodplanner.View.OnAddListener;
-import com.example.foodplanner.View.OnShowMassege;
+import com.example.foodplanner.Listeners.OnAddListener;
+import com.example.foodplanner.Listeners.OnMessageListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CalenderListFragment extends Fragment  implements OnAddListener, CalenderListView, OnShowMassege {
+public class CalenderListFragment extends Fragment  implements OnAddListener, CalenderListView, OnMessageListener {
 
     private RecyclerView recyclerView;
-    private DayRecycleViewAdapter adapter;
+    private CalenderRecycleViewAdapter adapter;
     private CalenderListPresenter presenter;
     public CalenderListFragment() {
     }
@@ -62,7 +62,7 @@ public class CalenderListFragment extends Fragment  implements OnAddListener, Ca
         GridLayoutManager manager = new GridLayoutManager(getContext(),2);
         recyclerView.setLayoutManager(manager);
 
-        adapter = new DayRecycleViewAdapter(getContext(), new ArrayList<>(), this,"small");
+        adapter = new CalenderRecycleViewAdapter(getContext(), new ArrayList<>(), this);
         recyclerView.setAdapter(adapter);
 
         LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(getContext());
@@ -73,7 +73,7 @@ public class CalenderListFragment extends Fragment  implements OnAddListener, Ca
 
     @Override
     public void showMeals(List<MealDTO> meals) {
-        adapter = new DayRecycleViewAdapter(getContext(), meals,this, "small");
+        adapter = new CalenderRecycleViewAdapter(getContext(), meals,this);
         recyclerView.setAdapter(adapter);
     }
 
