@@ -94,10 +94,6 @@ public class LoginActivity extends AppCompatActivity {
         skipBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PreferenceManager preferenceManager = new PreferenceManager(LoginActivity.this);
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                preferenceManager.saveUser(user.getUid(), user.getDisplayName(), user.getEmail());
-
                 Intent intent = new Intent(LoginActivity.this, SplashScreenActivity.class);
                 startActivity(intent);
                 finish();

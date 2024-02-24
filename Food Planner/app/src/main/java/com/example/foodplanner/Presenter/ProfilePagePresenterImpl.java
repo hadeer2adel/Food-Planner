@@ -5,12 +5,9 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import com.example.foodplanner.Controller.ProfilePageView;
-import com.example.foodplanner.LocalDataSource.LocalDataSourse;
 import com.example.foodplanner.Models.MealDTO;
 import com.example.foodplanner.Models.UserDTO;
-import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.Repository.Repository;
-import com.example.foodplanner.Repository.RepositoryImpl;
 import com.example.foodplanner.HelperClasses.PreferenceManager;
 import com.example.foodplanner.Listeners.OnMessageListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -30,14 +27,13 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class ProfilePagePresenterImpl implements ProfilePagePresenter {
     private Repository repository;
     private ProfilePageView view;
-    private OnMessageListener massege;
-    private Context context;
+    private OnMessageListener message;
     private static boolean check = false;
 
-    public ProfilePagePresenterImpl(LocalDataSourse localDataSourse, RemoteDataSource remoteDataSource, ProfilePageView _view, OnMessageListener _massege){
-        repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
+    public ProfilePagePresenterImpl(Repository _repository, ProfilePageView _view, OnMessageListener _message){
+        repository = _repository;
         view = _view;
-        massege = _massege;
+        message = _message;
     }
 
     @Override
@@ -46,8 +42,8 @@ public class ProfilePagePresenterImpl implements ProfilePagePresenter {
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        ()->massege.showMsg("All favourite meals deleted"),
-                        error -> massege.showMsg(error.getMessage())
+                        ()-> message.showMsg("All favourite meals deleted"),
+                        error -> message.showMsg(error.getMessage())
                 );
     }
 
@@ -57,8 +53,8 @@ public class ProfilePagePresenterImpl implements ProfilePagePresenter {
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        ()->massege.showMsg("All Week plans deleted"),
-                        error -> massege.showMsg(error.getMessage())
+                        ()-> message.showMsg("All Week plans deleted"),
+                        error -> message.showMsg(error.getMessage())
                 );
     }
 
@@ -70,7 +66,7 @@ public class ProfilePagePresenterImpl implements ProfilePagePresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         item -> storeData2(item),
-                        error -> massege.showMsg(error.getMessage())
+                        error -> message.showMsg(error.getMessage())
                 );
     }
 
@@ -90,13 +86,13 @@ public class ProfilePagePresenterImpl implements ProfilePagePresenter {
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            massege.showMsg("Favorite meals successfully backed up!");
+                            message.showMsg("Favorite meals successfully backed up!");
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            massege.showMsg(e.getMessage());
+                            message.showMsg(e.getMessage());
                         }
                     });
         }
@@ -117,16 +113,16 @@ public class ProfilePagePresenterImpl implements ProfilePagePresenter {
                                 MealDTO meal =  new MealDTO((Map<String, Object>) entry.getValue());
                                 retrieveData2(meal);
                             }
-                            massege.showMsg("Retrieve data successfully");
+                            message.showMsg("Retrieve data successfully");
                         } else {
-                            massege.showMsg("No Data Yet");
+                            message.showMsg("No Data Yet");
                         }
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        massege.showMsg(e.getMessage());
+                        message.showMsg(e.getMessage());
                     }
                 });
     }
@@ -137,12 +133,12 @@ public class ProfilePagePresenterImpl implements ProfilePagePresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         () -> {},
-                        error -> massege.showMsg(error.getMessage())
+                        error -> message.showMsg(error.getMessage())
                 );
     }
 
     @Override
-    public void logOut() {
+    public void logOut(Context context) {
         FirebaseAuth.getInstance().signOut();
         UserDTO.removeUser();
         PreferenceManager preferenceManager = new PreferenceManager(context);

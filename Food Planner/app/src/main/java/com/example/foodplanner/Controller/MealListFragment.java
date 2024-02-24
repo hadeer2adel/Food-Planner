@@ -26,6 +26,8 @@ import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.Listeners.OnFavListener;
 import com.example.foodplanner.Listeners.OnMessageListener;
+import com.example.foodplanner.Repository.Repository;
+import com.example.foodplanner.Repository.RepositoryImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +68,8 @@ public class MealListFragment extends Fragment implements OnFavListener, MealLis
 
         LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(getContext());
         RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
-        presenter = new MealListPresenterImpl(localDataSourse, remoteDataSource, this, this);
+        Repository repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
+        presenter = new MealListPresenterImpl(repository, this, this);
 
         String type = MealListFragmentArgs.fromBundle(getArguments()).getType();
         String value = MealListFragmentArgs.fromBundle(getArguments()).getValue();

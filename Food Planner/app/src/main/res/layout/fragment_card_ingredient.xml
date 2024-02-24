@@ -11,7 +11,6 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/ingrImage"
         android:layout_width="60dp"
-        android:layout_marginStart="20dp"
         android:layout_height="60dp"
         app:civ_border_color="@color/yellow"
         app:civ_border_width="2dp"
@@ -21,7 +20,7 @@
 
     <TextView
         android:id="@+id/ingrMeasure"
-        android:layout_width="80dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:gravity="start|center_vertical"
@@ -34,11 +33,11 @@
 
     <TextView
         android:id="@+id/ingrName"
-        android:layout_width="210dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="start|center_vertical"
         android:textColor="@color/black"
-        android:paddingStart="10dp"
+        android:layout_marginStart="10dp"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

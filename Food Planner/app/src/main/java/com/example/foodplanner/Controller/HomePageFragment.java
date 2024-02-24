@@ -31,6 +31,8 @@ import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.HelperClasses.NetworkConnection;
 import com.example.foodplanner.Listeners.OnFavListener;
 import com.example.foodplanner.Listeners.OnMessageListener;
+import com.example.foodplanner.Repository.Repository;
+import com.example.foodplanner.Repository.RepositoryImpl;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
@@ -79,7 +81,8 @@ public class HomePageFragment extends Fragment implements OnFavListener, HomePag
 
         LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(getContext());
         RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
-        presenter = new HomePagePresenterImpl(localDataSourse, remoteDataSource, this, this);
+        Repository repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
+        presenter = new HomePagePresenterImpl(repository, this, this);
 
         setMealRecycleView();
         setCategoryRecycleView();

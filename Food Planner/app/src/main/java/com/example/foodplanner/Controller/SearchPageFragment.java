@@ -35,6 +35,8 @@ import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.HelperClasses.NetworkConnection;
 import com.example.foodplanner.Listeners.OnFavListener;
 import com.example.foodplanner.Listeners.OnMessageListener;
+import com.example.foodplanner.Repository.Repository;
+import com.example.foodplanner.Repository.RepositoryImpl;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -91,7 +93,8 @@ public class SearchPageFragment extends Fragment implements OnFavListener, Searc
 
         LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(getContext());
         RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
-        presenter = new SearchPagePresenterImpl(localDataSourse, remoteDataSource, this, this);
+        Repository repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
+        presenter = new SearchPagePresenterImpl(repository, this, this);
 
         editSearchBar();
 

@@ -33,7 +33,7 @@ public class StepsRecycleViewAdapter extends RecyclerView.Adapter<StepsRecycleVi
 
     @Override
     public void onBindViewHolder(@NonNull StepsRecycleViewHolder holder, int position) {
-        if(!(steps[position].isEmpty() || steps[position].equals(""))) {
+        if(!(steps[position].isEmpty() || steps[position].equals("") || steps[position].startsWith("STEP")) ) {
             holder.stepNumber.setText("" + stepNumber);
             stepNumber++;
             holder.stepText.setText("");

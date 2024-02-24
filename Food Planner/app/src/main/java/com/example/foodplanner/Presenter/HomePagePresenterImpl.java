@@ -1,11 +1,8 @@
 package com.example.foodplanner.Presenter;
 
-import com.example.foodplanner.LocalDataSource.LocalDataSourse;
 import com.example.foodplanner.Models.MealDTO;
 import com.example.foodplanner.Models.UserDTO;
-import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.Repository.Repository;
-import com.example.foodplanner.Repository.RepositoryImpl;
 import com.example.foodplanner.Controller.HomePageView;
 import com.example.foodplanner.Listeners.OnMessageListener;
 
@@ -20,12 +17,12 @@ public class HomePagePresenterImpl implements HomePagePresenter{
     private int success = 0;
     private Repository repository;
     private HomePageView view;
-    private OnMessageListener massege;
+    private OnMessageListener message;
 
-    public HomePagePresenterImpl(LocalDataSourse localDataSourse, RemoteDataSource remoteDataSource, HomePageView _view, OnMessageListener _massege){
-        repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
+    public HomePagePresenterImpl(Repository _repository, HomePageView _view, OnMessageListener _message){
+        repository = _repository;
         view = _view;
-        massege = _massege;
+        message = _message;
     }
 
     @Override
@@ -43,7 +40,7 @@ public class HomePagePresenterImpl implements HomePagePresenter{
                             if (success == 10)
                                 view.showRandomMeals(meals);
                             },
-                        error -> massege.showMsg(error.getMessage())
+                        error -> message.showMsg(error.getMessage())
                     );
         }
     }
@@ -56,7 +53,7 @@ public class HomePagePresenterImpl implements HomePagePresenter{
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         item -> view.showCategories(item),
-                        error -> massege.showMsg(error.getMessage())
+                        error -> message.showMsg(error.getMessage())
                 );
     }
 
@@ -68,7 +65,7 @@ public class HomePagePresenterImpl implements HomePagePresenter{
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         item -> view.showAreas(item),
-                        error -> massege.showMsg(error.getMessage())
+                        error -> message.showMsg(error.getMessage())
                 );
     }
 
@@ -80,7 +77,7 @@ public class HomePagePresenterImpl implements HomePagePresenter{
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         item -> addToFav2(item),
-                        error -> massege.showMsg(error.getMessage())
+                        error -> message.showMsg(error.getMessage())
                 );
     }
     private void addToFav2(MealDTO meal) {
@@ -89,8 +86,8 @@ public class HomePagePresenterImpl implements HomePagePresenter{
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        () -> massege.showMsg("Add to favourite successfully"),
-                        error -> massege.showMsg(error.getMessage())
+                        () -> message.showMsg("Add to favourite successfully"),
+                        error -> message.showMsg(error.getMessage())
                 );
     }
 }

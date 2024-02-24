@@ -25,6 +25,8 @@ import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.Listeners.OnAddListener;
 import com.example.foodplanner.Listeners.OnMessageListener;
+import com.example.foodplanner.Repository.Repository;
+import com.example.foodplanner.Repository.RepositoryImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +69,8 @@ public class CalenderListFragment extends Fragment  implements OnAddListener, Ca
 
         LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(getContext());
         RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
-        presenter = new CalenderListPresenterImpl(localDataSourse, remoteDataSource, this, this);
+        Repository repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
+        presenter = new CalenderListPresenterImpl(repository, this, this);
         presenter.getFavMeals();
     }
 

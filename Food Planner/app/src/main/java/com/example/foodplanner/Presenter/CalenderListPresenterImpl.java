@@ -15,12 +15,12 @@ public class CalenderListPresenterImpl implements CalenderListPresenter {
 
     private Repository repository;
     private CalenderListView view;
-    private OnMessageListener massege;
+    private OnMessageListener message;
 
-    public CalenderListPresenterImpl(LocalDataSourse localDataSourse, RemoteDataSource remoteDataSource, CalenderListView _view, OnMessageListener _massege){
-        repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
+    public CalenderListPresenterImpl(Repository _repository, CalenderListView _view, OnMessageListener _massege){
+        repository = _repository;
         view = _view;
-        massege = _massege;
+        message = _massege;
     }
 
     @Override
@@ -30,7 +30,7 @@ public class CalenderListPresenterImpl implements CalenderListPresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         item -> view.showMeals(item),
-                        error -> massege.showMsg(error.getMessage())
+                        error -> message.showMsg(error.getMessage())
                 );
     }
 
@@ -40,8 +40,8 @@ public class CalenderListPresenterImpl implements CalenderListPresenter {
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        () -> massege.showMsg("Add to Calender successfully"),
-                        error -> massege.showMsg(error.getMessage())
+                        () -> message.showMsg("Add to Calender successfully"),
+                        error -> message.showMsg(error.getMessage())
                 );
     }
 

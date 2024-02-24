@@ -30,6 +30,8 @@ import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.HelperClasses.NetworkConnection;
 import com.example.foodplanner.Listeners.OnFavListener;
 import com.example.foodplanner.Listeners.OnMessageListener;
+import com.example.foodplanner.Repository.Repository;
+import com.example.foodplanner.Repository.RepositoryImpl;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.auth.FirebaseAuth;
@@ -129,7 +131,8 @@ public class MealDetailsFragment extends Fragment implements OnFavListener, Meal
 
         LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(getContext());
         RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
-        presenter = new MealDetailsPresenterImpl(localDataSourse, remoteDataSource, this, this);
+        Repository repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
+        presenter = new MealDetailsPresenterImpl(repository, this, this);
 
         if(remote) {
             presenter.getMeal(id);

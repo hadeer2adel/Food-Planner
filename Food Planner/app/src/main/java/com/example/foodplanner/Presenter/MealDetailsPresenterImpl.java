@@ -1,12 +1,9 @@
 package com.example.foodplanner.Presenter;
 
 import com.example.foodplanner.Controller.MealDetailsView;
-import com.example.foodplanner.LocalDataSource.LocalDataSourse;
 import com.example.foodplanner.Models.MealDTO;
 import com.example.foodplanner.Models.UserDTO;
-import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.Repository.Repository;
-import com.example.foodplanner.Repository.RepositoryImpl;
 import com.example.foodplanner.Listeners.OnMessageListener;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -15,12 +12,12 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class MealDetailsPresenterImpl implements MealDetailsPresenter{
     private Repository repository;
     private MealDetailsView view;
-    private OnMessageListener massege;
+    private OnMessageListener message;
 
-    public MealDetailsPresenterImpl(LocalDataSourse localDataSourse, RemoteDataSource remoteDataSource, MealDetailsView _view, OnMessageListener _massege){
-        repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
+    public MealDetailsPresenterImpl(Repository _repository, MealDetailsView _view, OnMessageListener _message){
+        repository = _repository;
         view = _view;
-        massege = _massege;
+        message = _message;
     }
 
     @Override
@@ -31,7 +28,7 @@ public class MealDetailsPresenterImpl implements MealDetailsPresenter{
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         item -> view.showMeal(item),
-                        error -> massege.showMsg(error.getMessage())
+                        error -> message.showMsg(error.getMessage())
                 );
     }
 
@@ -42,7 +39,7 @@ public class MealDetailsPresenterImpl implements MealDetailsPresenter{
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         item -> view.showMeal(item),
-                        error -> massege.showMsg(error.getMessage())
+                        error -> message.showMsg(error.getMessage())
                 );
     }
 
@@ -54,7 +51,7 @@ public class MealDetailsPresenterImpl implements MealDetailsPresenter{
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         item -> addToFav2(item),
-                        error -> massege.showMsg(error.getMessage())
+                        error -> message.showMsg(error.getMessage())
                 );
     }
     private void addToFav2(MealDTO meal) {
@@ -63,8 +60,8 @@ public class MealDetailsPresenterImpl implements MealDetailsPresenter{
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        () -> massege.showMsg("Add to favourite successfully"),
-                        error -> massege.showMsg(error.getMessage())
+                        () -> message.showMsg("Add to favourite successfully"),
+                        error -> message.showMsg(error.getMessage())
                 );
     }
 
@@ -74,8 +71,8 @@ public class MealDetailsPresenterImpl implements MealDetailsPresenter{
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        () -> massege.showMsg("delete from favourite successfully"),
-                        error -> massege.showMsg(error.getMessage())
+                        () -> message.showMsg("delete from favourite successfully"),
+                        error -> message.showMsg(error.getMessage())
                 );
     }
 }

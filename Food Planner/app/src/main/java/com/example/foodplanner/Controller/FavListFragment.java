@@ -26,6 +26,8 @@ import com.example.foodplanner.RecycleView.MealHorizontalRecycleViewAdapter;
 import com.example.foodplanner.RecycleView.MealVerticalRecycleViewAdapter;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
+import com.example.foodplanner.Repository.Repository;
+import com.example.foodplanner.Repository.RepositoryImpl;
 import com.example.foodplanner.View.LoginActivity;
 import com.example.foodplanner.View.MainActivity;
 import com.example.foodplanner.Listeners.OnFavListener;
@@ -83,7 +85,8 @@ public class FavListFragment extends Fragment  implements OnFavListener, FavList
 
         LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(getContext());
         RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
-        presenter = new FavListPresenterImpl(localDataSourse, remoteDataSource, this, this);
+        Repository repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
+        presenter = new FavListPresenterImpl(repository, this, this);
         presenter.getFavMeals();
     }
 

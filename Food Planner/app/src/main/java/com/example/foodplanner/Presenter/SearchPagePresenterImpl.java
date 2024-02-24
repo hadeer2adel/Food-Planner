@@ -3,15 +3,12 @@ package com.example.foodplanner.Presenter;
 import android.text.Editable;
 
 import com.example.foodplanner.Controller.SearchPageView;
-import com.example.foodplanner.LocalDataSource.LocalDataSourse;
 import com.example.foodplanner.Models.AreaDTO;
 import com.example.foodplanner.Models.CategoryDTO;
 import com.example.foodplanner.Models.IngredientDTO;
 import com.example.foodplanner.Models.MealDTO;
 import com.example.foodplanner.Models.UserDTO;
-import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.Repository.Repository;
-import com.example.foodplanner.Repository.RepositoryImpl;
 import com.example.foodplanner.Listeners.OnMessageListener;
 
 import java.util.List;
@@ -26,12 +23,12 @@ public class SearchPagePresenterImpl implements SearchPagePresenter{
 
     private Repository repository;
     private SearchPageView view;
-    private OnMessageListener massege;
+    private OnMessageListener message;
 
-    public SearchPagePresenterImpl(LocalDataSourse localDataSourse, RemoteDataSource remoteDataSource, SearchPageView _view, OnMessageListener _massege){
-        repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
+    public SearchPagePresenterImpl(Repository _repository, SearchPageView _view, OnMessageListener _message){
+        repository = _repository;
         view = _view;
-        massege = _massege;
+        message = _message;
     }
 
     @Override
@@ -42,7 +39,7 @@ public class SearchPagePresenterImpl implements SearchPagePresenter{
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         item -> view.setCategories(item),
-                        error -> massege.showMsg(error.getMessage())
+                        error -> message.showMsg(error.getMessage())
                 );
     }
 
@@ -54,7 +51,7 @@ public class SearchPagePresenterImpl implements SearchPagePresenter{
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         item -> view.setAreas(item),
-                        error -> massege.showMsg(error.getMessage())
+                        error -> message.showMsg(error.getMessage())
                 );
     }
 
@@ -67,7 +64,7 @@ public class SearchPagePresenterImpl implements SearchPagePresenter{
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         item -> view.setIngredients(item),
-                        error -> massege.showMsg(error.getMessage())
+                        error -> message.showMsg(error.getMessage())
                 );
     }
 
@@ -79,7 +76,7 @@ public class SearchPagePresenterImpl implements SearchPagePresenter{
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         item -> addToFav2(item),
-                        error -> massege.showMsg(error.getMessage())
+                        error -> message.showMsg(error.getMessage())
                 );
     }
     private void addToFav2(MealDTO meal) {
@@ -88,8 +85,8 @@ public class SearchPagePresenterImpl implements SearchPagePresenter{
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        () -> massege.showMsg("Add to favourite successfully"),
-                        error -> massege.showMsg(error.getMessage())
+                        () -> message.showMsg("Add to favourite successfully"),
+                        error -> message.showMsg(error.getMessage())
                 );
     }
 
@@ -102,7 +99,7 @@ public class SearchPagePresenterImpl implements SearchPagePresenter{
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         item -> view.showMeals(item),
-                        error -> massege.showMsg(error.getMessage())
+                        error -> message.showMsg(error.getMessage())
                 );
 
     }
@@ -116,7 +113,7 @@ public class SearchPagePresenterImpl implements SearchPagePresenter{
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         item -> view.showMeals(item),
-                        error -> massege.showMsg(error.getMessage())
+                        error -> message.showMsg(error.getMessage())
                 );
     }
 
@@ -129,7 +126,7 @@ public class SearchPagePresenterImpl implements SearchPagePresenter{
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         item -> view.showMeals(item),
-                        error -> massege.showMsg(error.getMessage())
+                        error -> message.showMsg(error.getMessage())
                 );
 
     }
@@ -148,10 +145,10 @@ public class SearchPagePresenterImpl implements SearchPagePresenter{
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .subscribe(
                                             item -> view.showMeals(item),
-                                            error -> massege.showMsg(error.getMessage())
+                                            error -> message.showMsg(error.getMessage())
                                     );
                         },
-                        error -> massege.showMsg(error.getMessage())
+                        error -> message.showMsg(error.getMessage())
                 );
     }
 

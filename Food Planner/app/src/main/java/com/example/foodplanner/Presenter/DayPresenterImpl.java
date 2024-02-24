@@ -1,11 +1,8 @@
 package com.example.foodplanner.Presenter;
 
 import com.example.foodplanner.Controller.DayMealsListView;
-import com.example.foodplanner.LocalDataSource.LocalDataSourse;
 import com.example.foodplanner.Models.MealDTO;
-import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.Repository.Repository;
-import com.example.foodplanner.Repository.RepositoryImpl;
 import com.example.foodplanner.Listeners.OnMessageListener;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -15,12 +12,12 @@ public class DayPresenterImpl implements DayPresenter{
 
     private Repository repository;
     private DayMealsListView view;
-    private OnMessageListener massege;
+    private OnMessageListener message;
 
-    public DayPresenterImpl(LocalDataSourse localDataSourse, RemoteDataSource remoteDataSource, DayMealsListView _view, OnMessageListener _massege){
-        repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
+    public DayPresenterImpl(Repository _repository, DayMealsListView _view, OnMessageListener _message){
+        repository = _repository;
         view = _view;
-        massege = _massege;
+        message = _message;
     }
 
     @Override
@@ -30,7 +27,7 @@ public class DayPresenterImpl implements DayPresenter{
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         item -> view.showDayMeals(item),
-                        error -> massege.showMsg(error.getMessage())
+                        error -> message.showMsg(error.getMessage())
                 );
     }
 
@@ -40,8 +37,8 @@ public class DayPresenterImpl implements DayPresenter{
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        () -> massege.showMsg("Delete from Calender successfully"),
-                        error -> massege.showMsg(error.getMessage())
+                        () -> message.showMsg("Delete from Calender successfully"),
+                        error -> message.showMsg(error.getMessage())
                 );
     }
 }

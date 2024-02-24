@@ -27,6 +27,8 @@ import com.example.foodplanner.RecycleView.WeekRecycleViewAdapter;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.HelperClasses.PreferenceManager;
+import com.example.foodplanner.Repository.Repository;
+import com.example.foodplanner.Repository.RepositoryImpl;
 import com.example.foodplanner.View.LoginActivity;
 import com.example.foodplanner.View.MainActivity;
 import com.example.foodplanner.Listeners.OnMessageListener;
@@ -62,7 +64,8 @@ public class WeekListFragment extends Fragment  implements OnMessageListener {
         else if (isNewWeek()){
             LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(getContext());
             RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
-            WeekListPresenter presenter = new WeekListPresenterImpl(localDataSourse, remoteDataSource, this);
+            Repository repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
+            WeekListPresenter presenter = new WeekListPresenterImpl(repository, this);
 
             presenter.deleteAllPlans();
             PreferenceManager preferenceManager = new PreferenceManager(getContext());

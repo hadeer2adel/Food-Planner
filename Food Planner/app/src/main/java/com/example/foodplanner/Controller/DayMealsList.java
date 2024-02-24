@@ -16,6 +16,8 @@ import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.Listeners.OnAddListener;
 import com.example.foodplanner.Listeners.OnMessageListener;
+import com.example.foodplanner.Repository.Repository;
+import com.example.foodplanner.Repository.RepositoryImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +45,8 @@ public class DayMealsList implements OnAddListener, DayMealsListView, OnMessageL
 
         LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(context);
         RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
-        presenter = new DayPresenterImpl(localDataSourse, remoteDataSource, this, this);
+        Repository repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
+        presenter = new DayPresenterImpl(repository, this, this);
         presenter.getDayMeals(day);
     }
 

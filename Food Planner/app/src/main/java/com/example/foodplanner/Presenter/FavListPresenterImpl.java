@@ -1,11 +1,8 @@
 package com.example.foodplanner.Presenter;
 
 import com.example.foodplanner.Controller.FavListView;
-import com.example.foodplanner.LocalDataSource.LocalDataSourse;
 import com.example.foodplanner.Models.MealDTO;
-import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.Repository.Repository;
-import com.example.foodplanner.Repository.RepositoryImpl;
 import com.example.foodplanner.Listeners.OnMessageListener;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -15,12 +12,12 @@ public class FavListPresenterImpl implements FavListPresenter {
 
     private Repository repository;
     private FavListView view;
-    private OnMessageListener massege;
+    private OnMessageListener message;
 
-    public FavListPresenterImpl(LocalDataSourse localDataSourse, RemoteDataSource remoteDataSource, FavListView _view, OnMessageListener _massege){
-        repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
+    public FavListPresenterImpl(Repository _repository, FavListView _view, OnMessageListener _message){
+        repository = _repository;
         view = _view;
-        massege = _massege;
+        message = _message;
     }
 
     @Override
@@ -30,7 +27,7 @@ public class FavListPresenterImpl implements FavListPresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         item -> view.showMeals(item),
-                        error -> massege.showMsg(error.getMessage())
+                        error -> message.showMsg(error.getMessage())
                 );
     }
 
@@ -40,8 +37,8 @@ public class FavListPresenterImpl implements FavListPresenter {
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        () -> massege.showMsg("Delete from favourite successfully"),
-                        error -> massege.showMsg(error.getMessage())
+                        () -> message.showMsg("Delete from favourite successfully"),
+                        error -> message.showMsg(error.getMessage())
                 );
     }
 }

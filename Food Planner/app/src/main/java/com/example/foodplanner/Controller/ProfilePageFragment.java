@@ -25,6 +25,8 @@ import com.example.foodplanner.R;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSource;
 import com.example.foodplanner.RemoteDataSource.RemoteDataSourceImpl;
 import com.example.foodplanner.HelperClasses.NetworkConnection;
+import com.example.foodplanner.Repository.Repository;
+import com.example.foodplanner.Repository.RepositoryImpl;
 import com.example.foodplanner.View.LoginActivity;
 import com.example.foodplanner.View.MainActivity;
 import com.example.foodplanner.Listeners.OnMessageListener;
@@ -61,7 +63,8 @@ public class ProfilePageFragment extends Fragment implements ProfilePageView, On
 
         LocalDataSourse localDataSourse = LocalDataSourseImpl.getInstance(getContext());
         RemoteDataSource remoteDataSource = RemoteDataSourceImpl.getInstance();
-        presenter = new ProfilePagePresenterImpl(localDataSourse, remoteDataSource, this, this);
+        Repository repository = RepositoryImpl.getInstance(remoteDataSource, localDataSourse);
+        presenter = new ProfilePagePresenterImpl(repository, this, this);
 
         name = view.findViewById(R.id.userName);
         email = view.findViewById(R.id.userEmail);
@@ -161,7 +164,7 @@ public class ProfilePageFragment extends Fragment implements ProfilePageView, On
                             presenter.retrieveData();
                         }
                         else if(option == 6){
-                            presenter.logOut();
+                            presenter.logOut(getContext());
                         }
                     }
                 })
